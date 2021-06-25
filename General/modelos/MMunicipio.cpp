@@ -7,12 +7,15 @@
 //     string codigo;
 //     // centinelas;
 
-void MMunicipio::agregarCentinela(){
-
+MMunicipio::MMunicipio()
+{
 }
-void MMunicipio::removerCentinela(){
-    
+void MMunicipio::agregarCentinela()
+{
 }
-int MMunicipio::totalCentinelas(){
+void MMunicipio::removerCentinela()
+{
 }
-
+int MMunicipio::totalCentinelas()
+{
+}
