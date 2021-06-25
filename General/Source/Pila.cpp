@@ -1,3 +1,5 @@
+#include "../Pila.h"
+
 template <class Tipo>
 Pila<Tipo>::Pila()
 {

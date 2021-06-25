@@ -36,5 +36,5 @@ public:
   void AsigInfo(Nodopila<Tipo> *p,Tipo x);
 };
 
-#include "Pila.cpp"
+#include "Source/Pila.cpp"
 #endif

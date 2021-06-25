@@ -1,21 +1,23 @@
 #ifndef Cola_H
 #define Cola_H
+#include <iostream>
+using namespace std;
 
 template <class Tipo>
 class Cola;
 
 template <class Tipo>
-class nodo
+class nodoCola
 {
 Tipo info;
-nodo *prox;
+nodoCola *prox;
 friend class Cola<Tipo>;
 };
 
 template <class Tipo>
 class Cola
 {
-nodo<Tipo> *Frente,*Final;
+nodoCola<Tipo> *Frente,*Final;
 public:
 Cola();
 bool Vacia();
@@ -24,5 +26,5 @@ bool Insertar(Tipo Valor);
 bool Remover(Tipo &Valor);
 };
 
-#include "Cola.cpp"
+#include "Source/Cola.cpp"
 #endif

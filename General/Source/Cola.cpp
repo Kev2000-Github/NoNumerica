@@ -1,3 +1,5 @@
+#include "../Cola.h"
+
 template <class Tipo>
 Cola<Tipo>::Cola() {
      Frente=NULL;
@@ -11,8 +13,8 @@ bool Cola<Tipo>::Vacia(){
 
 template <class Tipo>
 bool Cola<Tipo>::Llena(){
-     nodo<Tipo> *p;
-     p=new nodo<Tipo>;
+     nodoCola<Tipo> *p;
+     p=new nodoCola<Tipo>;
      if (p==NULL)
         return true;
      else
@@ -23,10 +25,10 @@ bool Cola<Tipo>::Llena(){
 
 template <class Tipo>
 bool Cola<Tipo>::Insertar(Tipo Valor){
-     nodo<Tipo> *nuevo;
+     nodoCola<Tipo> *nuevo;
      if (!Llena())
      {
-        nuevo=new nodo<Tipo>;
+        nuevo=new nodoCola<Tipo>;
         nuevo->info=Valor;
         nuevo->prox=NULL;
         if (Final==NULL) 
@@ -40,7 +42,7 @@ bool Cola<Tipo>::Insertar(Tipo Valor){
 
 template <class Tipo>
 bool Cola<Tipo>::Remover(Tipo &Valor){
-     nodo<Tipo> *primero;
+     nodoCola<Tipo> *primero;
      if (!Vacia())
      {
         primero=Frente;

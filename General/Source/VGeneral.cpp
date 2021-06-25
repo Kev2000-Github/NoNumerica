@@ -6,7 +6,7 @@
  *  Ajustado: 07/05/2012 Prof. Margarita Pereia
  */
 
-#include "VGeneral.h"
+#include "../VGeneral.h"
 VGeneral::VGeneral(){}
 //--------------------------------------------------------------------------
 // ****************METODOS GENERALES EFECTOS DE PANTALLA********************

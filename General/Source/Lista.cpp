@@ -1,5 +1,5 @@
 
-#include "Lista.h"
+#include "../Lista.h"
 
 template <class Tipo>
 nodo<Tipo>* Lista<Tipo>::ObtPrimero(){
