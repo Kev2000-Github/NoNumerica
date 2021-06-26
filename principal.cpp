@@ -3,22 +3,13 @@
 #include "General/Lista.h"
 #include "General/Pila.h"
 #include "General/Cola.h"
+#include "General/Date.h"
 using namespace std;
 
 int main(){
-	Lista<int> list1;
-	Pila<int> pila1;
-	Cola<int> cola1;
-	list1.InsComienzo(1);
-	pila1.Insertar(2);
-	cola1.Insertar(3);
-	cout << "MAIN"<<endl;
-	cout << list1.ObtInfo(list1.ObtPrimero()) << endl;
-	cout << pila1.ObtInfo(pila1.ObtTope()) << endl;
-	int value;
-	cola1.Remover(value);
-	cout << value << endl;
-	cola1.Insertar(value);
+	Date date1("26/06/2021");
+	Date date2("20/06/2021");
+	cout << "DIFERENCIAS EN DIAS: " << date1.DiferenciaDias(date2) << endl;
 
 	return 0;
 }

@@ -14,23 +14,19 @@ Date::Date(string fecha) {
 	for(unsigned int i = 0; i < fecha.length(); i ++){
 		if(fecha[i] == '/'){
 			ss << aux;
-			switch(slashCounter){
-				case 0:
-					ss >> dia;
-					break;
-				case 1:
-					ss >> mes;
-					break;
-				default:
-					ss >> annio;
-					break;
-			}
+			if(slashCounter == 0) ss >> dia;
+			else ss >> mes;
 			slashCounter++;
+			ss.clear();
+			aux="";
 		}
 		else{
 			aux += fecha[i];
 		}
 	}
+	ss.clear();
+	ss << aux;
+	ss >> annio;
 }
 
 void Date::setdia(int d1){
