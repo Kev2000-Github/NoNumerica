@@ -40,6 +40,6 @@ public:
          void pasarListaAux(Lista<Tipo> &listaFuente, Lista<Tipo> &listaDestino);
 };
 
-#include "Source/Lista.cpp"
+#include "Sources/Lista.cpp"
 #endif
 

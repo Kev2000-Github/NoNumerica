@@ -42,7 +42,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="General/Source/Pila.cpp|General/Source/Lista.cpp|General/Source/Cola.cpp|General/Cola.cpp|General/Lista.cpp|General/Pila.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="General/Sources/Pila.cpp|General/Sources/Lista.cpp|General/Sources/Cola.cpp|General/Lista.cpp|General/Source/Cola.cpp|General/Cola.cpp|General/Source/Pila.cpp|General/Source/Lista.cpp|General/Pila.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -88,7 +88,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="General/Source/Pila.cpp|General/Source/Lista.cpp|General/Source/Cola.cpp|General/Cola.cpp|General/Lista.cpp|General/Pila.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="General/Sources/Pila.cpp|General/Sources/Lista.cpp|General/Sources/Cola.cpp|General/Lista.cpp|General/Source/Cola.cpp|General/Cola.cpp|General/Source/Pila.cpp|General/Source/Lista.cpp|General/Pila.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
