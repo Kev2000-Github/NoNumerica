@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <tr1/regex>
 #include "General/Lista.h"
 #include "General/Pila.h"
 #include "General/Cola.h"
@@ -19,5 +20,8 @@ int main(){
 	cola1.Remover(value);
 	cout << value << endl;
 	cola1.Insertar(value);
+	string str = "Hello world";
+	std::tr1::regex a("world");
+
 	return 0;
 }

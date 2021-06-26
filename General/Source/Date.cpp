@@ -1,49 +1,56 @@
 #include <iostream>
 #include <string>
+#include <iostream>
 #include <cstdlib>
+#include <cstring>
+#include <sstream>
 using namespace std;
 #include "../Date.h"
 
-Date::Date() {
-}
-void Date::setdia1(int d1){
-	dia1=d1;
-}
-void Date::setmes1(int m1){
-	mes1=m1;
-}
-void Date::setannio1(int a1){
-	annio1=a1;
-}
-int Date::getdia1(){
-	return dia1;
-}
-int Date::getmes1(){
-	return mes1;
-}
-int Date::getannio1(){
-	return annio1;
-}
-
-void Date::setdia2(int d2){
-	dia2=d2;
-}
-void Date::setmes2(int m2){
-	mes2=m2;
-}
-void Date::setannio2(int a2){
-	annio2=a2;
-}
-int Date::getdia2(){
-	return dia2;
-}
-int Date::getmes2(){
-	return mes2;
-}
-int Date::getannio2(){
-	return annio2;
+Date::Date(string fecha) {
+	string aux = "";
+	stringstream ss;
+	int slashCounter = 0;
+	for(int i = 0; i < fecha.length(); i ++){
+		if(string[i] == "/"){
+			ss << aux;
+			switch(slashCounter){
+				case 0:
+					ss >> dia;
+					break;
+				case 1:
+					ss >> mes;
+					break;
+				default:
+					ss >> annio;
+					break;
+			}
+			slashCounter++;
+		}
+		else{
+			aux += fecha[i];
+		}
+	}
 }
 
+void Date::setdia(int d1){
+	dia=d1;
+}
+void Date::setmes(int m1){
+	mes=m1;
+}
+void Date::setannio(int a1){
+	annio=a1;
+}
+int Date::getdia(){
+	return dia;
+}
+int Date::getmes(){
+	return mes;
+}
+int Date::getannio(){
+	return annio;
+}
 
 int Date::Bisiesto(int annio){
     if((annio%4==0 && annio%100!=0) || annio%400==0 )   //si es mes es bisiesto
@@ -51,7 +58,8 @@ int Date::Bisiesto(int annio){
     else
     	return 0;
 }
-int Date::NumeroDiasAnnio(int mes, int annio){
+
+int Date::NumeroDiasAnnio(int mes,int annio){
     // enero, marzo, mayo, julio, agosto, octubre, diciembre contar 31 dias
     if( mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12 )
         return 31;
@@ -62,7 +70,7 @@ int Date::NumeroDiasAnnio(int mes, int annio){
 
     else //Febrero
     {
-        int n=Bisiesto(annio);
+        int n= Bisiesto(annio);
         if(n==1)
         return 29;
 
@@ -70,60 +78,60 @@ int Date::NumeroDiasAnnio(int mes, int annio){
         return 28;
     }
 }
-int Date::DiferenciaDias(int dia1,int mes1, int annio1, int dia2, int mes2, int annio2)
+int Date::DiferenciaDias(Date fecha2)
 {
-    if(annio1==annio2) //anio igual
+    if(annio==fecha2.getannio()) //anio igual
     {
-        if(mes1==mes2)
+        if(mes==fecha2.getmes())
         {
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return 0;
             else
-                return abs(dia1-dia2);
+                return abs(dia-fecha2.getdia());
         }
-        else if(mes1<mes2)
+        else if(mes<fecha2.getmes())
         {
             int result=0;
-            for(int i=mes1; i<mes2; i++)
-            result=result+NumeroDiasAnnio(i,annio1);
+            for(int i=mes; i<fecha2.getmes(); i++)
+            result=result + NumeroDiasAnnio(i,annio);
 
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return result;
-            else if(dia1<dia2)
+            else if(dia<fecha2.getdia())
             {
-                result=result+(dia2-dia1);
+                result=result+(fecha2.getdia() - dia);
                 return result;
             }
             else
             {
-                result=result-(dia1-dia2);
+                result=result-(dia - fecha2.getdia());
                 return result;
             }
         }
         else
         {
             int result=0;
-            for(int i=mes2; i<mes1; i++)
-            result=result+NumeroDiasAnnio(i,annio1);
+            for(int i=fecha2.getmes(); i<mes; i++)
+            result=result + NumeroDiasAnnio(i,annio);
 
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return result;
-            else if(dia2<dia1)
+            else if(fecha2.getdia()<dia)
             {
-                result=result+(dia1-dia2);
+                result=result+(dia-fecha2.getdia());
                 return result;
             }
             else
             {
-                result=result-(dia2-dia1);
+                result=result-(fecha2.getdia()-dia);
                 return result;
             }
         }
     }
-    else if(annio1<annio2)
+    else if(annio<fecha2.getannio())
     {
         int temp=0;  //eu
-        for(int i=annio1; i<annio2; i++)
+        for(int i=annio; i<fecha2.getannio(); i++)
         {
             if(Bisiesto(i))
                 temp=temp+366;
@@ -131,50 +139,50 @@ int Date::DiferenciaDias(int dia1,int mes1, int annio1, int dia2, int mes2, int 
                 temp=temp+365;
         }
 
-        if(mes1==mes2)
+        if(mes==fecha2.getmes())
         {
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return temp;
-            else if(dia1<dia2)
-                return temp+(dia2-dia1);
+            else if(dia<fecha2.getdia())
+                return temp+(fecha2.getdia()-dia);
             else
-                return temp-(dia1-dia2);
+                return temp-(dia-fecha2.getdia());
         }
-        else if(mes1<mes2)
+        else if(mes<fecha2.getmes())
         {
             int result=0;
-            for(int i=mes1; i<mes2; i++)
-            result=result+NumeroDiasAnnio(i,annio2);
+            for(int i=mes; i<fecha2.getmes(); i++)
+            result=result+NumeroDiasAnnio(i,fecha2.getannio());
 
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return temp+result;
-            else if(dia1<dia2)
+            else if(dia<fecha2.getdia())
             {
-                result=result+(dia2-dia1);
+                result=result+(fecha2.getdia()-dia);
                 return temp+result;
             }
             else
             {
-                result=result-(dia1-dia2);
+                result=result-(dia-fecha2.getdia());
                 return temp+result;
             }
         }
         else
         {
             int result=0;
-            for(int i=mes2; i<mes1; i++)
-            result=result+NumeroDiasAnnio(i,annio2);
+            for(int i=fecha2.getmes(); i<mes; i++)
+            result=result+NumeroDiasAnnio(i,fecha2.getannio());
 
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return temp-result;
-            else if(dia2<dia1)
+            else if(fecha2.getdia()<dia)
             {
-                result=result+(dia1-dia2);
+                result=result+(dia-fecha2.getdia());
                 return temp-result;
             }
             else
             {
-                result=result-(dia2-dia1);
+                result=result-(fecha2.getdia()-dia);
                 return temp-result;
             }
         }
@@ -182,7 +190,7 @@ int Date::DiferenciaDias(int dia1,int mes1, int annio1, int dia2, int mes2, int 
     else
     { // lo necesitamos?
         int temp=0;
-        for(int i=annio2; i<annio1; i++)
+        for(int i=fecha2.getannio(); i<annio; i++)
         {
             if(Bisiesto(i))
                 temp=temp+366;
@@ -190,50 +198,50 @@ int Date::DiferenciaDias(int dia1,int mes1, int annio1, int dia2, int mes2, int 
                 temp=temp+365;
         }
 
-        if(mes1==mes2)
+        if(mes==fecha2.getmes())
         {
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return temp;
-            else if(dia2<dia1)
-                return temp+(dia1-dia2);
+            else if(fecha2.getdia()<dia)
+                return temp+(dia-fecha2.getdia());
             else
-                return temp-(dia2-dia1);
+                return temp-(fecha2.getdia()-dia);
         }
-        else if(mes2<mes1)
+        else if(fecha2.getmes()<mes)
         {
             int result=0;
-            for(int i=mes2; i<mes1; i++)
-            result=result+NumeroDiasAnnio(i,annio1);
+            for(int i=fecha2.getmes(); i<mes; i++)
+            result=result+NumeroDiasAnnio(i,annio);
 
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return temp+result;
-            else if(dia2<dia1)
+            else if(fecha2.getdia()<dia)
             {
-                result=result+(dia1-dia2);
+                result=result+(dia-fecha2.getdia());
                 return temp+result;
             }
             else
             {
-                result=result-(dia2-dia1);
+                result=result-(fecha2.getdia()-dia);
                 return temp+result;
             }
         }
         else
         {
             int result=0;
-            for(int i=mes1; i<mes2; i++)
-            result=result+NumeroDiasAnnio(i,annio1);
+            for(int i=mes; i<fecha2.getmes(); i++)
+            result=result+NumeroDiasAnnio(i,annio);
 
-            if(dia1==dia2)
+            if(dia==fecha2.getdia())
                 return temp-result;
-            else if(dia1<dia2)
+            else if(dia<fecha2.getdia())
             {
-                result=result+(dia2-dia1);
+                result=result+(fecha2.getdia()-dia);
                 return temp-result;
             }
             else
             {
-                result=result-(dia1-dia2);
+                result=result-(dia-fecha2.getdia());
                 return temp-result;
             }
         }
