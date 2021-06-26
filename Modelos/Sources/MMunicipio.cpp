@@ -10,10 +10,10 @@
 MMunicipio::MMunicipio()
 {
 }
-void MMunicipio::agregarCentinela()
+void MMunicipio::agregarCentinela(MCentinela centinela)
 {
 }
-void MMunicipio::removerCentinela()
+void MMunicipio::removerCentinela(string codigo)
 {
 }
 int MMunicipio::totalCentinelas()

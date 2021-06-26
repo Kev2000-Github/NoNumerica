@@ -17,9 +17,9 @@ private:
 public:
 	MEstado();
 	int totalMunicipio();
-	bool agregarMunicipio(string municipio);
-	bool removerMunicipio (string municipio);
-	bool buscarMunicipio (string municipio);
+	bool agregarMunicipio(MMunicipio municipio);
+	bool removerMunicipio (string codigo);
+	bool buscarMunicipio (string codigo);
 };
 
 #endif /* MESTADO_H_ */

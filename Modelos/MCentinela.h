@@ -21,10 +21,10 @@ private:
 public:
 	MCentinela();
 	bool actualizarVacuna(string marca, int n);
-	bool agregarCubiculo();
-	bool removerCubiculo();
-	bool agregarVacuna();
-	bool removerVacuna();
+	bool agregarCubiculo(MCubiculo cubiculo);
+	bool removerCubiculo(string codigo);
+	bool agregarVacuna(MAlmacenVacuna vacunas);
+	bool removerVacuna(string marca);
 	int totalCubiculos();
 };
 

@@ -14,19 +14,19 @@ MCentinela::MCentinela() {
 bool MCentinela::actualizarVacuna(string marca,int n){
 
 }
-bool MCentinela::agregarCubiculo(){
+bool MCentinela::agregarCubiculo(MCubiculo cubiculo){
 
 }
-bool MCentinela::removerCubiculo(){
-
-}
-
-bool MCentinela::agregarVacuna(){
+bool MCentinela::removerCubiculo(string codigo){
 
 }
 
+bool MCentinela::agregarVacuna(MAlmacenVacuna vacunas){
 
-bool MCentinela::removerVacuna(){
+}
+
+
+bool MCentinela::removerVacuna(string marca){
 
 }
 

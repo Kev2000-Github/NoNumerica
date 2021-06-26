@@ -9,6 +9,6 @@
 
 MEstado::MEstado() {}
 int MEstado::totalMunicipio(){}
-bool MEstado::agregarMunicipio(string municipio){}
-bool MEstado::removerMunicipio(string municipio){}
-bool MEstado::buscarMunicipio(string municipio){}
+bool MEstado::agregarMunicipio(MMunicipio municipio){}
+bool MEstado::removerMunicipio(string codigo){}
+bool MEstado::buscarMunicipio(string codigo){}

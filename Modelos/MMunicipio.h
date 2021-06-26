@@ -2,19 +2,19 @@
 #define MMunicipio_H
 #include <iostream>
 #include <string>
+#include "MCentinela.h"
 using namespace std;
 
 class MMunicipio {
 private:
     string nombre;
     string codigo;
-    // centinelas;
+    MCentinela centinelas;
 public:
     MMunicipio();
     int totalCentinelas();
-    void agregarCentinela();
-    void removerCentinela();
-    int buscarCentinela();
+    void agregarCentinela(MCentinela centinela);
+    void removerCentinela(string codigo);
 };
 
 #endif
