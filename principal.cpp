@@ -1,15 +1,28 @@
 #include <iostream>
 #include <cstdlib>
-#include "General/Lista.h"
-#include "General/Pila.h"
-#include "General/Cola.h"
+#include "Modelos/MCubiculo.h"
 #include "General/Date.h"
 using namespace std;
 
 int main(){
-	Date date1("26/06/2021");
-	Date date2("20/06/2021");
-	cout << "DIFERENCIAS EN DIAS: " << date1.DiferenciaDias(date2) << endl;
+	MCubiculo cubiculo;
+	bool encontrado = false;
+	cubiculo.agregarPaciente("111");
+	cubiculo.agregarPaciente("222");
+	cubiculo.agregarPaciente("333");
+	string cedula;
+
+	cubiculo.removerPrimerPaciente(cedula);
+	cout << cedula << endl;
+	cubiculo.agregarPaciente(cedula);
+
+	cedula = "222";
+	encontrado = cubiculo.removerPaciente(cedula);
+	cout << encontrado << " " << cedula << endl;
+	cubiculo.agregarPaciente(cedula);
+
+	cedula = "123";
+	cout << cubiculo.removerPaciente(cedula) << endl;
 
 	return 0;
 }

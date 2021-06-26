@@ -22,9 +22,9 @@ public:
 	MCentinela();
 	bool actualizarVacuna(string marca, int n);
 	bool agregarCubiculo(MCubiculo cubiculo);
-	bool removerCubiculo(string codigo);
+	bool removerCubiculo(string codigo, MCubiculo &cubiculo);
 	bool agregarVacuna(MAlmacenVacuna vacunas);
-	bool removerVacuna(string marca);
+	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
 	int totalCubiculos();
 };
 

@@ -17,7 +17,7 @@ bool MCentinela::actualizarVacuna(string marca,int n){
 bool MCentinela::agregarCubiculo(MCubiculo cubiculo){
 
 }
-bool MCentinela::removerCubiculo(string codigo){
+bool MCentinela::removerCubiculo(string codigo, MCubiculo &cubiculo){
 
 }
 
@@ -26,7 +26,7 @@ bool MCentinela::agregarVacuna(MAlmacenVacuna vacunas){
 }
 
 
-bool MCentinela::removerVacuna(string marca){
+bool MCentinela::removerVacuna(string marca, MAlmacenVacuna &vacunas){
 
 }
 

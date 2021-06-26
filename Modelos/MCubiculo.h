@@ -15,8 +15,9 @@ private:
 	Cola<string> cedulaPaciente;
 public:
 	MCubiculo();
-	bool removerPaciente(string cedula);
-	bool agregarpaciente(string cedula);
+	bool removerPaciente(string &cedulaBuscada);
+	bool agregarPaciente(string cedula);
+	bool removerPrimerPaciente(string &cedula);
 };
 
 #endif /* MCUBICULO_H_ */

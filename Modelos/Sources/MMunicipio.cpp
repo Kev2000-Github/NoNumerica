@@ -13,7 +13,7 @@ MMunicipio::MMunicipio()
 void MMunicipio::agregarCentinela(MCentinela centinela)
 {
 }
-void MMunicipio::removerCentinela(string codigo)
+void MMunicipio::removerCentinela(string codigo, MCentinela &centinela)
 {
 }
 int MMunicipio::totalCentinelas()
