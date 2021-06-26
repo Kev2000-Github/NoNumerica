@@ -7,7 +7,8 @@
 
 #ifndef MESTADO_H_
 #define MESTADO_H_
-#include "Lista.h"
+#include "../General/Lista.h"
+#include "MMunicipio.h"
 
 class MEstado {
 private:

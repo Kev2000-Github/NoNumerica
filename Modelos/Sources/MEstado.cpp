@@ -5,7 +5,7 @@
  *      Author: Usuario
  */
 
-#include "MEstado.h"
+#include "../MEstado.h"
 
 MEstado::MEstado() {}
 int MEstado::totalMunicipio(){}

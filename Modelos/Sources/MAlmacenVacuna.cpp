@@ -1,4 +1,4 @@
-#include "MAlmacenVacuna.h"
+#include "../MAlmacenVacuna.h"
 
 MAlmacenVacuna::MAlmacenVacuna()
 {

@@ -7,7 +7,7 @@
 
 #ifndef MCUBICULO_H_
 #define MCUBICULO_H_
-#include "Cola.h"
+#include "../General/Cola.h"
 
 class MCubiculo {
 private:

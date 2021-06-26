@@ -11,8 +11,8 @@ Date::Date(string fecha) {
 	string aux = "";
 	stringstream ss;
 	int slashCounter = 0;
-	for(int i = 0; i < fecha.length(); i ++){
-		if(string[i] == "/"){
+	for(unsigned int i = 0; i < fecha.length(); i ++){
+		if(fecha[i] == '/'){
 			ss << aux;
 			switch(slashCounter){
 				case 0:

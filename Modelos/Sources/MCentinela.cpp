@@ -5,13 +5,13 @@
  *      Author: Kloux
  */
 
-#include "MCentinela.h"
+#include "../MCentinela.h"
 
 MCentinela::MCentinela() {
 }
 
 
-bool MCentinela::actualizarVacuna(marca, n){
+bool MCentinela::actualizarVacuna(string marca,int n){
 
 }
 bool MCentinela::agregarCubiculo(){

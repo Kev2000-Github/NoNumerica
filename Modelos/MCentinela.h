@@ -7,15 +7,16 @@
 
 #ifndef MCENTINELA_H_
 #define MCENTINELA_H_
-#include "General/Pila.h"
-#include "General/Cola.h"
-#include "AlmacenVacunas.h"
+#include "../General/Pila.h"
+#include "../General/Cola.h"
+#include "MAlmacenVacuna.h"
+#include "MCubiculo.h"
 
 class MCentinela {
 
 private:
 	string codigo;
-	Pila<AlmacenVacunas> vacunas;
+	Pila<MAlmacenVacuna> vacunas;
 	Cola<MCubiculo> Cubiculo;
 public:
 	MCentinela();
