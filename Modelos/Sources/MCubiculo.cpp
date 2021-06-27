@@ -7,7 +7,19 @@
 
 #include "../MCubiculo.h"
 
-MCubiculo::MCubiculo() {}
+MCubiculo::MCubiculo(string _codigo) {
+	codigo = _codigo;
+}
+MCubiculo::MCubiculo(){
+
+}
+
+string MCubiculo::getCodigo(){
+	return codigo;
+}
+void MCubiculo::setCodigo(string _codigo){
+	codigo = _codigo;
+}
 
 bool MCubiculo::agregarPaciente(string cedula){
 	return cedulaPaciente.Insertar(cedula);
@@ -31,4 +43,8 @@ bool MCubiculo::removerPaciente(string &cedulaBuscada){
 
 bool MCubiculo::removerPrimerPaciente(string &cedula){
 	return cedulaPaciente.Remover(cedula);
+}
+
+bool MCubiculo::esVacia(){
+	return cedulaPaciente.Vacia();
 }
