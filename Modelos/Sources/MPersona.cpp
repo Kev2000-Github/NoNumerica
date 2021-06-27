@@ -2,7 +2,7 @@
 #include <string>
 #include <cstdlib>
 using namespace std;
-#include "MPersona.h"
+#include "../MPersona.h"
 
 MPersona::MPersona() {
 }
