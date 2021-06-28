@@ -10,15 +10,22 @@
 MMunicipio::MMunicipio()
 {
 }
-MMunicipio::MMunicipio(string __codigo){
-	codigo = __codigo;
+MMunicipio::MMunicipio(string codi){
+	codigom = codi;
 }
 
-
-bool MMunicipio::agregarCentinela(MCentinela centinela)
-{
-	return centinelas.InsComienzo(centinela);
+string MMunicipio::getCodigo(){
+	return codigom;
 }
+void MMunicipio::setCodigo(string codi){
+	codigom = codi;
+}
+
+bool MMunicipio::agregarCentinela(MCentinela centinela){
+    return centinelas.InsComienzo(centinela);
+
+}
+
 bool MMunicipio::removerCentinela(string codigo, MCentinela &centinela)
 {
 

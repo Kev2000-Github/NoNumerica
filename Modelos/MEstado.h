@@ -13,13 +13,15 @@
 class MEstado {
 private:
 	string nombre;
-	Lista<MMunicipio> municipio;
+	Lista<MMunicipio> municipios;
 public:
 	MEstado();
+	MEstado(string nombre);
+	string getNombre();
+	void setNombre(string n);
 	int totalMunicipio();
 	bool agregarMunicipio(MMunicipio municipio);
 	bool removerMunicipio (string codigo, MMunicipio &municipio);
-	bool buscarMunicipio (string codigo);
 };
 
 #endif /* MESTADO_H_ */

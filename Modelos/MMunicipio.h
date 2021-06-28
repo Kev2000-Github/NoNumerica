@@ -9,11 +9,13 @@ using namespace std;
 class MMunicipio {
 private:
     string nombre;
-    string codigo;
+    string codigom;
     Lista<MCentinela> centinelas;
 public:
     MMunicipio();
-    MMunicipio(string __codigo);
+    MMunicipio(string codi);
+    string getCodigo();
+	void setCodigo(string codi);
     int totalCentinelas();
     bool agregarCentinela(MCentinela centinela);
     bool removerCentinela(string codigo, MCentinela &centinela);
