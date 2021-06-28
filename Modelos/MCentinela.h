@@ -16,19 +16,20 @@ class MCentinela {
 typedef nodo<MCubiculo> Apuntador;
 private:
 	string codigo;
-	Pila<MAlmacenVacuna> vacunas;
+	Pila<MAlmacenVacuna> vacuna;
 	Lista<MCubiculo> cubiculos;
 public:
 	MCentinela(string _codigo);
 	MCentinela();
 	string getCodigo();
 	void setCodigo(string _codigo);
-	bool actualizarVacuna(string marca, int n);
 	bool agregarCubiculo(MCubiculo cubiculo);
 	bool removerCubiculo(string codigo, MCubiculo &cubiculo);
 	bool removerPrimerCubiculo(MCubiculo &cubiculo);
+	int consultarVacunas(string marca);
 	bool agregarVacuna(MAlmacenVacuna vacunas);
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
+	bool usarVacunas(string marca, MAlmacenVacuna &vacunas);
 	int totalCubiculos();
 	bool esVacia();
 };

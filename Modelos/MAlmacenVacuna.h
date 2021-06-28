@@ -10,6 +10,11 @@ private:
     int cantidad;
 public:
     MAlmacenVacuna();
+    MAlmacenVacuna(string _marca, int _cantidad);
+    void setMarca(string _marca);
+    void setCantidad(int _cantidad);
+    string getMarca();
+    int getCantidad();
 };
 
 #endif

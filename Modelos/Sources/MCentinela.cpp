@@ -21,31 +21,28 @@ void MCentinela::setCodigo(string _codigo){
 	codigo = _codigo;
 }
 
-bool MCentinela::actualizarVacuna(string marca,int n){
-
-}
 bool MCentinela::agregarCubiculo(MCubiculo cubiculo){
 	return cubiculos.InsComienzo(cubiculo);
 }
 bool MCentinela::removerCubiculo(string codigo, MCubiculo &cubiculo){
 	nodo<MCubiculo>* ap;
-	ap = cubiculos.ObtPrimero();
-	string codigoActual = cubiculos.ObtInfo(ap).getCodigo();
-	//SI ES EL PRIMER ELEMENTO
-	if(codigoActual == codigo){
-		return cubiculos.EliComienzo(cubiculo);
-	}
-	//SI ESTA DESPUES DEL PRIMER ELEMENTO
-	while(cubiculos.ObtProx(ap) != NULL){
-		codigoActual = cubiculos.ObtInfo(cubiculos.ObtProx(ap)).getCodigo();
+		ap = cubiculos.ObtPrimero();
+		string codigoActual = cubiculos.ObtInfo(ap).getCodigo();
+		//SI ES EL PRIMER ELEMENTO
 		if(codigoActual == codigo){
-			return cubiculos.EliDespues(ap, cubiculo);
+			return cubiculos.EliComienzo(cubiculo);
 		}
-		else{
-			ap = cubiculos.ObtProx(ap);
-		}
-	};
-	return false;
+		//SI ESTA DESPUES DEL PRIMER ELEMENTO
+		while(cubiculos.ObtProx(ap) != NULL){
+			codigoActual = cubiculos.ObtInfo(cubiculos.ObtProx(ap)).getCodigo();
+			if(codigoActual == codigo){
+				return cubiculos.EliDespues(ap, cubiculo);
+			}
+			else{
+				ap = cubiculos.ObtProx(ap);
+			}
+		};
+		return false;
 }
 
 bool MCentinela::removerPrimerCubiculo(MCubiculo &cubiculo){
@@ -55,13 +52,60 @@ bool MCentinela::removerPrimerCubiculo(MCubiculo &cubiculo){
 bool MCentinela::esVacia(){
 	return cubiculos.Contar() == 0;
 }
+int MCentinela::consultarVacunas(string marca)
+{
+	Pila<MAlmacenVacuna> PilaAux;
+    MAlmacenVacuna vacunas;
+  int cont=0;
 
-bool MCentinela::agregarVacuna(MAlmacenVacuna vacunas){
+	while(!vacuna.Vacia())
+	{
+		if(marca==vacunas.getmarca())
+		{
+		return cont++;
+		}
+		else
+		return cont;
+
+	}
+	return cont;
+
 
 }
 
+bool MCentinela::agregarVacuna(MAlmacenVacuna vacunas){
+	return vacuna.Insertar(vacunas);
+}
 
 bool MCentinela::removerVacuna(string marca, MAlmacenVacuna &vacunas){
+
+}
+
+bool MCentinela::usarVacunas(string marca, MAlmacenVacuna &vacunas)
+{
+	Pila<MAlmacenVacuna> PilaAux;
+	       int cant = vacunas.getCantidad();
+
+	        while(!vacuna.Vacia())
+	        {
+		         vacuna.Remover(vacunas);
+
+		             if(vacunas.getMarca()!= marca)
+		             {
+			            PilaAux.Insertar(vacunas);
+		              }
+
+	        }
+
+	               while(!PilaAux.Vacia())
+	                  {
+		            PilaAux.Remover(vacunas);
+		            vacuna.Insertar(vacunas);
+	                   }
+	     if(vacunas.getCantidad()<cant)
+	    	 return true;
+	     else
+	        return false;
 
 }
 
