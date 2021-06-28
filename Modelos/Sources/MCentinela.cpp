@@ -60,7 +60,7 @@ int MCentinela::consultarVacunas(string marca)
 
 	while(!vacuna.Vacia())
 	{
-		if(marca==vacunas.getmarca())
+		if(marca==vacunas.getMarca())
 		{
 		return cont++;
 		}
