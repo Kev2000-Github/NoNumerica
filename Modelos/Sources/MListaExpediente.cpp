@@ -5,7 +5,7 @@
  *      Author: Gina
  */
 
-#include "MListaExpediente.h"
+#include "../MListaExpediente.h"
 
 namespace std {
 

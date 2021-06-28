@@ -26,10 +26,12 @@ public:
 	bool agregarCubiculo(MCubiculo cubiculo);
 	bool removerCubiculo(string codigo, MCubiculo &cubiculo);
 	bool removerPrimerCubiculo(MCubiculo &cubiculo);
-	int consultarVacunas(string marca);
+
+	int ConsultarCantidadPorMarca(string marca);
+	bool aumentarVacunas(string marca, int cantidad);
 	bool agregarVacuna(MAlmacenVacuna vacunas);
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
-	bool usarVacunas(string marca, MAlmacenVacuna &vacunas);
+	bool usarVacunas(string marca);
 	int totalCubiculos();
 	bool esVacia();
 };

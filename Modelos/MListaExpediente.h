@@ -24,6 +24,6 @@ public:
 
   bool agregarExpediente(ExpedienteVacunacion expediente);
   bool removerExpediente(string cedula, ExpedienteVacunacion &Expediente);
-    bool removerPrimerExpediente (ExpedienteVacunacion &Expediente);
+  bool removerPrimerExpediente (ExpedienteVacunacion &Expediente);
 
 };
