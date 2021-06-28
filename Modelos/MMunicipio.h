@@ -9,7 +9,7 @@ using namespace std;
 class MMunicipio {
 private:
     string nombre;
-    string codigom;
+    string codigo;
     Lista<MCentinela> centinelas;
 public:
     MMunicipio();

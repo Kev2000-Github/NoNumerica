@@ -11,14 +11,14 @@ MMunicipio::MMunicipio()
 {
 }
 MMunicipio::MMunicipio(string codi){
-	codigom = codi;
+	codigo = codi;
 }
 
 string MMunicipio::getCodigo(){
-	return codigom;
+	return codigo;
 }
 void MMunicipio::setCodigo(string codi){
-	codigom = codi;
+	codigo = codi;
 }
 
 bool MMunicipio::agregarCentinela(MCentinela centinela){
