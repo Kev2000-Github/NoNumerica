@@ -5,13 +5,15 @@
  *      Author: Usuario
  */
 
-#include "ICubiculo.h"
+#include "../ICubiculo.h"
+#include <iostream>
+using namespace std;
 
 ICubiculo::ICubiculo() {}
 
 void ICubiculo::reportarCedula(Cola<string> cedula){
-string ced,punto='fin';
-bool final=false;
+	string ced,punto="fin";
+	bool final=false;
 
 	if(cedula.Vacia())
 		cout<< "No Hay Personas en la Cola"<< endl<< endl;

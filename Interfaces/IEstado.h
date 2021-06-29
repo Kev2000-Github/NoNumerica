@@ -1,6 +1,6 @@
 #ifndef IESTADO_H_
 #define IESTADO_H_
-#include "MEstado.h"
+#include "../Modelos/MEstado.h"
 
 class IEstado
 {

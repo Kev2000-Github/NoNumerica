@@ -7,7 +7,7 @@
 
 #ifndef ICUBICULO_H_
 #define ICUBICULO_H_
-#include "Cola.h"
+#include "../General/Cola.h"
 
 class ICubiculo {
 public:
