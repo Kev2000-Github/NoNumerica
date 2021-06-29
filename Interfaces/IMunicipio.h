@@ -1,6 +1,6 @@
 #ifndef IMUNICIPIO_H_
 #define IMUNICIPIO_H_
-#include "MMunicipio.h"
+#include "../Modelos/MMunicipio.h"
 
 class IMunicipio
 {

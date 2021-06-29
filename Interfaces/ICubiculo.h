@@ -7,12 +7,13 @@
 
 #ifndef ICUBICULO_H_
 #define ICUBICULO_H_
-#include "Cola.h"
+#include "../Modelos/MCubiculo.h"
+#include "../General/VGeneral.h"
 
 class ICubiculo {
 public:
 	ICubiculo();
-	void reportarCedula(Cola<string> cedula);
+	void reportarCedula(MCubiculo colacubiculo);
 };
 
 #endif /* ICUBICULO_H_ */
