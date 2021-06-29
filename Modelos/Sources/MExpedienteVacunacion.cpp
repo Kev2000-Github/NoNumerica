@@ -5,18 +5,19 @@
  *      Author: Usuario
  */
 
-#include "MExpedienteVacunacion.h"
+#include "../MExpedienteVacunacion.h"
 
 MExpedienteVacunacion::MExpedienteVacunacion() {
-	// TODO Auto-generated constructor stub
-cedula=vacunaTomada="";
+}
+MExpedienteVacunacion::MExpedienteVacunacion(string _cedula){
+	cedula = _cedula;
 }
 
-void MExpedienteVacunacion::setcedula(string c){
+void MExpedienteVacunacion::setCedula(string c){
 	cedula=c;
 }
 
-string MExpedienteVacunacion::getcedula(){
+string MExpedienteVacunacion::getCedula(){
 	return cedula;
 }
 

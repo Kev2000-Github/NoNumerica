@@ -18,8 +18,9 @@ private:
 	Pila<Date> DosisTomada;
 public:
 	MExpedienteVacunacion();
-	void setcedula(string c);
-	string getcedula();
+	MExpedienteVacunacion(string _cedula);
+	void setCedula(string c);
+	string getCedula();
 	void setVacunaTomada(string vt);
 	string getVacunaTomada();
 

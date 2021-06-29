@@ -7,11 +7,36 @@
 
 #include "../MListaExpediente.h"
 
-namespace std {
-
 MListaExpediente::MListaExpediente() {
-	// TODO Auto-generated constructor stub
+};
 
+bool MListaExpediente::agregarExpediente(MExpedienteVacunacion expediente )
+{
+	return expedientes.InsComienzo(expediente);
 }
 
-} /* namespace std */
+bool MListaExpediente::removerExpediente(string cedula ,MExpedienteVacunacion &expedienteBuscado)
+{
+			Lista<MExpedienteVacunacion> listaAux;
+			MExpedienteVacunacion expedienteActual;
+			bool encontrado = false;
+			while(!expedientes.Vacia()){
+				expedientes.EliComienzo(expedienteActual);
+				listaAux.InsComienzo(expedienteActual);
+				if(expedienteActual.getCedula() == cedula){
+					expedienteBuscado = expedienteActual;
+					encontrado = true;
+					break;
+				}
+			}
+			while(!listaAux.Vacia()){
+				listaAux.EliComienzo(expedienteActual);
+				expedientes.InsComienzo(expedienteActual);
+			}
+			return false;
+}
+
+bool MListaExpediente::removerPrimerExpediente(MExpedienteVacunacion &expediente)
+{
+	       return expedientes.EliComienzo(expediente);
+}

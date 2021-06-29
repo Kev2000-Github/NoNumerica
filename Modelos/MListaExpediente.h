@@ -10,20 +10,18 @@
 #include "../General/cola.h"
 #include "../General/Lista.h"
 #include "MPersona.h"
-#include "ExpedienteVacunacion.h"
-
-namespace std {
+#include "MExpedienteVacunacion.h"
 
 class MListaExpediente {
 private:
-  Lista <ExpedienteVacunacion> Expediente;
+  Lista <MExpedienteVacunacion> expedientes;
 
 public:
   MListaExpediente();
-  MListaExpediente();
-
-  bool agregarExpediente(ExpedienteVacunacion expediente);
-  bool removerExpediente(string cedula, ExpedienteVacunacion &Expediente);
-  bool removerPrimerExpediente (ExpedienteVacunacion &Expediente);
+  bool agregarExpediente(MExpedienteVacunacion expediente);
+  bool removerExpediente(string cedula, MExpedienteVacunacion &Expediente);
+  bool removerPrimerExpediente (MExpedienteVacunacion &Expediente);
 
 };
+
+#endif
