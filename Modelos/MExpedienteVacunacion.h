@@ -27,7 +27,7 @@ public:
 
 	int contDosisTomadas();
 	bool AgregarNuevaDosis(Date DosisTomada);
-
+	Date getSigFechaEstipulada();
 
 };
 
