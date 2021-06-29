@@ -19,6 +19,7 @@ private:
 public:
 	MExpedienteVacunacion();
 	MExpedienteVacunacion(string _cedula);
+
 	void setCedula(string c);
 	string getCedula();
 	void setVacunaTomada(string vt);

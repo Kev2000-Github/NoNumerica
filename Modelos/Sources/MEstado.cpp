@@ -28,24 +28,22 @@ bool MEstado::agregarMunicipio(MMunicipio municipio){
     return municipios.InsComienzo(municipio);
 
 }
-bool MEstado::removerMunicipio(string codigo, MMunicipio &municipio){
-    nodo<MMunicipio>* ap;
-	ap = municipios.ObtPrimero();
-	string codigoActual = municipios.ObtInfo(ap).getCodigo();
-	//SI ES EL PRIMER ELEMENTO
-	if(codigoActual == codigo){
-		return municipios.EliComienzo(municipio);
+bool MEstado::removerMunicipio(string codigo, MMunicipio &municipioBuscado){
+	Lista<MMunicipio> listaAux;
+	MMunicipio municipioActual;
+	bool encontrado = false;
+	while(!municipios.Vacia()){
+		municipios.EliComienzo(municipioActual);
+		if(municipioActual.getCodigo() == codigo){
+			municipioBuscado = municipioActual;
+			encontrado = true;
+			break;
+		}
+		listaAux.InsComienzo(municipioActual);
 	}
-	//SI ESTA DESPUES DEL PRIMER ELEMENTO
-	while(municipios.ObtProx(ap) != NULL){
-		codigoActual = municipios.ObtInfo(municipios.ObtProx(ap)).getCodigo();
-		if(codigoActual == codigo){
-			return municipios.EliDespues(ap, municipio);
-		}
-		else{
-			ap = municipios.ObtProx(ap);
-		}
-	};
-	return false;
-
+	while(!listaAux.Vacia()){
+		listaAux.EliComienzo(municipioActual);
+		municipios.InsComienzo(municipioActual);
+	}
+	return encontrado;
 }

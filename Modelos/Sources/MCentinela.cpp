@@ -24,25 +24,24 @@ void MCentinela::setCodigo(string _codigo){
 bool MCentinela::agregarCubiculo(MCubiculo cubiculo){
 	return cubiculos.InsComienzo(cubiculo);
 }
-bool MCentinela::removerCubiculo(string codigo, MCubiculo &cubiculo){
-	nodo<MCubiculo>* ap;
-		ap = cubiculos.ObtPrimero();
-		string codigoActual = cubiculos.ObtInfo(ap).getCodigo();
-		//SI ES EL PRIMER ELEMENTO
-		if(codigoActual == codigo){
-			return cubiculos.EliComienzo(cubiculo);
+bool MCentinela::removerCubiculo(string codigo, MCubiculo &cubiculoBuscado){
+	Lista<MCubiculo> listaAux;
+	MCubiculo cubiculoActual;
+	bool encontrado = false;
+	while(!cubiculos.Vacia()){
+		cubiculos.EliComienzo(cubiculoActual);
+		if(cubiculoActual.getCodigo() == codigo){
+			cubiculoBuscado = cubiculoActual;
+			encontrado = true;
+			break;
 		}
-		//SI ESTA DESPUES DEL PRIMER ELEMENTO
-		while(cubiculos.ObtProx(ap) != NULL){
-			codigoActual = cubiculos.ObtInfo(cubiculos.ObtProx(ap)).getCodigo();
-			if(codigoActual == codigo){
-				return cubiculos.EliDespues(ap, cubiculo);
-			}
-			else{
-				ap = cubiculos.ObtProx(ap);
-			}
-		};
-		return false;
+		listaAux.InsComienzo(cubiculoActual);
+	}
+	while(!listaAux.Vacia()){
+		listaAux.EliComienzo(cubiculoActual);
+		cubiculos.InsComienzo(cubiculoActual);
+	}
+	return encontrado;
 }
 
 bool MCentinela::removerPrimerCubiculo(MCubiculo &cubiculo){

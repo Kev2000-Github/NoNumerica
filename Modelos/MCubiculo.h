@@ -16,8 +16,10 @@ private:
 public:
 	MCubiculo(string codigo);
 	MCubiculo();
+
 	string getCodigo();
 	void setCodigo(string _codigo);
+
 	bool removerPaciente(string &cedulaBuscada);
 	bool agregarPaciente(string cedula);
 	bool removerPrimerPaciente(string &cedula);

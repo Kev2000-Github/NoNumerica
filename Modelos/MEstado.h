@@ -17,8 +17,10 @@ private:
 public:
 	MEstado();
 	MEstado(string nombre);
+
 	string getNombre();
 	void setNombre(string n);
+
 	int totalMunicipio();
 	bool agregarMunicipio(MMunicipio municipio);
 	bool removerMunicipio (string codigo, MMunicipio &municipio);

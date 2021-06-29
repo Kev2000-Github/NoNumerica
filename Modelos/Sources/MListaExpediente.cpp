@@ -22,18 +22,18 @@ bool MListaExpediente::removerExpediente(string cedula ,MExpedienteVacunacion &e
 			bool encontrado = false;
 			while(!expedientes.Vacia()){
 				expedientes.EliComienzo(expedienteActual);
-				listaAux.InsComienzo(expedienteActual);
 				if(expedienteActual.getCedula() == cedula){
 					expedienteBuscado = expedienteActual;
 					encontrado = true;
 					break;
 				}
+				listaAux.InsComienzo(expedienteActual);
 			}
 			while(!listaAux.Vacia()){
 				listaAux.EliComienzo(expedienteActual);
 				expedientes.InsComienzo(expedienteActual);
 			}
-			return false;
+			return encontrado;
 }
 
 bool MListaExpediente::removerPrimerExpediente(MExpedienteVacunacion &expediente)

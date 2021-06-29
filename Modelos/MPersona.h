@@ -12,6 +12,7 @@ private:
 
 public:
          MPersona();
+
          void setnombre(string n);
 	     void setapellido(string a);
 	     void setcedula(string c);

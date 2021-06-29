@@ -26,28 +26,27 @@ bool MMunicipio::agregarCentinela(MCentinela centinela){
 
 }
 
-bool MMunicipio::removerCentinela(string codigo, MCentinela &centinela)
+bool MMunicipio::removerCentinela(string codigo, MCentinela &centinelaBuscado)
 {
-
-	nodo<MCentinela>* ap;
-		ap = centinelas.ObtPrimero();
-		string codigoActual = centinelas.ObtInfo(ap).getCodigo();
-		//SI ES EL PRIMER ELEMENTO
-		if(codigoActual == codigo){
-			return centinelas.EliComienzo(centinela);
+	Lista<MCentinela> listaAux;
+	MCentinela centinelaActual;
+	bool encontrado = false;
+	while(!centinelas.Vacia()){
+		centinelas.EliComienzo(centinelaActual);
+		if(centinelaActual.getCodigo() == codigo){
+			centinelaBuscado = centinelaActual;
+			encontrado = true;
+			break;
 		}
-		//SI ESTA DESPUES DEL PRIMER ELEMENTO
-		while(centinelas.ObtProx(ap) != NULL){
-			codigoActual = centinelas.ObtInfo(centinelas.ObtProx(ap)).getCodigo();
-			if(codigoActual == codigo){
-				return centinelas.EliDespues(ap, centinela);
-			}
-			else{
-				ap = centinelas.ObtProx(ap);
-			}
-		};
-		return false;
+		listaAux.InsComienzo(centinelaActual);
+	}
+	while(!listaAux.Vacia()){
+		listaAux.EliComienzo(centinelaActual);
+		centinelas.InsComienzo(centinelaActual);
+	}
+	return encontrado;
 }
+
 int MMunicipio::totalCentinelas()
 {
 	return centinelas.Contar();
