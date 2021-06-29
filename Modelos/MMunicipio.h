@@ -13,9 +13,15 @@ private:
     Lista<MCentinela> centinelas;
 public:
     MMunicipio();
+    MMunicipio(string codi);
+
+    string getCodigo();
+	void setCodigo(string codi);
+
     int totalCentinelas();
-    void agregarCentinela(MCentinela centinela);
-    void removerCentinela(string codigo, MCentinela &centinela);
+    bool agregarCentinela(MCentinela centinela);
+    bool removerCentinela(string codigo, MCentinela &centinela);
+    bool removerPrimerCentinela(MCentinela &centinela);
 };
 
 #endif

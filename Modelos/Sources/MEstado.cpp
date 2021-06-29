@@ -8,7 +8,42 @@
 #include "../MEstado.h"
 
 MEstado::MEstado() {}
-int MEstado::totalMunicipio(){}
-bool MEstado::agregarMunicipio(MMunicipio municipio){}
-bool MEstado::removerMunicipio(string codigo, MMunicipio &municipio){}
-bool MEstado::buscarMunicipio(string codigo){}
+
+MEstado::MEstado(string n) {
+	nombre = n;
+}
+
+string MEstado::getNombre(){
+	return nombre;
+}
+void MEstado::setNombre(string n){
+	nombre = n;
+}
+
+int MEstado::totalMunicipio(){
+    return municipios.Contar();
+}
+
+bool MEstado::agregarMunicipio(MMunicipio municipio){
+    return municipios.InsComienzo(municipio);
+
+}
+bool MEstado::removerMunicipio(string codigo, MMunicipio &municipioBuscado){
+	Lista<MMunicipio> listaAux;
+	MMunicipio municipioActual;
+	bool encontrado = false;
+	while(!municipios.Vacia()){
+		municipios.EliComienzo(municipioActual);
+		if(municipioActual.getCodigo() == codigo){
+			municipioBuscado = municipioActual;
+			encontrado = true;
+			break;
+		}
+		listaAux.InsComienzo(municipioActual);
+	}
+	while(!listaAux.Vacia()){
+		listaAux.EliComienzo(municipioActual);
+		municipios.InsComienzo(municipioActual);
+	}
+	return encontrado;
+}
