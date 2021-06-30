@@ -5,28 +5,28 @@
  *      Author: Usuario
  */
 
-#include "../ICubiculo.h"
-#include <iostream>
-using namespace std;
+#include "ICubiculo.h"
 
 ICubiculo::ICubiculo() {}
 
-void ICubiculo::reportarCedula(Cola<string> cedula){
+void ICubiculo::reportarCedula(MCubiculo cubiculo){
+	VGeneral vista;
 	string ced,punto="fin";
 	bool final=false;
 
-	if(cedula.Vacia())
+	if(cubiculo.esVacia())
 		cout<< "No Hay Personas en la Cola"<< endl<< endl;
 	else{
-		cedula.Insertar(punto);
-		cout<< "Listado de Personas en Espera"<< endl<< endl;
+		cubiculo.agregarPaciente(punto);
+		vista.ImprimirString("Cubiculo de Codigo:",cubiculo.getCodigo());
+		vista.ImprimirEncabezado("Listado de Personas en Espera","=========================================");
 		while(!(final)){
-			cedula.Remover(ced);
+			cubiculo.removerPrimerPaciente(ced);
 			if(ced==punto)
 				final=true;
 			else{
-				cout << "Cedula: " << ced << endl;
-				cedula.Insertar(ced);
+				vista.ImprimirString("Cedula del Paciente:", ced );
+				cubiculo.agregarPaciente(ced);
 			};
 		};
 	};

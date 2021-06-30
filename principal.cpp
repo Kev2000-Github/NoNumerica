@@ -60,7 +60,6 @@ int main(){
 
 void prueba1(){
 		MCubiculo cubiculo;
-		bool encontrado = false;
 		cubiculo.agregarPaciente("111");
 		cubiculo.agregarPaciente("222");
 		cubiculo.agregarPaciente("333");
@@ -70,13 +69,6 @@ void prueba1(){
 		cout << cedula << endl;
 		cubiculo.agregarPaciente(cedula);
 
-		cedula = "222";
-		encontrado = cubiculo.removerPaciente(cedula);
-		cout << encontrado << " " << cedula << endl;
-		cubiculo.agregarPaciente(cedula);
-
-		cedula = "123";
-		cout << cubiculo.removerPaciente(cedula) << endl;
 }
 
 void addToCentinela(MCentinela &centinela, string codigo, string cedula){
@@ -95,7 +87,7 @@ void imprimirCedulas(MCubiculo &cubiculo){
 						cubiculo.removerPrimerPaciente(cedula);
 						cubiculoAux.agregarPaciente(cedula);
 						vgeneral.ImprimirNro("", i + 1);
-						vgeneral.ImprimirString(") Cedula: ", cedula);
+						vgeneral.ImprimirString("Cedula:", cedula);
 						vgeneral.ImprimirLineasBlanco(1);
 					}
 					while(!cubiculoAux.esVacia()){

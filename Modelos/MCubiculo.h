@@ -20,7 +20,6 @@ public:
 	string getCodigo();
 	void setCodigo(string _codigo);
 
-	bool removerPaciente(string &cedulaBuscada);
 	bool agregarPaciente(string cedula);
 	bool removerPrimerPaciente(string &cedula);
 	bool esVacia();
