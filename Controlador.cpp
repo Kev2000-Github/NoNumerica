@@ -168,10 +168,14 @@ void Controlador::procesarPaciente(){
 	 *
 	 * Agarra el primer paciente de la cola
 	 * Paciente tiene expediente?
-	 * SI -> SEGUIR
-	 * NO -> //DEJAME PENSA...
+	 * SI -> A
+	 * NO -> B
 	 *
-	 * Paciente es de este centinela?
+	 */
+
+	/**
+	 * A)
+	 * 	 * Paciente es de este centinela?
 	 * SI -> SEGUIR
 	 * NO -> Pa fuera juan
 	 *
@@ -182,8 +186,28 @@ void Controlador::procesarPaciente(){
 	 * Fecha de Hoy: //Ingresar//
 	 *
 	 * Pasaron 3 meses desde su ultima dosis?
-	 * SI -> Actualizar Dosis Tomada, Actualizar Almacen de Vacunas
+	 * SI -> FINAL
 	 * NO -> Pa Fuera Ramon
+	 */
+
+	/**
+	 * B)
+	 * Nombre: //Ingresar//
+	 * Apellido: //Ingresar//
+	 * Cedula: //Ingresar//
+	 *
+	 * ----------------
+	 * Marca de la Vacuna a Suministrar: PFizer (se agarra cualquiera de las vacunas disponibles en el almacen)
+	 * Fecha de Hoy: //Ingresar//
+	 *
+	 * ->FINAL
+	 */
+
+	/**
+	 * FINAL)
+	 * Actualizar Dosis Tomada
+	 * Actualizar Almacen de Vacunas
+	 *
 	 *
 	 * IMPRIMIR:
 	 * ------------------
@@ -192,5 +216,6 @@ void Controlador::procesarPaciente(){
 	 * Kevin Cheng 27.317.962
 	 * Fecha para la siguiente Dosis: 18/12/2030
 	 * ------------------
+	 *
 	 */
 }
