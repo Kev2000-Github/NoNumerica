@@ -4,7 +4,7 @@ IMunicipio::IMunicipio() {
 
 };
 
-void IMunicipio::reporteCentinelas(MMunicipio municipio) {
+void IMunicipio::reportarCentinelas(MMunicipio municipio) {
     Lista<MCentinela> auxCentinela;
     MCentinela centinelaActual;
 

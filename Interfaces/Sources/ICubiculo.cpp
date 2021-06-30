@@ -5,7 +5,7 @@
  *      Author: Usuario
  */
 
-#include "ICubiculo.h"
+#include "../ICubiculo.h"
 
 ICubiculo::ICubiculo() {}
 
