@@ -1,0 +1,2 @@
+PFizer,30,C1-1
+Sputnik V,33,C1-1
