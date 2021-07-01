@@ -15,7 +15,7 @@
 class MExpedienteVacunacion {
 private:
 	string cedula, vacunaTomada;
-	Pila<Date> DosisTomada;
+	Pila<Date> DosisTomadas;
 public:
 	MExpedienteVacunacion();
 	MExpedienteVacunacion(string _cedula);

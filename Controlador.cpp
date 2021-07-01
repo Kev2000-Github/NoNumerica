@@ -23,14 +23,15 @@ void Controlador::cargarDatos(){
 
 void Controlador::procesar(){
 	/**
+	 * Antes de esto, se cargan los datos justo al iniciar el programa
+	 *
 	 * MOSTRAR MENU INICIAL 1
 	 *  M E N U
-	 *  -1) CrearMunicipio (no estamos seguros de esto profesor, AYUDA) //DEBUG
-	 *  0) CrearCentinela (no estamos seguros de esto profesor, HELP US) //DEBUG
-	 *  1) Cargar datos //(todos los txt)
-	 *  2) Recibir Vacunas
-	 *  3) Iniciar Proceso de Vacunacion
-	 *  4) Salir
+	 *  1) CrearMunicipio (no estamos seguros de esto profesor, AYUDA) //DEBUG
+	 *  2) CrearCentinela (no estamos seguros de esto profesor, HELP US) //DEBUG
+	 *  3) Recibir Vacunas
+	 *  4) Iniciar Proceso de Vacunacion
+	 *  5) Salir
 	 */
 }
 
@@ -47,6 +48,34 @@ void Controlador::procesar2(){
 	 *  7) Sacar Paciente de la Cola (HELP ME)??
 	 *  8) Procesar Paciente
 	 *  9) Salir
+	 */
+}
+
+
+void Controlador::agregarMunicipio(){
+	/**
+	 * Codigo del Municipio: //Ingresar// (validar que el codigo sea unico)
+	 * Nombre del municipio: //Ingresar//
+	 * Ingresar nro de centinelas: //Ingresar//
+	 * Por cada centinela hacer:
+	 * 		Codigo del Centinela: //Ingresar//
+	 * 		Ingresar nro de cubiculos del centinela actual: //Ingresar//
+	 * 			Por cada cubiculo hacer:
+	 * 			Codigo del cubiculo: //Ingresar//
+	 * 	Al terminar el proceso imprimir mensaje de creacion exitosa
+	 */
+}
+
+void Controlador::agregarCentinela(){
+	/**
+	 * Codigo del Municipio: //Ingresar// (buscar que sea codigo de un municipio existente)
+	 * Ingresar nro de centinelas: //Ingresar//
+	 * Por cada centinela hacer:
+	 * 		Codigo del Centinela: //Ingresar//
+	 * 		Ingresar nro de cubiculos del centinela actual: //Ingresar//
+	 * 			Por cada cubiculo hacer:
+	 * 			Codigo del cubiculo: //Ingresar//
+	 * 	Al terminar el proceso imprimir mensaje de creacion exitosa
 	 */
 }
 
