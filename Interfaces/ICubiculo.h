@@ -7,17 +7,16 @@
 
 #ifndef ICUBICULO_H_
 #define ICUBICULO_H_
-<<<<<<< HEAD:Interfaces/ICubiculo.h
 #include "../Modelos/MCubiculo.h"
+#include "../Modelos/MCentinela.h"
 #include "../General/VGeneral.h"
-=======
-#include "../General/Cola.h"
->>>>>>> master:ICubiculo.h
 
 class ICubiculo {
 public:
 	ICubiculo();
 	void reportarCedula(MCubiculo colacubiculo);
+	void ImprimirListaCubiculo(MCentinela centinela);
+	void ReportarCubiculo(MCentinela centinela);
 };
 
 #endif /* ICUBICULO_H_ */

@@ -5,7 +5,7 @@
  *      Author: Usuario
  */
 
-#include "ICubiculo.h"
+#include "../ICubiculo.h"
 
 ICubiculo::ICubiculo() {}
 
@@ -30,4 +30,34 @@ void ICubiculo::reportarCedula(MCubiculo cubiculo){
 			};
 		};
 	};
+}
+void ICubiculo::ImprimirListaCubiculo(MCentinela centinela){
+    Lista<MCubiculo> auxCubiculos;
+    MCubiculo cubiculoActual;
+    VGeneral vg;
+
+    for(int i = 0; i < centinela.totalCubiculos(); i++) {
+        centinela.removerPrimerCubiculo(cubiculoActual);
+        vg.ImprimirString3("Codigo del Cubiculo Nro",i,cubiculoActual.getCodigo());
+        auxCubiculos.InsComienzo(cubiculoActual);
+    }
+    while(!auxCubiculos.Vacia()) {
+        auxCubiculos.EliComienzo(cubiculoActual);
+        centinela.agregarCubiculo(cubiculoActual);
+    }
+}
+void ICubiculo::ReportarCubiculo(MCentinela centinela){
+    Lista<MCubiculo> auxCubiculos;
+    MCubiculo cubiculoActual;
+    VGeneral vg;
+
+    for(int i = 0; i < centinela.totalCubiculos(); i++) {
+        centinela.removerPrimerCubiculo(cubiculoActual);
+        vg.ImprimirString4("Cubiculo Nro",i,cubiculoActual.getCodigo(),cubiculoActual.total());
+        auxCubiculos.InsComienzo(cubiculoActual);
+    }
+    while(!auxCubiculos.Vacia()) {
+        auxCubiculos.EliComienzo(cubiculoActual);
+        centinela.agregarCubiculo(cubiculoActual);
+    }
 }

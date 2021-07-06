@@ -94,10 +94,44 @@ void Controlador::consultarCentinelas(){
 }
 
 void Controlador::consultarCubiculos(){
+	MEstado estado;
+		VGeneral vgeneral;
+		MMunicipio municipio;
+		MCentinela centinela;
+		IMunicipio Imunicipio;
+		ICentinela Icentinela;
+		ICubiculo Icubiculo;
+
+		vgeneral.Limpiar();
+			Imunicipio.ImprimirListaMunicipio(estado);
+			string municipioCodigo = vgeneral.LeerString("Ingrese el codigo del municipio: ");
+
+			while(!estado.removerMunicipio(municipioCodigo, municipio)) {
+				vgeneral.ImprimirMensaje("Error: El municipio solicitado no existe");
+				vgeneral.Pausa();
+				vgeneral.Limpiar();
+
+				Imunicipio.ImprimirListaMunicipio(estado);
+				municipioCodigo = vgeneral.LeerString("Ingrese el codigo del municipio: ");
+			};
+
+			vgeneral.Limpiar();
+
+			Icentinela.ImprimirListaCentinela(municipio);
+			string centinelaCodigo = vgeneral.LeerString("Ingrese el codigo del centinela: ");
+
+			while(!municipio.removerCentinela(centinelaCodigo, centinela)) {
+				vgeneral.ImprimirMensaje("Error: El centinela solicitado no existe");
+				vgeneral.Pausa();
+				vgeneral.Limpiar();
+
+				Icentinela.ImprimirListaCentinela(municipio);
+				centinelaCodigo = vgeneral.LeerString("Ingrese el codigo del centinela: ");
+			};
+
+			Icubiculo.ReportarCubiculo(centinela);
+
 	/**
-	 * Municipio: //Ingresar//
-	 * Centinela: //Ingresar//
-	 *
 	 * Reportar Informacion de los Cubiculos
 	 * ----------------------------------
 	 * Centinela [abc]
@@ -138,16 +172,90 @@ void Controlador::consultarVacunas(){
 	 */
 }
 
-void Controlador::incluirPacienteACola(){
-	/**
-	 * Municipio: //ingresar//
-	 * Centinelas: //ingresar//
-	 * Cubiculo: //ingresar//
-	 *
-	 * el paciente ya existe en la cola?
-	 * NO -> agregar
-	 * SI -> Pa Fuera Rancho
-	 */
+void Controlador::incluirPacienteACola() {
+	MEstado estado;
+	VGeneral vGeneral;
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo;
+	IMunicipio Imunicipio;
+	ICentinela Icentinela;
+	ICubiculo Icubiculo;
+
+
+	vGeneral.Limpiar();
+	Imunicipio.ImprimirListaMunicipio(estado);
+	string municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+
+	while(!estado.removerMunicipio(municipioCodigo, municipio)) {
+		vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+
+		Imunicipio.ImprimirListaMunicipio(estado);
+		municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+	};
+
+	vGeneral.Limpiar();
+
+	Icentinela.ImprimirListaCentinela(municipio);
+	string centinelaCodigo = vGeneral.LeerString("Ingrese el codigo del centinela: ");
+
+	while(!municipio.removerCentinela(centinelaCodigo, centinela)) {
+		vGeneral.ImprimirMensaje("Error: El centinela solicitado no existe");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+
+		Icentinela.ImprimirListaCentinela(municipio);
+		centinelaCodigo = vGeneral.LeerString("Ingrese el codigo del centinela: ");
+	};
+
+	vGeneral.Limpiar();
+
+	Icubiculo.ImprimirListaCubiculo(centinela);
+	string cubiculoCodigo = vGeneral.LeerString("Ingrese el codigo del cubiculo: ");
+
+	while(!centinela.removerCubiculo(cubiculoCodigo, cubiculo)) {
+		vGeneral.ImprimirMensaje("Error: El cubiculo solicitado no existe");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+
+		Icubiculo.ImprimirListaCubiculo(centinela);
+		cubiculoCodigo = vGeneral.LeerString("Ingrese el codigo del cubiculo: ");
+	};
+
+	string cedula = vGeneral.LeerString("Ingrese la cedula: ");
+
+	bool encontrado = false;
+	string marca = ".";
+	string paciente = "";
+
+	cubiculo.agregarPaciente(marca);
+	cubiculo.removerPrimerPaciente(paciente);
+	while(paciente != marca) {
+		if(paciente == cedula) {
+			encontrado = true;
+		}
+		cubiculo.agregarPaciente(paciente);
+		cubiculo.removerPrimerPaciente(paciente);
+	};
+
+	vGeneral.Limpiar();
+	if(encontrado) {
+		vGeneral.ImprimirMensaje("Error: El paciente esta registrado en la cola");
+	}
+	else {
+		if(cubiculo.agregarPaciente(cedula)) {
+			vGeneral.ImprimirMensaje("Paciente agregado satisfactoriamente");
+		}
+		else {
+			vGeneral.ImprimirMensaje("Error: El paciente no pudo ser agregado");
+		}
+	}
+
+	centinela.agregarCubiculo(cubiculo);
+	municipio.agregarCentinela(centinela);
+	estado.agregarMunicipio(municipio);
 }
 
 void Controlador::SacarPacienteDeCola(){

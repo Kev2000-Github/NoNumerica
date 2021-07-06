@@ -9,6 +9,12 @@
 #define CONTROLADOR_H_
 #include "Modelos/MListaExpediente.h"
 #include "Modelos/MCensoPersonas.h"
+#include "Modelos/MEstado.h"
+#include "General/VGeneral.h"
+#include "Interfaces/IEstado.h"
+#include "Interfaces/IMunicipio.h"
+#include "Interfaces/ICubiculo.h"
+#include "Interfaces/ICentinela.h"
 
 class Controlador {
 private:

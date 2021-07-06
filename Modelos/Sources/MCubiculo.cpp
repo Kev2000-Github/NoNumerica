@@ -32,3 +32,23 @@ bool MCubiculo::removerPrimerPaciente(string &cedula){
 bool MCubiculo::esVacia(){
 	return cedulaPaciente.Vacia();
 }
+
+int MCubiculo::total(){
+  string ced,punto="fin";
+  bool final=false;
+  if(esVacia()==true)
+    return 0;
+  else{
+    agregarPaciente(punto);
+    while(!(final)){
+      removerPrimerPaciente(ced);
+      cont++;
+      if(ced==punto)
+        final=true;
+      else{
+        agregarPaciente(ced);
+      };
+      return cont;
+    };
+  };
+}

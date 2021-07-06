@@ -23,6 +23,7 @@ public:
 
 	int totalMunicipio();
 	bool agregarMunicipio(MMunicipio municipio);
+	bool removerPrimerMunicipio(MMunicipio &municipio);
 	bool removerMunicipio (string codigo, MMunicipio &municipio);
 };
 

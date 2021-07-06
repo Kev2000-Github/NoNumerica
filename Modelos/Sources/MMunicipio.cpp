@@ -17,6 +17,12 @@ MMunicipio::MMunicipio(string codi){
 string MMunicipio::getCodigo(){
 	return codigo;
 }
+string MMunicipio::getnombre(){
+	return nombre;
+}
+void MMunicipio::setnombre(string nomb){
+	nombre = nomb;
+}
 void MMunicipio::setCodigo(string codi){
 	codigo = codi;
 }

@@ -16,6 +16,8 @@ public:
     MMunicipio(string codi);
 
     string getCodigo();
+    string getnombre();
+    void setnombre(string nomb);
 	void setCodigo(string codi);
 
     int totalCentinelas();
