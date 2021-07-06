@@ -25,6 +25,8 @@ public:
 	Controlador();
 	void cargarDatos();
 	void recibirVacunas();
+	void agregarMunicipio();
+	void agregarCentinela();
 
 	void procesar();
 	void procesar2();

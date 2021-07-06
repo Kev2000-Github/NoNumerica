@@ -1,0 +1,40 @@
+PFizer,25,C1-1
+Sputnik V,28,C1-1
+Sinopharm,21,C1-1
+Sinovac,26,C1-1
+PFizer,23,C2-1
+Sputnik V,39,C2-1
+Sinopharm,40,C2-1
+Sinovac,34,C2-1
+PFizer,39,C3-2
+Sputnik V,22,C3-2
+Sinopharm,34,C3-2
+Sinovac,43,C3-2
+PFizer,32,C4-2
+Sputnik V,42,C4-2
+Sinopharm,31,C4-2
+Sinovac,29,C4-2
+PFizer,48,C5-3
+Sputnik V,26,C5-3
+Sinopharm,46,C5-3
+Sinovac,48,C5-3
+PFizer,26,C6-3
+Sputnik V,42,C6-3
+Sinopharm,49,C6-3
+Sinovac,43,C6-3
+PFizer,26,C7-4
+Sputnik V,48,C7-4
+Sinopharm,23,C7-4
+Sinovac,33,C7-4
+PFizer,36,C8-4
+Sputnik V,33,C8-4
+Sinopharm,25,C8-4
+Sinovac,45,C8-4
+PFizer,50,C9-5
+Sputnik V,39,C9-5
+Sinopharm,32,C9-5
+Sinovac,35,C9-5
+PFizer,25,C10-5
+Sputnik V,43,C10-5
+Sinopharm,27,C10-5
+Sinovac,37,C10-5

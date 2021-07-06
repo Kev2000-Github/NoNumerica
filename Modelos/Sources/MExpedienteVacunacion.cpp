@@ -33,8 +33,7 @@ int MExpedienteVacunacion::contDosisTomadas(){
 
 }
 
-bool MExpedienteVacunacion::AgregarNuevaDosis(Date DosisTomada){
-
+bool MExpedienteVacunacion::AgregarNuevaDosis(Date Dosis) {
 }
 
 Date MExpedienteVacunacion::getSigFechaEstipulada(){

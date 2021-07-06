@@ -1,0 +1,5 @@
+LB1,Iribarren,Barquisimeto
+LB2,Concepcion,Barquisimeto
+LB3,Union,Barquisimeto
+LB4,Santa Rosa,Barquisimeto
+LB5,Juan de Villegas
