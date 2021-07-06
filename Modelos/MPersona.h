@@ -6,19 +6,18 @@ using namespace std;
 class MPersona{
 
 private:
-        string nombre;
-        string apellido;
-        string cedula;
+    string nombre;
+    string apellido;
+    string cedula;
 
 public:
-         MPersona();
-
-         void setnombre(string n);
-	     void setapellido(string a);
-	     void setcedula(string c);
-	     string getnombre();
-	     string getapellido();
-	     string getcedula();
+    MPersona();
+    void setnombre(string n);
+    void setapellido(string a); 
+    void setcedula(string c);
+    string getnombre();
+    string getapellido();
+    string getcedula();
 
 };
 

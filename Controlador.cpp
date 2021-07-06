@@ -1,8 +1,9 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-using namespace std;
 #include "Controlador.h"
+using namespace std;
+
 
 Controlador::Controlador(){
 
@@ -19,6 +20,27 @@ void Controlador::cargarDatos(){
 	 * Cubiculos.txt
 	 * ColasPacientes.txt
 	 */
+
+	MPersona persona;
+	MExpedienteVacunacion vacunaPersona;
+	ifstream archCensoPersonas;
+	while(!vGeneral.AbrirArchivoEntrada(archCensoPersonas, "Datos/CensoPersonas.txt")){
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo CensoPersonas.txt\n");
+	}
+	vGeneral.ImprimirMensaje("\n CARGANDO DATOS CensoPersonas.txt...");
+	while(!vGeneral.FinArchivo(archCensoPersonas)){
+		string linea = vGeneral.LeerLineaArchivo(archCensoPersonas);
+		vector<string> personaExpediente = vGeneral.Split(linea, ',');
+		persona.setcedula(personaExpediente[0]);
+		persona.setnombre(personaExpediente[1]);
+		persona.setapellido(personaExpediente[2]);
+		vacunaPersona.setCedula(personaExpediente[0]);
+		vacunaPersona.setVacunaTomada(personaExpediente[3]);
+		// TODO: agregar cargar pila DosisTomadas
+		listaPersonas.agregarPersona(persona);
+		listaExpedientes.agregarExpediente(vacunaPersona);
+	}
+	vGeneral.ImprimirMensaje("\n DATOS CensoPersonas.txt CARGADOS EXITOSAMENTE");
 }
 
 void Controlador::procesar(){

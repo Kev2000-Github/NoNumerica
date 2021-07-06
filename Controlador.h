@@ -9,11 +9,13 @@
 #define CONTROLADOR_H_
 #include "Modelos/MListaExpediente.h"
 #include "Modelos/MCensoPersonas.h"
+#include "General/VGeneral.h"
 
 class Controlador {
 private:
 	MListaExpediente listaExpedientes;
 	MCensoPersonas listaPersonas;
+	VGeneral vGeneral;
 	bool estanDatosCargados;
 public:
 	Controlador();
