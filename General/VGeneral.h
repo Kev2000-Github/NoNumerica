@@ -15,7 +15,7 @@
 #include <iostream> //incluye la clase iostream para usar los objetos cin y cout
 #include <cstring>
 #include <fstream>  // incluye la clase fstream para trabajar con archivos
-#include <sstram>   // incluye la clase sstream para trabajar con string
+#include <sstream>   // incluye la clase sstream para trabajar con string
 #include <vector>   // incluye la clase vector para trabajar con vectores de string
 
 using namespace std;//se requiere siempre que se incluya una libreria estandar de C++
