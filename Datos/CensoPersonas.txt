@@ -22,3 +22,35 @@ V19.852.463,Elena,Santeliz,Sputnik V,14/06/2021
 V25.468.954,Ricardo,Gomez,PFizer,01/07/2020,02/10/2020
 V28.789.546,Roselyn,Perez,PFizer,12/02/2021,13/05/2021,13/08/2021
 V9.456.852,Miguel,Marchan,Sputnik V,11/02/2021
+V28.363.935,Ana,Calles,Sinopharm,01/07/2021,29/09/2021
+V9.048.980,Ynmaculada,Azuaje,Sinopharm,01/03/2021,20/07/2021,11/11/2021
+V7.195.130,Michael,Jackson,PFizer,19/08/2021
+V5.686.305,Augusto,Ruiz,Sinovac,01/01/2021,26/05/2021
+V15.447.983,Carolina,Perez,Sputnik V,22/02/2021
+V25.688.193,Yolanda,Cruz,PFizer,27/07/2020,05/02/2021
+V26.783.034,Martha,Rodriguez,Sinopharm,24/12/2020,03/04/2021,10/07/2021
+V25.714.679,Wafa,Bara,Sinopharm,01/12/2020
+V14.750.430,Paolo,Ganci,PFizer,12/05/2021
+V11.267.671,Valeria,Araya,Sputnik V,17/07/2021,19/11/2021
+V10.432.128,Carmen,Morantes,Sinopharm,03/02/2021,13/05/2021
+V18.459.463,Julian,Castillo,Sinopharm,18/06/2021
+V24.629.722,Karla,Pineda,Sputnik V,10/09/2020,02/01/2021
+V27.921.446,Rosa,Gomez,PFizer,15/02/2021,22/05/2021
+V7.458.902,Gregorio,Escalona,Sputnik V,07/03/2021
+V15.324.919,Miriam,Camero,PFizer,11/12/2020
+V10.778.523,Julio,Morales,Sputnik V,10/05/2020,08/08/2020
+V26.964.178,Hernan,Dario,PFizer,30/06/2020
+V12.456.257,Ruben,Colina,Sputnik V,22/07/2020,07/10/2020,12/01/2021
+V16.542.654,Mariel,Duran,Sinopharm,22/01/2021,06/04/2021
+V26.964.005,Fabian,Hernandez,PFizer,15/09/2020,12/12/2020
+V12.785.369,Maria,Lopez,Sputnik V,18/03/2021,24/06/2021
+V27.436.537,Josue,Faneittes,PFizer,02/06/2021
+V5.686.305,Cesar,Ruiz,Sputnik,09/06/2021,24/07/2021
+V4.341.240,Abel,Salero,Sinopharm,16/06/2021
+V11.263.779,Zumilda,Ramos,Sinopharm,11/06/2021,31/07/2021,03/09/2021
+V5.874.246,Mary,Cedeño,PFizer,22/06/2021,30/07/2021
+V9.601.207,Cesar,Faneittes,PFizer,14/06/2021,20/07/2021,01/09/2021
+V13.265.948,Alexis,Gomez,Sputnik,16/06/2021
+V15.093.019,Yusmary,Vargas,PFizer,11/06/2021
+V4.068.160,Willian,Colmenarez,Sputnik,09/06/2021,15/07/2021,20/08/2021
+V18.135.268,Victor,Orellana,Sputnik,11/06/2021

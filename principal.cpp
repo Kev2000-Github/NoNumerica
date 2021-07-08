@@ -1,16 +1,56 @@
 #include <iostream>
 #include <cstdlib>
+#include <sstream>
+#include <vector>
 #include "Modelos/MCubiculo.h"
 #include "Modelos/MCentinela.h"
 #include "General/Date.h"
 #include "General/VGeneral.h"
+
 using namespace std;
 
 void prueba1();
+void prueba2();
 void addToCentinela(MCentinela &centinela, string codigo, string cedula);
 void imprimirCedulas(MCubiculo &cubiculo);
+vector<string> split (const string &s, char delim);
 
 int main(){
+	string test = "kevin,cheng";
+	vector<string> info;
+	info = split(test, ',');
+	for(int i = 0; i < info.size(); i ++){
+		cout << info[i] << endl;
+	}
+	return 0;
+}
+
+vector<string> split (const string &s, char delim) {
+    vector<string> result;
+    stringstream ss (s);
+    string item;
+
+    while (getline (ss, item, delim)) {
+        result.push_back (item);
+    }
+
+    return result;
+}
+
+void prueba1(){
+		MCubiculo cubiculo;
+		cubiculo.agregarPaciente("111");
+		cubiculo.agregarPaciente("222");
+		cubiculo.agregarPaciente("333");
+		string cedula;
+
+		cubiculo.removerPrimerPaciente(cedula);
+		cout << cedula << endl;
+		cubiculo.agregarPaciente(cedula);
+
+}
+
+void prueba2(){
 	VGeneral vgeneral;
 	MCentinela centinela("ABCD");
 	MCubiculo cubiculo;
@@ -40,7 +80,7 @@ int main(){
 			vgeneral.ImprimirLineasBlanco(1);
 			codCubiculo = vgeneral.LeerString("Codigo del Cubiculo: ");
 			vgeneral.Limpiar();
-			if(codCubiculo == "-1") return 0;
+			if(codCubiculo == "-1") return;
 
 			//REPORTE CEDULAS//
 			if(centinela.removerCubiculo(codCubiculo, cubiculo)){
@@ -54,21 +94,6 @@ int main(){
 			}
 			vgeneral.Limpiar();
 	}
-
-	return 0;
-}
-
-void prueba1(){
-		MCubiculo cubiculo;
-		cubiculo.agregarPaciente("111");
-		cubiculo.agregarPaciente("222");
-		cubiculo.agregarPaciente("333");
-		string cedula;
-
-		cubiculo.removerPrimerPaciente(cedula);
-		cout << cedula << endl;
-		cubiculo.agregarPaciente(cedula);
-
 }
 
 void addToCentinela(MCentinela &centinela, string codigo, string cedula){
