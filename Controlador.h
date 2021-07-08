@@ -9,10 +9,12 @@
 #define CONTROLADOR_H_
 #include "Modelos/MListaExpediente.h"
 #include "Modelos/MCensoPersonas.h"
+#include "Modelos/MEstado.h"
 #include "General/VGeneral.h"
 
 class Controlador {
 private:
+	MEstado estado;
 	MListaExpediente listaExpedientes;
 	MCensoPersonas listaPersonas;
 	VGeneral vGeneral;
