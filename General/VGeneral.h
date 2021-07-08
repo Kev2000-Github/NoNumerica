@@ -1,7 +1,7 @@
 /*
  *  VGeneral.h
  *  Creado: 16/02/2011
- *  Autores: Prof. Margarita Pereira, Prof. Rosa Díaz,
+ *  Autores: Prof. Margarita Pereira, Prof. Rosa Dï¿½az,
  *                  Prof. Giovanni Torrealba, Prof. Luis Pereira
  *  Ajustado: 07/05/2012 Prof. Margarita Pereia
  */
@@ -15,6 +15,8 @@
 #include <iostream> //incluye la clase iostream para usar los objetos cin y cout
 #include <cstring>
 #include <fstream>  // incluye la clase fstream para trabajar con archivos
+#include <sstream>   // incluye la clase sstream para trabajar con string
+#include <vector>   // incluye la clase vector para trabajar con vectores de string
 
 using namespace std;//se requiere siempre que se incluya una libreria estandar de C++
 
@@ -48,6 +50,7 @@ class VGeneral{
    // Metodos para trabajar con archivos de texto
 
      void LeerNombreArchivo(string, char[128]);
+     vector<string> Split(string &texto, char delimitador);
 
    // Archivos TEXTO de ENTRADA
 
