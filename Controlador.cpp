@@ -48,6 +48,7 @@ void Controlador::cargarDatos(){
 	MMunicipio municipio;
 	ifstream archMunicipios;
 	ifstream archCentinelas;
+	ifstream archVacunas;
 	ifstream archCubiculos;
 	ifstream archColaPacientes;
 
@@ -60,6 +61,11 @@ void Controlador::cargarDatos(){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Centinelas.txt\n");
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Centinelas.txt...");
+
+	while(!vGeneral.AbrirArchivoEntrada(archVacunas, "Datos/VacunasEnExistencia.txt")){
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo VacunasEnExistencia.txt\n");
+	}
+	vGeneral.ImprimirMensaje("\n CARGANDO DATOS VacunasEnExistencia.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archCubiculos, "Datos/Cubiculos.txt")){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Cubiculos.txt\n");
@@ -82,6 +88,21 @@ void Controlador::cargarDatos(){
 			string lineaCentinela = vGeneral.LeerLineaArchivo(archCentinelas);
 			vector<string> vcentinela = vGeneral.Split(lineaCentinela, ',');
 			centinela.setCodigo(vcentinela[0]);
+
+			MAlmacenVacuna vacuna;
+			while(!vGeneral.FinArchivo(archVacunas)){
+				string lineaVacuna = vGeneral.LeerLineaArchivo(archVacunas);
+				vector<string> vvacuna = vGeneral.Split(lineaVacuna, ',');
+				vacuna.setMarca(vvacuna[0]);
+				int cantidad;
+				stringstream _ss;
+				_ss << vvacuna[1];
+				_ss >> cantidad;
+				vacuna.setCantidad(cantidad);
+				if(vvacuna[2] == vcentinela[0]){
+					centinela.agregarVacuna(vacuna);
+				}
+			}
 
 			MCubiculo cubiculo;
 			while(!vGeneral.FinArchivo(archCubiculos)){
@@ -109,11 +130,13 @@ void Controlador::cargarDatos(){
 	}
 	vGeneral.CerrarArchivoEntrada(archColaPacientes);
 	vGeneral.CerrarArchivoEntrada(archCubiculos);
-	vGeneral.CerrarArchivoEntrada(archMunicipios);
+	vGeneral.CerrarArchivoEntrada(archVacunas);
 	vGeneral.CerrarArchivoEntrada(archCentinelas);
+	vGeneral.CerrarArchivoEntrada(archMunicipios);
 
 	vGeneral.ImprimirMensaje("\n DATOS ColasPacientes.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Cubiculos.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS VacunasEnExistencia.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
 }
