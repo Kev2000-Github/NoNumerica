@@ -8,11 +8,11 @@
 #ifndef CENSOPERSONAS_H_
 #define CENSOPERSONAS_H_
 #include "MPersona.h"
-#include "../General/lista.h"
+#include "../General/Lista.h"
 
 class MCensoPersonas {
 private:
-  Lista <MPersona> personas;
+  Lista<MPersona> personas;
 
 public:
   MCensoPersonas();
