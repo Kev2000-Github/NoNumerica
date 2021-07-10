@@ -17,11 +17,14 @@ public:
 
     string getCodigo();
 	void setCodigo(string codi);
+	string getNombre();
+	void setNombre(string _nombre);
 
     int totalCentinelas();
-    bool agregarCentinela(MCentinela centinela);
+    bool agregarCentinela(MCentinela &centinela);
     bool removerCentinela(string codigo, MCentinela &centinela);
     bool removerPrimerCentinela(MCentinela &centinela);
+    bool esVacio();
 };
 
 #endif

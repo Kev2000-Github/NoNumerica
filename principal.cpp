@@ -6,35 +6,37 @@
 #include "Modelos/MCentinela.h"
 #include "General/Date.h"
 #include "General/VGeneral.h"
+#include "Controlador.h";
 
 using namespace std;
 
 void prueba1();
 void prueba2();
 void addToCentinela(MCentinela &centinela, string codigo, string cedula);
+void addToMunicipio(MMunicipio &municipio);
 void imprimirCedulas(MCubiculo &cubiculo);
-vector<string> split (const string &s, char delim);
-
+int createNumber();
 int main(){
-	string test = "kevin,cheng";
-	vector<string> info;
-	info = split(test, ',');
-	for(int i = 0; i < info.size(); i ++){
-		cout << info[i] << endl;
+	MMunicipio municipio;
+	for(int i = 0; i < 100; i ++){
+		MCentinela centinela;
+		MCubiculo cubiculo;
+		centinela.agregarCubiculo(cubiculo);
+		municipio.agregarCentinela(centinela);
+
 	}
+	system("PAUSE");
 	return 0;
 }
 
-vector<string> split (const string &s, char delim) {
-    vector<string> result;
-    stringstream ss (s);
-    string item;
+int createNumber(){
+	int a = 1;
+	return a;
+}
 
-    while (getline (ss, item, delim)) {
-        result.push_back (item);
-    }
-
-    return result;
+void addToMunicipio(MMunicipio &municipio){
+	MCentinela centinela("111");
+	municipio.agregarCentinela(centinela);
 }
 
 void prueba1(){

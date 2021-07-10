@@ -47,3 +47,11 @@ bool MEstado::removerMunicipio(string codigo, MMunicipio &municipioBuscado){
 	}
 	return encontrado;
 }
+
+bool MEstado::esVacio(){
+	return municipios.Contar() == 0;
+}
+
+bool MEstado:: removerPrimerMunicipio(MMunicipio &municipio){
+	return municipios.EliComienzo(municipio);
+}

@@ -25,7 +25,7 @@ public:
 	string getCodigo();
 	void setCodigo(string _codigo);
 
-	bool agregarCubiculo(MCubiculo cubiculo);
+	bool agregarCubiculo(MCubiculo &cubiculo);
 	bool removerCubiculo(string codigo, MCubiculo &cubiculo);
 	bool removerPrimerCubiculo(MCubiculo &cubiculo);
 	int totalCubiculos();

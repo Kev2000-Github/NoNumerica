@@ -274,6 +274,12 @@ string VGeneral :: LeerLineaArchivo(std::ifstream &archivo)
    getline(archivo, linea);
    return linea;
 }
+// Regresa a la primera linea del archivo
+void VGeneral::RegresarPrimeraLinea(std::ifstream &archivo){
+	archivo.clear();
+	archivo.seekg(0);
+}
+
 // Lee un dato char  del archivo
 char VGeneral :: LeerDatoCharArchivo(std::ifstream &archivo)
 {
@@ -344,4 +350,12 @@ void VGeneral :: GrabarDatoNroDecimalArchivo(std::ofstream &archivo, double nro)
 void VGeneral :: CerrarArchivoSalida (std::ofstream &archivo)
 {
    archivo.close();
+}
+
+int VGeneral :: parseInt(string numero){
+	int integer;
+	stringstream _ss;
+	_ss << numero;
+	_ss >> integer;
+	return integer;
 }

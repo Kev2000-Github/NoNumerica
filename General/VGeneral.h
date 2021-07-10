@@ -56,6 +56,7 @@ class VGeneral{
 
       bool AbrirArchivoEntrada(std::ifstream &archivo, char nomb_arch [128]);
       string LeerLineaArchivo(std::ifstream &archivo);
+      void RegresarPrimeraLinea(std::ifstream &archivo);
       char LeerDatoCharArchivo(std::ifstream &archivo);
       long LeerDatoNroArchivo(std::ifstream &archivo);
       double LeerDatoNroDecimalArchivo(std::ifstream &archivo);
@@ -69,5 +70,8 @@ class VGeneral{
       void GrabarDatoNroArchivo(std::ofstream &archivo, long nro);
       void GrabarDatoNroDecimalArchivo(std::ofstream &archivo, double nro);
       void CerrarArchivoSalida(std::ofstream &archivo);
+
+      //Utilidades
+      int parseInt(string numero);
 };
 #endif

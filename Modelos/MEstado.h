@@ -24,6 +24,8 @@ public:
 	int totalMunicipio();
 	bool agregarMunicipio(MMunicipio municipio);
 	bool removerMunicipio (string codigo, MMunicipio &municipio);
+	bool removerPrimerMunicipio(MMunicipio &municipio);
+	bool esVacio();
 };
 
 #endif /* MESTADO_H_ */

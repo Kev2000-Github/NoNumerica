@@ -21,7 +21,7 @@ void MCentinela::setCodigo(string _codigo){
 	codigo = _codigo;
 }
 
-bool MCentinela::agregarCubiculo(MCubiculo cubiculo){
+bool MCentinela::agregarCubiculo(MCubiculo &cubiculo){
 	return cubiculos.InsComienzo(cubiculo);
 }
 bool MCentinela::removerCubiculo(string codigo, MCubiculo &cubiculoBuscado){

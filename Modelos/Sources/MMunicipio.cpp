@@ -20,8 +20,14 @@ string MMunicipio::getCodigo(){
 void MMunicipio::setCodigo(string codi){
 	codigo = codi;
 }
+string MMunicipio::getNombre(){
+	return nombre;
+}
+void MMunicipio::setNombre(string _nombre){
+	nombre = _nombre;
+}
 
-bool MMunicipio::agregarCentinela(MCentinela centinela){
+bool MMunicipio::agregarCentinela(MCentinela &centinela){
     return centinelas.InsComienzo(centinela);
 
 }
@@ -55,4 +61,8 @@ int MMunicipio::totalCentinelas()
 bool MMunicipio::removerPrimerCentinela(MCentinela &centinela)
 {
 	return centinelas.EliComienzo(centinela);
+}
+
+bool MMunicipio::esVacio(){
+	return centinelas.Contar() == 0;
 }

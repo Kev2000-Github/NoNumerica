@@ -20,22 +20,25 @@ void Controlador::cargarDatos(){
 	 * Cubiculos.txt
 	 * ColasPacientes.txt
 	 */
-
 	MPersona persona;
 	MExpedienteVacunacion vacunaPersona;
 	ifstream archCensoPersonas;
 	while(!vGeneral.AbrirArchivoEntrada(archCensoPersonas, "Datos/CensoPersonas.txt")){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo CensoPersonas.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS CensoPersonas.txt...");
+	vector<string> lineaActual;
 	while(!vGeneral.FinArchivo(archCensoPersonas)){
 		string linea = vGeneral.LeerLineaArchivo(archCensoPersonas);
-		vector<string> personaExpediente = vGeneral.Split(linea, ',');
-		persona.setcedula(personaExpediente[0]);
-		persona.setnombre(personaExpediente[1]);
-		persona.setapellido(personaExpediente[2]);
-		vacunaPersona.setCedula(personaExpediente[0]);
-		vacunaPersona.setVacunaTomada(personaExpediente[3]);
+		lineaActual = vGeneral.Split(linea, ',');
+		persona.setcedula(lineaActual[0]);
+		persona.setnombre(lineaActual[1]);
+		persona.setapellido(lineaActual[2]);
+		vacunaPersona.setCedula(lineaActual[0]);
+		vacunaPersona.setVacunaTomada(lineaActual[3]);
+		lineaActual.clear();
 		// TODO: agregar cargar pila DosisTomadas
 		listaPersonas.agregarPersona(persona);
 		listaExpedientes.agregarExpediente(vacunaPersona);
@@ -43,9 +46,60 @@ void Controlador::cargarDatos(){
 	vGeneral.CerrarArchivoEntrada(archCensoPersonas);
 	vGeneral.ImprimirMensaje("\n DATOS CensoPersonas.txt CARGADOS EXITOSAMENTE");
 
-	MEstado estado;
 	estado.setNombre("Lara");
-	MMunicipio municipio;
+
+
+	ifstream archivo;
+	while(!vGeneral.AbrirArchivoEntrada(archivo, "Datos/Municipios.txt")){
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Municipios.txt...");
+
+	while(!vGeneral.FinArchivo(archivo)){
+		string lineaMunicipio = vGeneral.LeerLineaArchivo(archivo);
+		lineaActual = vGeneral.Split(lineaMunicipio, ',');
+		string municipioCod = lineaActual[0];
+		string municipioNombre = lineaActual[1];
+		lineaActual.clear();
+		MMunicipio municipio;
+		municipio.setCodigo(municipioCod);
+		municipio.setNombre(municipioNombre);
+		estado.agregarMunicipio(municipio);
+	}
+	vGeneral.CerrarArchivoEntrada(archivo);
+	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
+
+	//CENTINELAS
+	while(!vGeneral.AbrirArchivoEntrada(archivo, "Datos/Centinelas.txt")){
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Centinelas.txt...");
+	Lista<MCentinela> listaCentinelas;
+	while(!vGeneral.FinArchivo(archivo)){
+		string lineaCentinela = vGeneral.LeerLineaArchivo(archivo);
+		lineaActual = vGeneral.Split(lineaCentinela, ',');
+		string centinelaCod = lineaActual[0];
+		string centinelaMunicipio = lineaActual[1];
+		lineaActual.clear();
+		MCentinela centinela;
+		centinela.setCodigo(centinelaCod);
+		MMunicipio municipioAux;
+		estado.removerMunicipio(centinelaMunicipio, municipioAux);
+		vGeneral.ImprimirMensaje(centinela.getCodigo());
+		vGeneral.ImprimirLineasBlanco(1);
+		listaCentinelas.InsComienzo(centinela);
+		estado.agregarMunicipio(municipioAux);
+	}
+	vGeneral.CerrarArchivoEntrada(archivo);
+	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
+
+
+
+	/*
 	ifstream archMunicipios;
 	ifstream archCentinelas;
 	ifstream archVacunas;
@@ -54,78 +108,103 @@ void Controlador::cargarDatos(){
 
 	while(!vGeneral.AbrirArchivoEntrada(archMunicipios, "Datos/Municipios.txt")){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Municipios.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archCentinelas, "Datos/Centinelas.txt")){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Centinelas.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Centinelas.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archVacunas, "Datos/VacunasEnExistencia.txt")){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo VacunasEnExistencia.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS VacunasEnExistencia.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archCubiculos, "Datos/Cubiculos.txt")){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Cubiculos.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Cubiculos.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archColaPacientes, "Datos/ColasPacientes.txt")){
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo ColasPacientes.txt\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS ColasPacientes.txt...");
 
 	while(!vGeneral.FinArchivo(archMunicipios)){
 		string lineaMunicipio = vGeneral.LeerLineaArchivo(archMunicipios);
-		vector<string> vmunicipio = vGeneral.Split(lineaMunicipio, ',');
-		municipio.setCodigo(vmunicipio[0]);
+		lineaActual = vGeneral.Split(lineaMunicipio, ',');
+		string municipioCod = lineaActual[0];
+		string municipioNombre = lineaActual[1];
+		lineaActual.clear();
+		MMunicipio municipio;
+		municipio.setCodigo(municipioCod);
+		municipio.setNombre(municipioNombre);
 		// TODO: agregar setNombre a MMunicipio
 
-		MCentinela centinela;
 		while(!vGeneral.FinArchivo(archCentinelas)){
 			string lineaCentinela = vGeneral.LeerLineaArchivo(archCentinelas);
-			vector<string> vcentinela = vGeneral.Split(lineaCentinela, ',');
-			centinela.setCodigo(vcentinela[0]);
-
-			MAlmacenVacuna vacuna;
-			while(!vGeneral.FinArchivo(archVacunas)){
-				string lineaVacuna = vGeneral.LeerLineaArchivo(archVacunas);
-				vector<string> vvacuna = vGeneral.Split(lineaVacuna, ',');
-				vacuna.setMarca(vvacuna[0]);
-				int cantidad;
-				stringstream _ss;
-				_ss << vvacuna[1];
-				_ss >> cantidad;
-				vacuna.setCantidad(cantidad);
-				if(vvacuna[2] == vcentinela[0]){
-					centinela.agregarVacuna(vacuna);
-				}
-			}
-
-			MCubiculo cubiculo;
-			while(!vGeneral.FinArchivo(archCubiculos)){
-				string lineaCubiculo = vGeneral.LeerLineaArchivo(archCubiculos);
-				vector<string> vcubiculo = vGeneral.Split(lineaCubiculo, ',');
-				cubiculo.setCodigo(vcubiculo[0]);
-
-				string cedula;
-				while(!vGeneral.FinArchivo(archColaPacientes)){
-					string lineaPaciente = vGeneral.LeerLineaArchivo(archColaPacientes);
-					vector<string> vpaciente = vGeneral.Split(lineaPaciente, ',');
-					if(vpaciente[1] == vcubiculo[0]){
-						cubiculo.agregarPaciente(vpaciente[0]);
+			lineaActual = vGeneral.Split(lineaCentinela, ',');
+			string centinelaCod = lineaActual[0];
+			string centinelaMunCod = lineaActual[1];
+			lineaActual.clear();
+			if(centinelaMunCod == municipioCod){
+				MCentinela centinela(centinelaCod);
+				while(!vGeneral.FinArchivo(archVacunas)){
+					string lineaVacuna = vGeneral.LeerLineaArchivo(archVacunas);
+					lineaActual = vGeneral.Split(lineaVacuna, ',');
+					string marca = lineaActual[0];
+					string cant = lineaActual[1];
+					string vacunaCent = lineaActual[2];
+					lineaActual.clear();
+					if(vacunaCent == centinelaCod){
+						MAlmacenVacuna vacuna;
+						vacuna.setMarca(marca);
+						int cantidad = vGeneral.parseInt(cant);
+						vacuna.setCantidad(cantidad);
+						centinela.agregarVacuna(vacuna);
 					}
 				}
-				if(vcubiculo[1] == vcentinela[0]){
-					centinela.agregarCubiculo(cubiculo);
+				vGeneral.RegresarPrimeraLinea(archVacunas);
+				while(!vGeneral.FinArchivo(archCubiculos)){
+					string lineaCubiculo = vGeneral.LeerLineaArchivo(archCubiculos);
+					lineaActual = vGeneral.Split(lineaCubiculo, ',');
+					string cubCod = lineaActual[0];
+					string cubCentinelaCod = lineaActual[1];
+					lineaActual.clear();
+					if(cubCentinelaCod == centinelaCod){
+						MCubiculo cubiculo;
+						cubiculo.setCodigo(cubCod);
+						string cedula;
+						while(!vGeneral.FinArchivo(archColaPacientes)){
+							string lineaPaciente = vGeneral.LeerLineaArchivo(archColaPacientes);
+							lineaActual = vGeneral.Split(lineaPaciente, ',');
+							string pacienteCubCod = lineaActual[1];
+							string cedula = lineaActual[0];
+							lineaActual.clear();
+							if(pacienteCubCod == cubCod){
+								cubiculo.agregarPaciente(cedula);
+							}
+						}
+						vGeneral.RegresarPrimeraLinea(archColaPacientes);
+						centinela.agregarCubiculo(cubiculo);
+					}
 				}
-			}
-			if(vcentinela[1] == vmunicipio[0]){
+				vGeneral.RegresarPrimeraLinea(archCubiculos);
 				municipio.agregarCentinela(centinela);
 			}
 		}
+		vGeneral.RegresarPrimeraLinea(archCentinelas);
 		estado.agregarMunicipio(municipio);
 	}
 	vGeneral.CerrarArchivoEntrada(archColaPacientes);
@@ -139,9 +218,29 @@ void Controlador::cargarDatos(){
 	vGeneral.ImprimirMensaje("\n DATOS VacunasEnExistencia.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
+	vGeneral.Limpiar();
+	*/
 }
 
 void Controlador::procesar(){
+	MEstado estadoAux;
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo;
+	while(!estado.esVacio()){
+		estado.removerPrimerMunicipio(municipio);
+		cout << "-----------MUNICIPIO: " << municipio.getNombre() << endl;
+		while(!municipio.esVacio()){
+			municipio.removerPrimerCentinela(centinela);
+			cout << "-->CENTINELA: " << centinela.getCodigo() << endl;
+			cout << "VACIO: " << centinela.esVacia() << endl;
+			while(!centinela.esVacia()){
+				centinela.removerPrimerCubiculo(cubiculo);
+				cout << "CUBICULO: " << cubiculo.getCodigo() << endl;
+			}
+		}
+		estadoAux.agregarMunicipio(municipio);
+	}
 	/**
 	 * Antes de esto, se cargan los datos justo al iniciar el programa
 	 *
