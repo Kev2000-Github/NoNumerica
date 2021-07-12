@@ -11,6 +11,83 @@ bool Cola<Tipo>::Vacia(){
      return Frente == NULL;
 };
 
+template<class Tipo>
+Cola<Tipo>::~Cola(){
+	Tipo itemActual;
+	while(!Vacia()){
+		Remover(itemActual);
+	}
+}
+
+template<class Tipo>
+Cola<Tipo>::Cola(const Cola<Tipo>& that){
+	Tipo itemActual;
+	Apuntador p;
+	Apuntador thatP;
+
+	while(!Vacia()){
+		Remover(itemActual);
+	}
+
+	if(that.ObtTope() != NULL){
+		thatP = that->Frente;
+		Insertar(thatP->info);
+		thatP = thatP->prox;
+		p = Frente;
+		while(thatP != NULL)
+		{
+			Apuntador nuevo;
+			if (!Llena()){
+	               nuevo= new nodoCola<Tipo>;
+	               nuevo->info=thatP->info;
+	               nuevo->prox=p->prox;
+	               p->prox=nuevo;
+	               p = p->prox;
+			}
+			thatP = thatP->prox;
+		}
+	}
+}
+
+template<class Tipo>
+Cola<Tipo>& Cola<Tipo>::operator=(const Cola<Tipo> &that){
+	if(this != &that){
+		Tipo itemActual;
+		Apuntador p;
+		Apuntador thatP;
+		while(!Vacia()){
+			Remover(itemActual);
+		}
+
+		if(that.ObtFrente() != NULL){
+			thatP = that.ObtFrente();
+			Insertar(thatP->info);
+			thatP = thatP->prox;
+			p = Frente;
+			while(thatP != NULL)
+			{
+				Apuntador nuevo;
+				if (!Llena()){
+		               nuevo= new nodoCola<Tipo>;
+		               nuevo->info=thatP->info;
+		               nuevo->prox=p->prox;
+		               p->prox=nuevo;
+		               p = p->prox;
+				}
+				thatP = thatP->prox;
+			}
+		}
+	}
+	return *this;
+}
+
+template <class Tipo>
+nodoCola<Tipo>* Cola<Tipo>::ObtFrente() const
+{
+	return Frente;
+}
+
+
 template <class Tipo>
 bool Cola<Tipo>::Llena(){
      nodoCola<Tipo> *p;
@@ -24,7 +101,7 @@ bool Cola<Tipo>::Llena(){
 };
 
 template <class Tipo>
-bool Cola<Tipo>::Insertar(Tipo Valor){
+bool Cola<Tipo>::Insertar(Tipo &Valor){
      nodoCola<Tipo> *nuevo;
      if (!Llena())
      {

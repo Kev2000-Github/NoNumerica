@@ -18,13 +18,13 @@ void addToMunicipio(MMunicipio &municipio);
 void imprimirCedulas(MCubiculo &cubiculo);
 int createNumber();
 int main(){
-	Pila<Pila<Pila<Pila<int> > > > enormousNumbers;
+	Cola<Cola<Cola<Cola<int> > > > enormousNumbers;
 		for(int x = 0; x < 10; x++){
-			Pila<Pila<Pila<int> > > bigNumbers;
+			Cola<Cola<Cola<int> > > bigNumbers;
 			for(int j = 0; j < 10; j++){
-				Pila<Pila<int> > numbers2;
+				Cola<Cola<int> > numbers2;
 				for(int i = 0; i < 10; i ++){
-					Pila<int> numbers;
+					Cola<int> numbers;
 					int number = 2;
 					numbers.Insertar(number);
 					numbers2.Insertar(numbers);
