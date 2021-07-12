@@ -10,6 +10,7 @@ private:
         int annio;
 
 public:
+         Date();
          Date(string fecha);
          void setdia(int d1);
 	     void setmes(int m1);

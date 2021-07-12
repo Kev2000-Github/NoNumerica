@@ -18,32 +18,22 @@ void addToMunicipio(MMunicipio &municipio);
 void imprimirCedulas(MCubiculo &cubiculo);
 int createNumber();
 int main(){
-	Lista<Lista<Lista<int> > > thirdLevelNumbers;
-	for(int i = 0; i < 10; i++){
-		Lista<Lista<int> > secondLevelNumbers;
-		for(int j = 0; j < 10; j++){
-			Lista<int> firstLevelNumbers;
-			for(int n = 0; n < 10; n++){
-				firstLevelNumbers.InsComienzo(n);
+	Pila<Pila<Pila<Pila<int> > > > enormousNumbers;
+		for(int x = 0; x < 10; x++){
+			Pila<Pila<Pila<int> > > bigNumbers;
+			for(int j = 0; j < 10; j++){
+				Pila<Pila<int> > numbers2;
+				for(int i = 0; i < 10; i ++){
+					Pila<int> numbers;
+					int number = 2;
+					numbers.Insertar(number);
+					numbers2.Insertar(numbers);
+				}
+				bigNumbers.Insertar(numbers2);
 			}
-			secondLevelNumbers.InsComienzo(firstLevelNumbers);
+			enormousNumbers.Insertar(bigNumbers);
 		}
-		thirdLevelNumbers.InsComienzo(secondLevelNumbers);
-	}
-	cout << "processed!" << endl;
-	while(!thirdLevelNumbers.Vacia()){
-		Lista<Lista<int> > secondLevelNumbers;
-		thirdLevelNumbers.EliComienzo(secondLevelNumbers);
-		while(!secondLevelNumbers.Vacia()){
-			Lista<int> firstLevelNumbers;
-			secondLevelNumbers.EliComienzo(firstLevelNumbers);
-			while(!firstLevelNumbers.Vacia()){
-				int n;
-				firstLevelNumbers.EliComienzo(n);
-				cout << "NUMBER: " << n << endl;
-			}
-		}
-	}
+	cout<<"end"<<endl;
 	system("PAUSE");
 	return 0;
 }

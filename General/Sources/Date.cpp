@@ -7,6 +7,10 @@
 using namespace std;
 #include "../Date.h"
 
+Date::Date(){
+
+}
+
 Date::Date(string fecha) {
 	string aux = "";
 	stringstream ss;

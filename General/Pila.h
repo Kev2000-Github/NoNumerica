@@ -26,11 +26,14 @@ typedef Nodopila<Tipo>* Apuntapila;
 public:
   Apuntapila Tope;
   Pila();
+  Pila(const Pila& that);
+  ~Pila();
+  Pila& operator=(const Pila& that);
   bool Vacia();
   bool Llena();
-  bool Insertar(Tipo Valor);
+  bool Insertar(Tipo &Valor);
   bool Remover(Tipo &Valor);
-  Apuntapila ObtTope();
+  Apuntapila ObtTope() const ;
   void AsigTope(Apuntapila p);
   Tipo ObtInfo(Nodopila<Tipo> *p);
   void AsigInfo(Nodopila<Tipo> *p,Tipo x);

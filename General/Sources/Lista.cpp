@@ -21,11 +21,30 @@ template <class Tipo>
 Lista<Tipo>::Lista(const Lista<Tipo> &that)
 {
 	Apuntador p;
-	p = that.ObtPrimero();
-	while(p != NULL)
-	{
-		this->InsComienzo(p->info);
-		p = p->prox;
+	Apuntador thatP;
+	while(!Vacia()){
+		p = Primero->prox;
+		delete Primero;
+		Primero = p;
+	}
+
+	if(that.ObtPrimero() != NULL){
+		thatP = that.ObtPrimero();
+		InsComienzo(thatP->info);
+		thatP = thatP->prox;
+		p = ObtPrimero();
+		while(thatP != NULL)
+		{
+			Apuntador nuevo;
+			if (!Llena()){
+	               nuevo=new nodo<Tipo>;
+	               nuevo->info=thatP->info;
+	               nuevo->prox=p->prox;
+	               p->prox=nuevo;
+	               p = p->prox;
+			}
+			thatP = thatP->prox;
+		}
 	}
 };
 
@@ -34,20 +53,35 @@ Lista<Tipo>& Lista<Tipo>::operator= (const Lista<Tipo> &that)
 {
 	if(this != &that){
 		Apuntador p;
+		Apuntador thatP;
+
 		while(!Vacia()){
 			p = Primero->prox;
 			delete Primero;
 			Primero = p;
 		}
 
-		p = that.ObtPrimero();
-		while(p != NULL){
-			this->InsComienzo(p->info);
-			p = p->prox;
+		if(that.ObtPrimero() != NULL){
+			thatP = that.ObtPrimero();
+			InsComienzo(thatP->info);
+			thatP = thatP->prox;
+			p = ObtPrimero();
+			while(thatP != NULL)
+			{
+				Apuntador nuevo;
+				if (!Llena()){
+		               nuevo=new nodo<Tipo>;
+		               nuevo->info=thatP->info;
+		               nuevo->prox=p->prox;
+		               p->prox=nuevo;
+		               p = p->prox;
+				}
+				thatP = thatP->prox;
+			}
 		}
 	}
 	return *this;
-}
+};
 
 template <class Tipo>
 bool Lista<Tipo>::Vacia()

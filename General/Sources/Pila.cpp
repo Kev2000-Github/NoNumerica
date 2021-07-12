@@ -6,6 +6,82 @@ Pila<Tipo>::Pila()
   Tope = NULL;
 };
 
+template <class Tipo>
+Pila<Tipo>::Pila(const Pila<Tipo>& that)
+{
+	Apuntapila p;
+	Apuntapila thatP;
+	while(!Vacia()){
+		p = Tope->ap;
+		delete Tope;
+		Tope = p;
+	}
+
+	if(that.ObtTope() != NULL){
+		thatP = that.ObtTope();
+		Insertar(thatP->info);
+		thatP = thatP->ap;
+		p = ObtTope();
+		while(thatP != NULL)
+		{
+			Apuntapila nuevo;
+			if (!Llena()){
+	               nuevo=new Nodopila<Tipo>;
+	               nuevo->info=thatP->info;
+	               nuevo->ap=p->ap;
+	               p->ap=nuevo;
+	               p = p->ap;
+			}
+			thatP = thatP->ap;
+		}
+	}
+}
+
+template <class Tipo>
+Pila<Tipo>::~Pila()
+{
+	Apuntapila p;
+	while(Tope != NULL){
+		p = Tope->ap;
+		delete Tope;
+		Tope = p;
+	}
+}
+
+template <class Tipo>
+Pila<Tipo>& Pila<Tipo>::operator=(const Pila<Tipo>& that)
+{
+	if(this != &that){
+		Apuntapila p;
+		Apuntapila thatP;
+		while(!Vacia()){
+			p = Tope->ap;
+			delete Tope;
+			Tope = p;
+		}
+
+		if(that.ObtTope() != NULL){
+			thatP = that.ObtTope();
+			Insertar(thatP->info);
+			thatP = thatP->ap;
+			p = ObtTope();
+			while(thatP != NULL)
+			{
+				Apuntapila nuevo;
+				if (!Llena()){
+		               nuevo=new Nodopila<Tipo>;
+		               nuevo->info=thatP->info;
+		               nuevo->ap=p->ap;
+		               p->ap=nuevo;
+		               p = p->ap;
+				}
+				thatP = thatP->ap;
+			}
+		}
+	}
+	return *this;
+}
+
 //===========================================================================
 template <class Tipo>
 bool Pila<Tipo>::Vacia()
@@ -30,7 +106,7 @@ bool Pila<Tipo>::Llena()
 
 //===========================================================================
 template <class Tipo>
-bool Pila<Tipo>:: Insertar(Tipo Valor)
+bool Pila<Tipo>:: Insertar(Tipo &Valor)
 {
   Apuntapila nuevo;
   if (!Llena())
@@ -64,7 +140,7 @@ bool Pila<Tipo>::Remover(Tipo &Valor)
 
 //===========================================================================
 template <class Tipo>
-Nodopila<Tipo>* Pila<Tipo>::ObtTope()
+Nodopila<Tipo>* Pila<Tipo>::ObtTope() const
 {
   return Tope;
 };
