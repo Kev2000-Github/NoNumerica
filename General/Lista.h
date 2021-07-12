@@ -22,15 +22,17 @@ private:
          nodo<Tipo>* Primero; 
 public:
          Lista();
-         nodo<Tipo>* ObtPrimero();             
+         Lista(const Lista &that);
+         nodo<Tipo>* ObtPrimero() const ;
          void AsigPrimero(nodo<Tipo>* p);
          bool Vacia();
          bool Llena();
-         bool InsComienzo(Tipo Valor);
+         bool InsComienzo(Tipo &Valor);
          bool EliComienzo(Tipo &Valor);
          bool InsDespues(Apuntador p,Tipo Valor);
          bool EliDespues(Apuntador p,Tipo &Valor);
-         ~Lista();	     
+         ~Lista();
+         Lista& operator=(const Lista &that);
          nodo<Tipo>* ObtProx(Apuntador p);
          void AsigProx(Apuntador p,Apuntador q);
          Tipo ObtInfo(Apuntador p);

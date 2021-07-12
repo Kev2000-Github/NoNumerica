@@ -2,7 +2,7 @@
 #include "../Lista.h"
 
 template <class Tipo>
-nodo<Tipo>* Lista<Tipo>::ObtPrimero(){
+nodo<Tipo>* Lista<Tipo>::ObtPrimero() const {
   return Primero;          
 };
 
@@ -16,6 +16,38 @@ Lista<Tipo>::Lista()
 {
      Primero=NULL;
 };
+
+template <class Tipo>
+Lista<Tipo>::Lista(const Lista<Tipo> &that)
+{
+	Apuntador p;
+	p = that.ObtPrimero();
+	while(p != NULL)
+	{
+		this->InsComienzo(p->info);
+		p = p->prox;
+	}
+};
+
+template <class Tipo>
+Lista<Tipo>& Lista<Tipo>::operator= (const Lista<Tipo> &that)
+{
+	if(this != &that){
+		Apuntador p;
+		while(!Vacia()){
+			p = Primero->prox;
+			delete Primero;
+			Primero = p;
+		}
+
+		p = that.ObtPrimero();
+		while(p != NULL){
+			this->InsComienzo(p->info);
+			p = p->prox;
+		}
+	}
+	return *this;
+}
 
 template <class Tipo>
 bool Lista<Tipo>::Vacia()
@@ -38,7 +70,7 @@ bool Lista<Tipo>::Llena()
 };  
 
 template <class Tipo>
-bool Lista<Tipo>::InsComienzo(Tipo Valor)
+bool Lista<Tipo>::InsComienzo(Tipo &Valor)
 {
   Apuntador nuevo;
   if (!Llena()) 

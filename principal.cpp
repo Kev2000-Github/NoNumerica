@@ -2,11 +2,12 @@
 #include <cstdlib>
 #include <sstream>
 #include <vector>
+#include <list>
 #include "Modelos/MCubiculo.h"
 #include "Modelos/MCentinela.h"
 #include "General/Date.h"
 #include "General/VGeneral.h"
-#include "Controlador.h";
+#include "Controlador.h"
 
 using namespace std;
 
@@ -17,13 +18,31 @@ void addToMunicipio(MMunicipio &municipio);
 void imprimirCedulas(MCubiculo &cubiculo);
 int createNumber();
 int main(){
-	MMunicipio municipio;
-	for(int i = 0; i < 100; i ++){
-		MCentinela centinela;
-		MCubiculo cubiculo;
-		centinela.agregarCubiculo(cubiculo);
-		municipio.agregarCentinela(centinela);
-
+	Lista<Lista<Lista<int> > > thirdLevelNumbers;
+	for(int i = 0; i < 10; i++){
+		Lista<Lista<int> > secondLevelNumbers;
+		for(int j = 0; j < 10; j++){
+			Lista<int> firstLevelNumbers;
+			for(int n = 0; n < 10; n++){
+				firstLevelNumbers.InsComienzo(n);
+			}
+			secondLevelNumbers.InsComienzo(firstLevelNumbers);
+		}
+		thirdLevelNumbers.InsComienzo(secondLevelNumbers);
+	}
+	cout << "processed!" << endl;
+	while(!thirdLevelNumbers.Vacia()){
+		Lista<Lista<int> > secondLevelNumbers;
+		thirdLevelNumbers.EliComienzo(secondLevelNumbers);
+		while(!secondLevelNumbers.Vacia()){
+			Lista<int> firstLevelNumbers;
+			secondLevelNumbers.EliComienzo(firstLevelNumbers);
+			while(!firstLevelNumbers.Vacia()){
+				int n;
+				firstLevelNumbers.EliComienzo(n);
+				cout << "NUMBER: " << n << endl;
+			}
+		}
 	}
 	system("PAUSE");
 	return 0;
