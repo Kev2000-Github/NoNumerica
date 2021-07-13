@@ -72,7 +72,7 @@ int MCentinela::ConsultarCantidadPorMarca(string marca)
 		return cant;
 }
 
-bool MCentinela::agregarVacuna(MAlmacenVacuna vacunas){
+bool MCentinela::agregarVacuna(MAlmacenVacuna &vacunas){
 	return vacuna.Insertar(vacunas);
 }
 

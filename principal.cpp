@@ -18,6 +18,7 @@ void addToMunicipio(MMunicipio &municipio);
 void imprimirCedulas(MCubiculo &cubiculo);
 int createNumber();
 int main(){
+	/* PRUEBA 1
 	Cola<Cola<Cola<Cola<int> > > > enormousNumbers;
 		for(int x = 0; x < 10; x++){
 			Cola<Cola<Cola<int> > > bigNumbers;
@@ -33,6 +34,22 @@ int main(){
 			}
 			enormousNumbers.Insertar(bigNumbers);
 		}
+		*/
+	MEstado estado;
+	for(int i = 0; i < 10; i ++){
+		MMunicipio municipio;
+		for(int j = 0; j < 10; j++){
+			MCentinela centinela;
+			for(int n = 0; n < 10; n++){
+				MCubiculo cubiculo;
+				string cedula = "123";
+				cubiculo.agregarPaciente(cedula);
+				centinela.agregarCubiculo(cubiculo);
+			}
+			municipio.agregarCentinela(centinela);
+		}
+		estado.agregarMunicipio(municipio);
+	}
 	cout<<"end"<<endl;
 	system("PAUSE");
 	return 0;

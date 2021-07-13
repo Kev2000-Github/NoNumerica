@@ -32,7 +32,7 @@ public:
 
 	int ConsultarCantidadPorMarca(string marca);
 	bool aumentarVacunas(string marca, int cantidad);
-	bool agregarVacuna(MAlmacenVacuna vacunas);
+	bool agregarVacuna(MAlmacenVacuna &vacunas);
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
 	bool usarVacunas(string marca);
 	bool esVacia();

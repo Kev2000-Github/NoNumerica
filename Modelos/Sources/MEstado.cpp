@@ -24,7 +24,7 @@ int MEstado::totalMunicipio(){
     return municipios.Contar();
 }
 
-bool MEstado::agregarMunicipio(MMunicipio municipio){
+bool MEstado::agregarMunicipio(MMunicipio &municipio){
     return municipios.InsComienzo(municipio);
 
 }
