@@ -9,8 +9,9 @@
 
 MExpedienteVacunacion::MExpedienteVacunacion() {
 }
-MExpedienteVacunacion::MExpedienteVacunacion(string _cedula){
+MExpedienteVacunacion::MExpedienteVacunacion(string _cedula, string cod){
 	cedula = _cedula;
+	codCentinela = cod;
 }
 
 void MExpedienteVacunacion::setCedula(string c){
@@ -27,6 +28,14 @@ void MExpedienteVacunacion::setVacunaTomada(string vt){
 
 string MExpedienteVacunacion::getVacunaTomada(){
 	return vacunaTomada;
+}
+
+void MExpedienteVacunacion::setCodCentinela(string cod){
+	codCentinela=cod;
+}
+
+string MExpedienteVacunacion::getCodCentinela(){
+	return codCentinela;
 }
 
 int MExpedienteVacunacion::contDosisTomadas(){

@@ -14,16 +14,19 @@
 
 class MExpedienteVacunacion {
 private:
-	string cedula, vacunaTomada;
+	string cedula, vacunaTomada, codCentinela;
 	Pila<Date> DosisTomadas;
 public:
 	MExpedienteVacunacion();
-	MExpedienteVacunacion(string _cedula);
+	MExpedienteVacunacion(string _cedula, string cod);
 
 	void setCedula(string c);
 	string getCedula();
 	void setVacunaTomada(string vt);
 	string getVacunaTomada();
+
+	void setCodCentinela(string cod);
+	string getCodCentinela();
 
 	int contDosisTomadas();
 	bool AgregarNuevaDosis(Date DosisTomada);
