@@ -24,7 +24,6 @@ Cola();
 ~Cola();
 Cola(const Cola& that);
 Cola& operator=(const Cola& that);
-nodoCola<Tipo>* ObtFrente() const ;
 bool Vacia();
 bool Llena();
 bool Insertar(Tipo &Valor);

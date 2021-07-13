@@ -2,7 +2,7 @@
 #include "../Lista.h"
 
 template <class Tipo>
-nodo<Tipo>* Lista<Tipo>::ObtPrimero() const {
+nodo<Tipo>* Lista<Tipo>::ObtPrimero() {
   return Primero;          
 };
 
@@ -28,8 +28,8 @@ Lista<Tipo>::Lista(const Lista<Tipo> &that)
 		Primero = p;
 	}
 
-	if(that.ObtPrimero() != NULL){
-		thatP = that.ObtPrimero();
+	if(that.Primero != NULL){
+		thatP = that.Primero;
 		InsComienzo(thatP->info);
 		thatP = thatP->prox;
 		p = ObtPrimero();
@@ -61,8 +61,8 @@ Lista<Tipo>& Lista<Tipo>::operator= (const Lista<Tipo> &that)
 			Primero = p;
 		}
 
-		if(that.ObtPrimero() != NULL){
-			thatP = that.ObtPrimero();
+		if(that.Primero != NULL){
+			thatP = that.Primero;
 			InsComienzo(thatP->info);
 			thatP = thatP->prox;
 			p = ObtPrimero();
@@ -208,27 +208,6 @@ Lista<Tipo>::~Lista()
    };
 };
 
-
-/*template <class Tipo>
-int Lista<Tipo>::Contar()
-
-{
-   int cont=0;
-   nodo<Tipo> *ap;
-   if(!Vacia())
-{
-	ap= ObtProx(Primero);
-while(ap!=NULL)
-{
-	ap=ObtProx(ap);
-	cont++;
-};
-	return cont;
-}
-else
-return 0;
-}
-*/
 template <class Tipo>
 int Lista<Tipo>::Contar(){
 	nodo<Tipo>* p;

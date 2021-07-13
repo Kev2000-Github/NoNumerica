@@ -17,7 +17,7 @@ private:
 public:
   MCensoPersonas();
 
-  bool agregarPersona(MPersona persona);
+  bool agregarPersona(MPersona &persona);
   bool removerPersona(string cedula, MPersona &persona);
   bool removerPrimerPersona (MPersona &persona);
 };

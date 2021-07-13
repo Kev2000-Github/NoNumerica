@@ -23,7 +23,7 @@ private:
 public:
          Lista();
          Lista(const Lista &that);
-         nodo<Tipo>* ObtPrimero() const ;
+         nodo<Tipo>* ObtPrimero();
          void AsigPrimero(nodo<Tipo>* p);
          bool Vacia();
          bool Llena();

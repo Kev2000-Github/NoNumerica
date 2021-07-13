@@ -10,7 +10,7 @@
 MListaExpediente::MListaExpediente() {
 };
 
-bool MListaExpediente::agregarExpediente(MExpedienteVacunacion expediente )
+bool MListaExpediente::agregarExpediente(MExpedienteVacunacion &expediente )
 {
 	return expedientes.InsComienzo(expediente);
 }

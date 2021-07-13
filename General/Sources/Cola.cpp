@@ -24,13 +24,12 @@ Cola<Tipo>::Cola(const Cola<Tipo>& that){
 	Tipo itemActual;
 	Apuntador p;
 	Apuntador thatP;
-
 	while(!Vacia()){
 		Remover(itemActual);
 	}
 
-	if(that.ObtTope() != NULL){
-		thatP = that->Frente;
+	if(that.Frente != NULL){
+		thatP = that.Frente;
 		Insertar(thatP->info);
 		thatP = thatP->prox;
 		p = Frente;
@@ -59,8 +58,8 @@ Cola<Tipo>& Cola<Tipo>::operator=(const Cola<Tipo> &that){
 			Remover(itemActual);
 		}
 
-		if(that.ObtFrente() != NULL){
-			thatP = that.ObtFrente();
+		if(that.Frente != NULL){
+			thatP = that.Frente;
 			Insertar(thatP->info);
 			thatP = thatP->prox;
 			p = Frente;
@@ -80,13 +79,6 @@ Cola<Tipo>& Cola<Tipo>::operator=(const Cola<Tipo> &that){
 	}
 	return *this;
 }
-
-template <class Tipo>
-nodoCola<Tipo>* Cola<Tipo>::ObtFrente() const
-{
-	return Frente;
-}
-
 
 template <class Tipo>
 bool Cola<Tipo>::Llena(){

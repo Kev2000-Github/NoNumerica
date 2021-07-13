@@ -4,7 +4,7 @@ MCensoPersonas::MCensoPersonas(){
 
 }
 
-bool MCensoPersonas::agregarPersona(MPersona persona){
+bool MCensoPersonas::agregarPersona(MPersona &persona){
 	return personas.InsComienzo(persona);
 }
 

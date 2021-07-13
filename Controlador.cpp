@@ -23,8 +23,9 @@ void Controlador::cargarDatos(){
 	MPersona persona;
 	MExpedienteVacunacion vacunaPersona;
 	ifstream archCensoPersonas;
+	string instructions = "Por favor, verifique que existe la carpeta /Datos \nen el directorio del ejecutable y dentro el txt correspondiente\n";
 	while(!vGeneral.AbrirArchivoEntrada(archCensoPersonas, "Datos/CensoPersonas.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo CensoPersonas.txt\n");
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo CensoPersonas.txt\n" + instructions);
 		vGeneral.Pausa();
 		vGeneral.Limpiar();
 	}
@@ -48,58 +49,6 @@ void Controlador::cargarDatos(){
 
 	estado.setNombre("Lara");
 
-
-	ifstream archivo;
-	while(!vGeneral.AbrirArchivoEntrada(archivo, "Datos/Municipios.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n");
-		vGeneral.Pausa();
-		vGeneral.Limpiar();
-	}
-	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Municipios.txt...");
-
-	while(!vGeneral.FinArchivo(archivo)){
-		string lineaMunicipio = vGeneral.LeerLineaArchivo(archivo);
-		lineaActual = vGeneral.Split(lineaMunicipio, ',');
-		string municipioCod = lineaActual[0];
-		string municipioNombre = lineaActual[1];
-		lineaActual.clear();
-		MMunicipio municipio;
-		municipio.setCodigo(municipioCod);
-		municipio.setNombre(municipioNombre);
-		estado.agregarMunicipio(municipio);
-	}
-	vGeneral.CerrarArchivoEntrada(archivo);
-	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
-
-	//CENTINELAS
-	while(!vGeneral.AbrirArchivoEntrada(archivo, "Datos/Centinelas.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n");
-		vGeneral.Pausa();
-		vGeneral.Limpiar();
-	}
-	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Centinelas.txt...");
-	Lista<MCentinela> listaCentinelas;
-	while(!vGeneral.FinArchivo(archivo)){
-		string lineaCentinela = vGeneral.LeerLineaArchivo(archivo);
-		lineaActual = vGeneral.Split(lineaCentinela, ',');
-		string centinelaCod = lineaActual[0];
-		string centinelaMunicipio = lineaActual[1];
-		lineaActual.clear();
-		MCentinela centinela;
-		centinela.setCodigo(centinelaCod);
-		MMunicipio municipioAux;
-		estado.removerMunicipio(centinelaMunicipio, municipioAux);
-		vGeneral.ImprimirMensaje(centinela.getCodigo());
-		vGeneral.ImprimirLineasBlanco(1);
-		listaCentinelas.InsComienzo(centinela);
-		estado.agregarMunicipio(municipioAux);
-	}
-	vGeneral.CerrarArchivoEntrada(archivo);
-	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
-
-
-
-	/*
 	ifstream archMunicipios;
 	ifstream archCentinelas;
 	ifstream archVacunas;
@@ -107,35 +56,35 @@ void Controlador::cargarDatos(){
 	ifstream archColaPacientes;
 
 	while(!vGeneral.AbrirArchivoEntrada(archMunicipios, "Datos/Municipios.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n");
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n" + instructions);
 		vGeneral.Pausa();
 		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Municipios.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archCentinelas, "Datos/Centinelas.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Centinelas.txt\n");
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Centinelas.txt\n" + instructions);
 		vGeneral.Pausa();
 		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Centinelas.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archVacunas, "Datos/VacunasEnExistencia.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo VacunasEnExistencia.txt\n");
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo VacunasEnExistencia.txt\n" + instructions);
 		vGeneral.Pausa();
 		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS VacunasEnExistencia.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archCubiculos, "Datos/Cubiculos.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Cubiculos.txt\n");
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Cubiculos.txt\n" + instructions);
 		vGeneral.Pausa();
 		vGeneral.Limpiar();
 	}
 	vGeneral.ImprimirMensaje("\n CARGANDO DATOS Cubiculos.txt...");
 
 	while(!vGeneral.AbrirArchivoEntrada(archColaPacientes, "Datos/ColasPacientes.txt")){
-		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo ColasPacientes.txt\n");
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo ColasPacientes.txt\n" + instructions);
 		vGeneral.Pausa();
 		vGeneral.Limpiar();
 	}
@@ -219,28 +168,35 @@ void Controlador::cargarDatos(){
 	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
 	vGeneral.Limpiar();
-	*/
+
 }
 
 void Controlador::procesar(){
+	/* PARA PROBAR LA ESTABILIDAD DE LAS ESTRUCTURAS DE DATOS
 	MEstado estadoAux;
 	MMunicipio municipio;
 	MCentinela centinela;
 	MCubiculo cubiculo;
+	string cedula;
 	while(!estado.esVacio()){
 		estado.removerPrimerMunicipio(municipio);
 		cout << "-----------MUNICIPIO: " << municipio.getNombre() << endl;
 		while(!municipio.esVacio()){
 			municipio.removerPrimerCentinela(centinela);
 			cout << "-->CENTINELA: " << centinela.getCodigo() << endl;
-			cout << "VACIO: " << centinela.esVacia() << endl;
 			while(!centinela.esVacia()){
 				centinela.removerPrimerCubiculo(cubiculo);
 				cout << "CUBICULO: " << cubiculo.getCodigo() << endl;
+				while(!cubiculo.esVacia()){
+					cubiculo.removerPrimerPaciente(cedula);
+					cout << "<cedula>: " << cedula << endl;
+				}
 			}
 		}
 		estadoAux.agregarMunicipio(municipio);
 	}
+	*/
+
 	/**
 	 * Antes de esto, se cargan los datos justo al iniciar el programa
 	 *
@@ -252,6 +208,41 @@ void Controlador::procesar(){
 	 *  4) Iniciar Proceso de Vacunacion
 	 *  5) Salir
 	 */
+	int rpta;
+	while(rpta != 5){
+		vGeneral.ImprimirEncabezado("M E N U", "_______");
+		vGeneral.ImprimirMensaje("1) Crear Municipio");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("2) Crear Centinela");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("3) Recibir Vacunas");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("4) Iniciar Proceso de Vacunacion");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("5) Salir");
+		vGeneral.ImprimirLineasBlanco(1);
+
+		rpta = vGeneral.LeerNro("Respuesta: ");
+		vGeneral.Limpiar();
+		switch(rpta){
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			procesar2();
+			break;
+		case 5:
+			return;
+		default:
+			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			break;
+		}
+	}
 }
 
 void Controlador::procesar2(){
@@ -268,6 +259,57 @@ void Controlador::procesar2(){
 	 *  8) Procesar Paciente
 	 *  9) Salir
 	 */
+
+	int rpta;
+	while(rpta != 9){
+		vGeneral.ImprimirEncabezado("M E N U  V A C U N A C I O N", "_______  ___________________");
+		vGeneral.ImprimirMensaje("1) Consultar Persona");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("2) Consultar Municipios");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("3) Consultar Centinelas");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("4) Consultar Cubiculos");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("5) Consultar Vacunas en Almacen");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("6) Incluir Paciente a una Cola");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("7) Sacar Paciente de una Cola");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("8) Procesar Paciente");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("9) Salir");
+		vGeneral.ImprimirLineasBlanco(1);
+
+		rpta = vGeneral.LeerNro("Respuesta: ");
+		vGeneral.Limpiar();
+		switch(rpta){
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			return;
+		default:
+			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			break;
+		}
+	}
 }
 
 

@@ -17,8 +17,8 @@ Pila<Tipo>::Pila(const Pila<Tipo>& that)
 		Tope = p;
 	}
 
-	if(that.ObtTope() != NULL){
-		thatP = that.ObtTope();
+	if(that.Tope != NULL){
+		thatP = that.Tope;
 		Insertar(thatP->info);
 		thatP = thatP->ap;
 		p = ObtTope();
@@ -60,8 +60,8 @@ Pila<Tipo>& Pila<Tipo>::operator=(const Pila<Tipo>& that)
 			Tope = p;
 		}
 
-		if(that.ObtTope() != NULL){
-			thatP = that.ObtTope();
+		if(that.Tope != NULL){
+			thatP = that.Tope;
 			Insertar(thatP->info);
 			thatP = thatP->ap;
 			p = ObtTope();
