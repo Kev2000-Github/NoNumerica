@@ -21,9 +21,6 @@ int main(){
 	Controlador con;
 	con.cargarDatos();
 	con.procesar();
-
-	cout << endl;
-	system("PAUSE");
 	return 0;
 }
 

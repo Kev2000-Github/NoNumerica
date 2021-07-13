@@ -39,6 +39,7 @@ void Controlador::cargarDatos(){
 		persona.setapellido(lineaActual[2]);
 		vacunaPersona.setCedula(lineaActual[0]);
 		vacunaPersona.setVacunaTomada(lineaActual[3]);
+		vacunaPersona.setCodCentinela(lineaActual[4]);
 		lineaActual.clear();
 		// TODO: agregar cargar pila DosisTomadas
 		listaPersonas.agregarPersona(persona);
