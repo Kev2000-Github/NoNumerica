@@ -7,7 +7,11 @@
 using namespace std;
 #include "../Date.h"
 
-Date::Date(){
+
+Date::Date(int diaA, int mesA, int annioA){
+	dia=diaA;
+	mes=mesA;
+	annio=annioA;
 
 }
 
@@ -247,3 +251,35 @@ int Date::DiferenciaDias(Date fecha2)
         }
     }
 }
+
+string Date::avanzarFecha(int dias) {
+
+	int annioA = annio;
+	int mesA = mes;
+	int diaA = dia;
+	int diasMes = NumeroDiasAnnio(mes, annio);
+
+	int diasR = min(diasMes - diaA, dias);
+	//diaA -= diasR;
+
+	if (dias > 0) {
+    diasMes-=diaA;
+		while (dias > 0) {
+
+			diasR = min(dias, diasMes);
+			diaA = diasR;
+			dias -= diasR;
+
+			if (mesA == 12) {
+				mesA = 1;
+				annioA++;
+			} else{
+				mesA++;}
+		}
+	}
+
+	string fecha =+to_string(diaA) + "/" +to_string(mesA) + "/"+to_string(annioA);
+	return fecha;
+
+}
+

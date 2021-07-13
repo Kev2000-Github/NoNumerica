@@ -22,6 +22,10 @@ public:
          int Bisiesto(int annio);
          int NumeroDiasAnnio(int mes,int annio);
          int DiferenciaDias(Date fecha2);
+
+         Date(int diaA, int mesA, int annioA);
+         string avanzarFecha(int dia);
+
 };
 
 #endif // DATE_H_INCLUDED

@@ -9,44 +9,42 @@
 
 MExpedienteVacunacion::MExpedienteVacunacion() {
 }
-MExpedienteVacunacion::MExpedienteVacunacion(string _cedula, string cod){
+MExpedienteVacunacion::MExpedienteVacunacion(string _cedula, string cod) {
 	cedula = _cedula;
 	codCentinela = cod;
 }
 
-void MExpedienteVacunacion::setCedula(string c){
-	cedula=c;
+void MExpedienteVacunacion::setCedula(string c) {
+	cedula = c;
 }
 
-string MExpedienteVacunacion::getCedula(){
+string MExpedienteVacunacion::getCedula() {
 	return cedula;
 }
 
-void MExpedienteVacunacion::setVacunaTomada(string vt){
-	vacunaTomada=vt;
+void MExpedienteVacunacion::setVacunaTomada(string vt) {
+	vacunaTomada = vt;
 }
 
-string MExpedienteVacunacion::getVacunaTomada(){
+string MExpedienteVacunacion::getVacunaTomada() {
 	return vacunaTomada;
 }
 
-void MExpedienteVacunacion::setCodCentinela(string cod){
-	codCentinela=cod;
+void MExpedienteVacunacion::setCodCentinela(string cod) {
+	codCentinela = cod;
 }
 
-string MExpedienteVacunacion::getCodCentinela(){
+string MExpedienteVacunacion::getCodCentinela() {
 	return codCentinela;
 }
 
-int MExpedienteVacunacion::contDosisTomadas(){
+bool MExpedienteVacunacion::AgregarNuevaDosis(Date DosisTomada) {
+	return  DosisTomadas.Insertar(DosisTomada);
 
 }
 
-bool MExpedienteVacunacion::AgregarNuevaDosis(Date Dosis) {
+Date MExpedienteVacunacion::getSigFechaEstipulada() {
+	Date d;
+	return d.avanzarFecha(90);
 }
-
-Date MExpedienteVacunacion::getSigFechaEstipulada(){
-
-}
-
 

@@ -166,6 +166,20 @@ void Pila<Tipo>::AsigInfo(Nodopila<Tipo> *p,Tipo x)
   p->info = x;
 };         
 	     
+template <class Tipo>
+int Pila<Tipo>::Contar()
+{
+	 Nodopila<Tipo> *reco = Tope;
+	    int cont = 0;
+	    while (reco != NULL)
+	    {
+	        cont++;
+	        reco = reco->ap;
+	    }
+	    return cont;
+};
+
+
 
 
 
