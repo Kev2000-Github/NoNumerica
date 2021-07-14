@@ -73,5 +73,6 @@ class VGeneral{
 
       //Utilidades
       int parseInt(string numero);
+      string toString(int numero);
 };
 #endif

@@ -44,7 +44,10 @@ bool MExpedienteVacunacion::AgregarNuevaDosis(Date DosisTomada) {
 }
 
 Date MExpedienteVacunacion::getSigFechaEstipulada() {
-	Date d;
-	return d.avanzarFecha(90);
+	Date d, newD;
+	DosisTomadas.Remover(d);
+	newD = d.avanzarFecha(90);
+	DosisTomadas.Insertar(d);
+	return newD;
 }
 

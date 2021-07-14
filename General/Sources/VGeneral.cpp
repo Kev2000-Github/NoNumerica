@@ -359,3 +359,11 @@ int VGeneral :: parseInt(string numero){
 	_ss >> integer;
 	return integer;
 }
+
+string VGeneral::toString(int numero){
+	stringstream ss;
+	string result;
+	ss << numero;
+	ss >> result;
+	return result;
+}
