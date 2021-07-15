@@ -356,6 +356,43 @@ void Controlador::agregarCentinela(){
 			string numcenti = vGeneral.LeerString("Ingrese el numero de Centinelas que desea agregar: ");
 
 			for(int i = 0; i < numcenti; ++i){
+				string centiCodigo = vGeneral.LeerString("Ingrese el codigo de la centinela: ");
+
+					bool encontrado = false;
+					string marca = ".";
+					string centinela = "";
+
+					municipio.agregarCentinela(marca);
+					cubiculo.removerPrimerPaciente(paciente);
+					while(centinela != marca) {
+						if(centinela == centiCodigo) {
+							encontrado = true;
+						}
+						cubiculo.agregarPaciente(paciente);
+						cubiculo.removerPrimerPaciente(paciente);
+					};
+
+					vGeneral.Limpiar();
+					if(encontrado) {
+						vGeneral.ImprimirMensaje("Error: El paciente esta registrado en la cola");
+					}
+					else {
+						if(cubiculo.agregarPaciente(cedula)) {
+							vGeneral.ImprimirMensaje("Paciente agregado satisfactoriamente");
+						}
+						else {
+							vGeneral.ImprimirMensaje("Error: El paciente no pudo ser agregado");
+						}
+					}
+
+					centinela.agregarCubiculo(cubiculo);
+					municipio.agregarCentinela(centinela);
+					estado.agregarMunicipio(municipio);
+
+
+
+
+
 
 			}
 
