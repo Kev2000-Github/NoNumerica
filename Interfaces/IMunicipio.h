@@ -8,6 +8,7 @@ private:
 public:
     IMunicipio();
     void reportarCentinelas(MMunicipio municipio);
+    void ImprimirListaMunicipio(MEstado estado);
 };
 
 #endif
