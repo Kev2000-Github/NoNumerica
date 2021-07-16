@@ -41,7 +41,11 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+<<<<<<< Updated upstream
 						<entry excluding="General/Sources/Pila.cpp|General/Sources/Lista.cpp|General/Sources/Cola.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+=======
+						<entry excluding="Modelos/Sources/MListaExpediente.cpp|General/Sources/Pila.cpp|General/Sources/Lista.cpp|General/Sources/Cola.cpp|General/Lista.cpp|General/Source/Cola.cpp|General/Cola.cpp|General/Source/Pila.cpp|General/Source/Lista.cpp|General/Pila.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+>>>>>>> Stashed changes
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -87,7 +91,11 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
+<<<<<<< Updated upstream
 						<entry excluding="General/Sources/Pila.cpp|General/Sources/Lista.cpp|General/Sources/Cola.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+=======
+						<entry excluding="Modelos/Sources/MListaExpediente.cpp|General/Sources/Pila.cpp|General/Sources/Lista.cpp|General/Sources/Cola.cpp|General/Lista.cpp|General/Source/Cola.cpp|General/Cola.cpp|General/Source/Pila.cpp|General/Source/Lista.cpp|General/Pila.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+>>>>>>> Stashed changes
 					</sourceEntries>
 				</configuration>
 			</storageModule>
