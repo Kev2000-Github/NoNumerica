@@ -4,7 +4,13 @@
 using namespace std;
 #include "../MPersona.h"
 
-MPersona::MPersona() {
+MPersona::MPersona(string _nombre = "John", string _apellido = "Cena", string _cedula = "V14553201") {
+	nombre = _nombre;
+	apellido = _apellido;
+	cedula = _cedula;
+}
+MPersona::MPersona(){
+	
 }
 void MPersona::setnombre(string n){
 	nombre=n;

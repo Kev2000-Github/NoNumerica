@@ -7,7 +7,7 @@ class IEstado
 private:
 public:
     IEstado();
-    void reportarMunicipios(MEstado estado);
+    void reportarMunicipios(MEstado &estado);
 };
 
 #endif
