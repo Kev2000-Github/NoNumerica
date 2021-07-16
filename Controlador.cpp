@@ -550,6 +550,9 @@ void Controlador::incluirPacienteACola(){
 				vGeneral.ImprimirMensaje("Error: El paciente no pudo ser agregado \n");
 			}
 		}
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 
 		centinela.agregarCubiculo(cubiculo);
 		municipio.agregarCentinela(centinela);
