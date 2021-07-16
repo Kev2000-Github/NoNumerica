@@ -352,88 +352,66 @@ void Controlador::agregarCentinela(){
 					vGeneral.Limpiar();
 
 					Imunicipio.ImprimirListaMunicipio(estado);
-					municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+					municipioCodigo = vGeneral.LeerString("Ingrese el codigo del Municipio: ");
 				};
 
 			vGeneral.Limpiar();
 
-			string numcenti = vGeneral.LeerString("Ingrese el numero de Centinelas que desea agregar: ");
 
-			for(int i = 0; i < numcenti; ++i){
+			int numCenti = vGeneral.LeerNro("Ingrese el numero de Centinelas que desea agregar: ");
+
+			for(int i = 0; i < numCenti; ++i){
 				Icentinela.ImprimirListaCentinela(municipio);
-				string centiCodigo = vGeneral.LeerString("Ingrese el codigo de la centinela: ");
+				string centiCodigo = vGeneral.LeerString("Ingrese el codigo del Centinela: ");
 
 				if(municipio.removerCentinela(centiCodigo, centinela)) {
 							vGeneral.ImprimirMensaje("Error: El centinela ya existe \n\n");
 							vGeneral.Pausa();
 							vGeneral.Limpiar();
+							municipio.agregarCentinela(centinela);
 				}
-				else if(municipio.agregarCentinela(centinela)){
+				else if(municipio.agregarCentinela(centinela)){ //centicodigo??
 					vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
-				}
+					i++;
+
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
+
+					int numCubiculo = vGeneral.LeerNro("Ingrese el numero de Cubiculos que desea agregar en el Centinela: ");
+
+					for(int j = 0; i<numCubiculo; ++j){
+						Icubiculo.ImprimirListaCubiculo(centinela);
+						string cubiCodigo = vGeneral.LeerString("Ingrese el codigo del Cubiculo: ");
+
+						if(centinela.removerCubiculo(cubiCodigo, cubiculo)){
+									vGeneral.ImprimirMensaje("Error: El cubiculo ya existe \n\n");
+									vGeneral.Pausa();
+									vGeneral.Limpiar();
+									centinela.agregarCubiculo(cubiculo);
+						}
+						else if(centinela.agregarCubiculo(cubiculo)){ //centicodigo??
+										vGeneral.ImprimirMensaje("Cubiculo agregado exitosamente \n\n");
+										j++;
+
+						}//final del else if de cubiculo
+						else{
+											vGeneral.ImprimirMensaje("Error: El cubiculo no pudo ser agregado \n\n");
+						}//final else cubiculo
+
+					};//final de for de cubiculo
+
+				}//final del else if de centinela
 				else{
 					vGeneral.ImprimirMensaje("Error: El centinela no pudo ser agregado \n\n");
-				}
+				}//final else centinela
+
 				vGeneral.ImprimirLineasBlanco(1);
 				vGeneral.Pausa();
 				vGeneral.Limpiar();
-			};
-
-					/*bool encontrado = false;
-					Lista<MCentinela> Listaux;
-					string* apuntador = municipio.obtenerPrimerCenti(centinela);
-					//MCentinela centi=new string;
-
-					while(apuntador != NULL){
-						if(apuntador = )
-
-						municipio.removerPrimerCentinela(centinela);
-
-					Lista1.EliComienzo(*valor); //retorna valor eliminado
-					Listaux.InsComienzo(*valor); //agrega ese valor eliminado
-					cout<<"Numero: "<<*valor<<"\n"; //imprime ese numero
-					}
-
-					//string marca = ".";
-					string centinela = "";
-
-					municipio.agregarCentinela(marca);
-					cubiculo.removerPrimerPaciente(paciente);
-					while(centinela != marca) {
-						if(centinela == centiCodigo) {
-							encontrado = true;
-						}
-						cubiculo.agregarPaciente(paciente);
-						cubiculo.removerPrimerPaciente(paciente);
-					};
-
-					vGeneral.Limpiar();
-					if(encontrado) {
-						vGeneral.ImprimirMensaje("Error: El paciente esta registrado en la cola");
-					}
-					else {
-						if(cubiculo.agregarPaciente(cedula)) {
-							vGeneral.ImprimirMensaje("Paciente agregado satisfactoriamente");
-						}
-						else {
-							vGeneral.ImprimirMensaje("Error: El paciente no pudo ser agregado");
-						}
-					}
-
-					centinela.agregarCubiculo(cubiculo);
-					municipio.agregarCentinela(centinela);
-					estado.agregarMunicipio(municipio);*/
 
 
-
-
-
-
-
-
-
-
-
+			}; //final del for de centinela
 
 
 	/**
@@ -446,7 +424,7 @@ void Controlador::agregarCentinela(){
 	 * 			Codigo del cubiculo: //Ingresar//
 	 * 	Al terminar el proceso imprimir mensaje de creacion exitosa
 	 */
-}
+}//final del metodo
 
 void Controlador::consultarPersona(){
 	/**
