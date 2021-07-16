@@ -360,27 +360,39 @@ void Controlador::agregarCentinela(){
 			string numcenti = vGeneral.LeerString("Ingrese el numero de Centinelas que desea agregar: ");
 
 			for(int i = 0; i < numcenti; ++i){
+				Icentinela.ImprimirListaCentinela(municipio);
 				string centiCodigo = vGeneral.LeerString("Ingrese el codigo de la centinela: ");
 
-					bool encontrado = false;
+				if(municipio.removerCentinela(centiCodigo, centinela)) {
+							vGeneral.ImprimirMensaje("Error: El centinela ya existe \n\n");
+							vGeneral.Pausa();
+							vGeneral.Limpiar();
+				}
+				else if(municipio.agregarCentinela(centinela)){
+					vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
+				}
+				else{
+					vGeneral.ImprimirMensaje("Error: El centinela no pudo ser agregado \n\n");
+				}
+				vGeneral.ImprimirLineasBlanco(1);
+				vGeneral.Pausa();
+				vGeneral.Limpiar();
+			};
+
+					/*bool encontrado = false;
 					Lista<MCentinela> Listaux;
+					string* apuntador = municipio.obtenerPrimerCenti(centinela);
 					//MCentinela centi=new string;
 
-					while(municipio.obtenerPrimerCenti()!= NULL){
+					while(apuntador != NULL){
+						if(apuntador = )
 
 						municipio.removerPrimerCentinela(centinela);
-
-
 
 					Lista1.EliComienzo(*valor); //retorna valor eliminado
 					Listaux.InsComienzo(*valor); //agrega ese valor eliminado
 					cout<<"Numero: "<<*valor<<"\n"; //imprime ese numero
 					}
-
-
-
-
-
 
 					//string marca = ".";
 					string centinela = "";
@@ -410,14 +422,14 @@ void Controlador::agregarCentinela(){
 
 					centinela.agregarCubiculo(cubiculo);
 					municipio.agregarCentinela(centinela);
-					estado.agregarMunicipio(municipio);
+					estado.agregarMunicipio(municipio);*/
 
 
 
 
 
 
-			}
+
 
 
 

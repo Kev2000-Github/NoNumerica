@@ -32,11 +32,6 @@ bool MMunicipio::agregarCentinela(MCentinela &centinela){
 
 }
 
-string MMunicipio::obtenerPrimerCenti(MCentinela &centinela){
-	return centinelas.ObtPrimero();
-
-}
-
 bool MMunicipio::removerCentinela(string codigo, MCentinela &centinelaBuscado)
 {
 	Lista<MCentinela> listaAux;
