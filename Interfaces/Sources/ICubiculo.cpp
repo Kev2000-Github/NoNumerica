@@ -36,9 +36,11 @@ void ICubiculo::ImprimirListaCubiculo(MCentinela &centinela){
     MCubiculo cubiculoActual;
     VGeneral vg;
 
-    for(int i = 0; i < centinela.totalCubiculos(); i++) {
+    int i=1;
+    vg.ImprimirMensaje("\n Lista de Cubiculos:\n");
+    while(!centinela.esVacia()) {
         centinela.removerPrimerCubiculo(cubiculoActual);
-        vg.ImprimirString3("Codigo del Cubiculo Nro ",i,cubiculoActual.getCodigo());
+        vg.ImprimirString3("Cubiculo Nro",i++,": "+cubiculoActual.getCodigo());
         auxCubiculos.InsComienzo(cubiculoActual);
     }
     while(!auxCubiculos.Vacia()) {
@@ -50,16 +52,18 @@ void ICubiculo::ReportarCubiculo(MCentinela &centinela){
     Lista<MCubiculo>auxCubiculos;
     MCubiculo cubiculoActual;
     VGeneral vg;
+    vg.Limpiar();
     int i=1;
+    vg.ImprimirMensaje("Reoporte de Cubiculos Existentes: \n");
     while(!centinela.esVacia()){
-
         centinela.removerPrimerCubiculo(cubiculoActual);
-        vg.ImprimirString4("Cubiculo Nro ",i++,": Cod: "+cubiculoActual.getCodigo()+ " Total: ",cubiculoActual.total());
+        vg.ImprimirString4("Cubiculo Nro ",i++,": Cod: "+cubiculoActual.getCodigo()+ " Total:",cubiculoActual.total());
         auxCubiculos.InsComienzo(cubiculoActual);
     }
     while(!auxCubiculos.Vacia()) {
         auxCubiculos.EliComienzo(cubiculoActual);
         centinela.agregarCubiculo(cubiculoActual);
     }
+    vg.Pausa();
 }
 

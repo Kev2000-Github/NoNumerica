@@ -11,12 +11,7 @@
 
 using namespace std;
 
-void prueba1();
-void prueba2();
-void addToCentinela(MCentinela &centinela, string codigo, string cedula);
-void addToMunicipio(MMunicipio &municipio);
-void imprimirCedulas(MCubiculo &cubiculo);
-int createNumber();
+
 int main(){
 	Controlador con;
 	con.cargarDatos();
