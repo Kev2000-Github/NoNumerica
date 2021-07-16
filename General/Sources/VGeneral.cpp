@@ -192,6 +192,18 @@ void VGeneral :: ImprimirString(string msj, string s)
 {
      cout << msj << s;
 }
+void VGeneral :: ImprimirString2(string msj, string a)
+{
+     cout << msj << setw(5) << a<<endl;
+}
+void VGeneral :: ImprimirString3(string msj, int s, string a)
+{
+	cout << msj << s << setw(5) << a<<endl;
+}
+void VGeneral :: ImprimirString4(string msj, int s, string a,int b)
+{
+	cout << msj  << s << setw(5) << a << setw(4) << b<<endl;
+}
 // Escribe un mensaje e imprime un dato numerico (int,long)
 void VGeneral :: ImprimirNro(string msj, long n)
 {
@@ -279,7 +291,6 @@ void VGeneral::RegresarPrimeraLinea(std::ifstream &archivo){
 	archivo.clear();
 	archivo.seekg(0);
 }
-
 // Lee un dato char  del archivo
 char VGeneral :: LeerDatoCharArchivo(std::ifstream &archivo)
 {
@@ -351,7 +362,6 @@ void VGeneral :: CerrarArchivoSalida (std::ofstream &archivo)
 {
    archivo.close();
 }
-
 int VGeneral :: parseInt(string numero){
 	int integer;
 	stringstream _ss;

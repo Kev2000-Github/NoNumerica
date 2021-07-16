@@ -40,6 +40,9 @@ class VGeneral{
       double LeerValidarNroDecimalValorFinal(string msj,double valorfinal);
       void ImprimirChar(string msj, char c);
       void ImprimirString(string msj, string s);
+      void ImprimirString2(string msj,string a);
+      void ImprimirString3(string msj, int s, string a);
+      void ImprimirString4(string msj, int s, string a,int b);
       void ImprimirNro(string msj, long n);
       void ImprimirNroDecimal(string msj, double f);
       void ImprimirCharJustificado(char c, int espacio);
