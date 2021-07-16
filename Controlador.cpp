@@ -359,7 +359,26 @@ void Controlador::agregarCentinela(){
 				string centiCodigo = vGeneral.LeerString("Ingrese el codigo de la centinela: ");
 
 					bool encontrado = false;
-					string marca = ".";
+					Lista<MCentinela> Listaux;
+					//MCentinela centi=new string;
+
+					while(municipio.obtenerPrimerCenti()!= NULL){
+
+						municipio.removerPrimerCentinela(centinela);
+
+
+
+					Lista1.EliComienzo(*valor); //retorna valor eliminado
+					Listaux.InsComienzo(*valor); //agrega ese valor eliminado
+					cout<<"Numero: "<<*valor<<"\n"; //imprime ese numero
+					}
+
+
+
+
+
+
+					//string marca = ".";
 					string centinela = "";
 
 					municipio.agregarCentinela(marca);

@@ -25,6 +25,7 @@ public:
     bool removerCentinela(string codigo, MCentinela &centinela);
     bool removerPrimerCentinela(MCentinela &centinela);
     bool esVacio();
+    string obtenerPrimerCenti(MCentinela &centinela);
 };
 
 #endif
