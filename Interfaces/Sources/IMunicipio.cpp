@@ -24,11 +24,11 @@ void IMunicipio::ImprimirListaMunicipio(MEstado &estado){
 		Lista<MMunicipio> auxmunicipio;
 		MMunicipio municipioactual;
 	    VGeneral vg;
-
-	    vg.ImprimirMensaje("Lista de Municipios:\n");
-	    while(estado.totalMunicipio()!=0) {
+	    int i=1;
+	    vg.ImprimirMensaje("\n Lista de Municipios:\n");
+	    while(!estado.esVacio()) {
 	    	estado.removerPrimerMunicipio(municipioactual);
-	        vg.ImprimirString2("Municipio:",municipioactual.getCodigo());
+	        vg.ImprimirString3("Municipio Nro",i++,": "+municipioactual.getCodigo());
 	        auxmunicipio.InsComienzo(municipioactual);
 	    }
 	    while(!auxmunicipio.Vacia()) {

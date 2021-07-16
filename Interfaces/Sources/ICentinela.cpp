@@ -23,11 +23,11 @@ void ICentinela::ImprimirListaCentinela(MMunicipio &municipio){
     Lista<MCentinela> auxCentinela;
     MCentinela centinelaActual;
     VGeneral vg;
-
-    vg.ImprimirMensaje("Lista de Centinelas:\n");
-    for(int i = 0; i < municipio.totalCentinelas(); i++) {
+    int i=1;
+    vg.ImprimirMensaje("\n Lista de Centinelas:\n");
+    while(!municipio.esVacio()) {
         municipio.removerPrimerCentinela(centinelaActual);
-        vg.ImprimirString3("Centinela Nro ",i,centinelaActual.getCodigo());
+        vg.ImprimirString3("Centinela Nro",i++,": "+centinelaActual.getCodigo());
         auxCentinela.InsComienzo(centinelaActual);
     }
     while(!auxCentinela.Vacia()) {
