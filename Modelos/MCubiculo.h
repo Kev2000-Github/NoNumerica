@@ -23,6 +23,7 @@ public:
 	bool agregarPaciente(string cedula);
 	bool removerPrimerPaciente(string &cedula);
 	bool esVacia();
+	int total();
 };
 
 #endif /* MCUBICULO_H_ */

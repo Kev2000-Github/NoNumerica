@@ -4,13 +4,14 @@ ICentinela::ICentinela() {
 
 };
 
-void ICentinela::reporteCubiculos(MCentinela centinela) {
+void ICentinela::reporteCubiculos(MCentinela &centinela) {
     Lista<MCubiculo> auxCubiculos;
     MCubiculo cubiculoActual;
+    VGeneral vg;
 
     for(int i = 0; i < centinela.totalCubiculos(); i++) {
         centinela.removerPrimerCubiculo(cubiculoActual);
-        cout<<cubiculoActual.getCodigo()<<endl;
+        vg.ImprimirString3("Codigo del Cubiculo ",i,cubiculoActual.getCodigo());
         auxCubiculos.InsComienzo(cubiculoActual);
     }
     while(!auxCubiculos.Vacia()) {
@@ -18,3 +19,20 @@ void ICentinela::reporteCubiculos(MCentinela centinela) {
         centinela.agregarCubiculo(cubiculoActual);
     }
 };
+void ICentinela::ImprimirListaCentinela(MMunicipio &municipio){
+    Lista<MCentinela> auxCentinela;
+    MCentinela centinelaActual;
+    VGeneral vg;
+
+    vg.ImprimirMensaje("Lista de Centinelas:\n");
+    for(int i = 0; i < municipio.totalCentinelas(); i++) {
+        municipio.removerPrimerCentinela(centinelaActual);
+        vg.ImprimirString3("Centinela Nro ",i,centinelaActual.getCodigo());
+        auxCentinela.InsComienzo(centinelaActual);
+    }
+    while(!auxCentinela.Vacia()) {
+        auxCentinela.EliComienzo(centinelaActual);
+        municipio.agregarCentinela(centinelaActual);
+    }
+
+}

@@ -4,13 +4,14 @@ IMunicipio::IMunicipio() {
 
 };
 
-void IMunicipio::reportarCentinelas(MMunicipio municipio) {
+void IMunicipio::reportarCentinelas(MMunicipio &municipio) {
     Lista<MCentinela> auxCentinela;
     MCentinela centinelaActual;
+    VGeneral vg;
 
     for(int i = 0; i < municipio.totalCentinelas(); i++) {
         municipio.removerPrimerCentinela(centinelaActual);
-        cout<<centinelaActual.getCodigo()<<endl;
+        vg.ImprimirString3("Centinela Nro",i,centinelaActual.getCodigo());
         auxCentinela.InsComienzo(centinelaActual);
     }
     while(!auxCentinela.Vacia()) {
@@ -18,3 +19,20 @@ void IMunicipio::reportarCentinelas(MMunicipio municipio) {
         municipio.agregarCentinela(centinelaActual);
     }
 };
+
+void IMunicipio::ImprimirListaMunicipio(MEstado &estado){
+		Lista<MMunicipio> auxmunicipio;
+		MMunicipio municipioactual;
+	    VGeneral vg;
+
+	    vg.ImprimirMensaje("Lista de Municipios:\n");
+	    while(estado.totalMunicipio()!=0) {
+	    	estado.removerPrimerMunicipio(municipioactual);
+	        vg.ImprimirString2("Municipio:",municipioactual.getCodigo());
+	        auxmunicipio.InsComienzo(municipioactual);
+	    }
+	    while(!auxmunicipio.Vacia()) {
+	    	auxmunicipio.EliComienzo(municipioactual);
+	    	estado.agregarMunicipio(municipioactual);
+	    }
+}
