@@ -334,8 +334,6 @@ void Controlador::agregarMunicipio(){
 
 void Controlador::agregarCentinela(){
 		MMunicipio municipio;
-		MCentinela centinela;
-		MCubiculo cubiculo;
 		IMunicipio Imunicipio;
 		ICentinela Icentinela;
 		ICubiculo Icubiculo;
@@ -343,6 +341,7 @@ void Controlador::agregarCentinela(){
 		vGeneral.Limpiar();
 			Imunicipio.ImprimirListaMunicipio(estado);
 			string municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+			municipio.setCodigo(municipioCodigo);
 
 			while(!estado.removerMunicipio(municipioCodigo, municipio)) {
 					vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe");
@@ -354,13 +353,16 @@ void Controlador::agregarCentinela(){
 				};
 
 			vGeneral.Limpiar();
+			estado.agregarMunicipio(municipio);
 
 
 			int numCenti = vGeneral.LeerNro("Ingrese el numero de Centinelas que desea agregar: ");
 
 			for(int i = 0; i < numCenti; ++i){
+				MCentinela centinela;
 				Icentinela.ImprimirListaCentinela(municipio);
 				string centiCodigo = vGeneral.LeerString("Ingrese el codigo del Centinela: ");
+				centinela.setCodigo(centiCodigo);
 
 				if(municipio.removerCentinela(centiCodigo, centinela)) {
 							vGeneral.ImprimirMensaje("Error: El centinela ya existe \n\n");
@@ -368,7 +370,7 @@ void Controlador::agregarCentinela(){
 							vGeneral.Limpiar();
 							municipio.agregarCentinela(centinela);
 				}
-				else if(municipio.agregarCentinela(centinela)){ //centicodigo??
+				else if(municipio.agregarCentinela(centinela)){
 							vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
 
 							vGeneral.ImprimirLineasBlanco(1);
@@ -378,8 +380,9 @@ void Controlador::agregarCentinela(){
 					int numCubiculo = vGeneral.LeerNro("Ingrese el numero de Cubiculos que desea agregar en el Centinela: ");
 
 					for(int j = 0; j<numCubiculo; ++j){
-						Icubiculo.ImprimirListaCubiculo(centinela);
+						MCubiculo cubiculo;
 						string cubiCodigo = vGeneral.LeerString("Ingrese el codigo del Cubiculo: ");
+						cubiculo.setCodigo(cubiCodigo);
 
 						if(centinela.removerCubiculo(cubiCodigo, cubiculo)){
 									vGeneral.ImprimirMensaje("Error: El cubiculo ya existe \n\n");
@@ -387,7 +390,7 @@ void Controlador::agregarCentinela(){
 									vGeneral.Limpiar();
 									centinela.agregarCubiculo(cubiculo);
 						}
-						else if(centinela.agregarCubiculo(cubiculo)){ //centicodigo??
+						else if(centinela.agregarCubiculo(cubiculo)){
 									vGeneral.ImprimirMensaje("Cubiculo agregado exitosamente \n\n");
 
 						}//final del else if de cubiculo
