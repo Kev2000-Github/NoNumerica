@@ -228,7 +228,7 @@ void Controlador::procesar(){
 		switch(rpta){
 		case 1:
 			break;
-		case 2:
+		case 2: agregarCentinela();
 			break;
 		case 3:
 			break;
@@ -372,7 +372,6 @@ void Controlador::agregarCentinela(){
 				}
 				else if(municipio.agregarCentinela(centinela)){ //centicodigo??
 					vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
-					i++;
 
 					vGeneral.ImprimirLineasBlanco(1);
 					vGeneral.Pausa();
@@ -392,7 +391,6 @@ void Controlador::agregarCentinela(){
 						}
 						else if(centinela.agregarCubiculo(cubiculo)){ //centicodigo??
 										vGeneral.ImprimirMensaje("Cubiculo agregado exitosamente \n\n");
-										j++;
 
 						}//final del else if de cubiculo
 						else{
