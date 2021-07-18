@@ -229,6 +229,7 @@ void Controlador::procesar(){
 		case 1:
 			break;
 		case 2:
+			agregarCentinela();
 			break;
 		case 3:
 			break;
@@ -289,7 +290,7 @@ void Controlador::procesar2(){
 		case 1:
 
 			break;
-		case 2:agregarCentinela();
+		case 2:
 			break;
 		case 3:consultarCentinelas();
 			break;
@@ -353,9 +354,6 @@ void Controlador::agregarCentinela(){
 				};
 
 			vGeneral.Limpiar();
-			estado.agregarMunicipio(municipio);
-
-
 			int numCenti = vGeneral.LeerNro("Ingrese el numero de Centinelas que desea agregar: ");
 
 			for(int i = 0; i < numCenti; ++i){
