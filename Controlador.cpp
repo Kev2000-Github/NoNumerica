@@ -229,6 +229,7 @@ void Controlador::procesar(){
 		case 1:
 			break;
 		case 2:
+			agregarCentinela();
 			break;
 		case 3:
 			break;
@@ -289,7 +290,7 @@ void Controlador::procesar2(){
 		case 1:
 
 			break;
-		case 2:agregarCentinela();
+		case 2:
 			break;
 		case 3:consultarCentinelas();
 			break;
