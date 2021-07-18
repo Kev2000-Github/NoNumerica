@@ -361,7 +361,7 @@ void Controlador::agregarCentinela(){
 			for(int i = 0; i < numCenti; ++i){
 				Icentinela.ImprimirListaCentinela(municipio);
 				string centiCodigo = vGeneral.LeerString("Ingrese el codigo del Centinela: ");
-
+				centinela.setCodigo(centiCodigo);
 				if(municipio.removerCentinela(centiCodigo, centinela)) {
 							vGeneral.ImprimirMensaje("Error: El centinela ya existe \n\n");
 							vGeneral.Pausa();
@@ -408,7 +408,7 @@ void Controlador::agregarCentinela(){
 
 
 			}; //final del for de centinela
-
+			estado.agregarMunicipio(municipio);
 
 	/**
 	 * Codigo del Municipio: //Ingresar// (buscar que sea codigo de un municipio existente)
