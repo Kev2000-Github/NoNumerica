@@ -291,7 +291,7 @@ void Controlador::procesar2(){
 			break;
 		case 2:
 			break;
-		case 3:
+		case 3:consultarCentinelas();
 			break;
 		case 4:
 			consultarCubiculos();
@@ -386,6 +386,33 @@ void Controlador::consultarCentinelas(){
 	 * ----------------------------------
 	 * ...
 	 */
+	VGeneral vgeneral;
+					MMunicipio municipio;
+					MCentinela centinela;
+					IMunicipio Imunicipio;
+					ICentinela Icentinela;
+
+						vgeneral.Limpiar();
+						Imunicipio.ImprimirListaMunicipio(estado);
+						string municipioCodigo = vgeneral.LeerString("\n Ingrese el codigo del municipio: ");
+
+						while(!estado.removerMunicipio(municipioCodigo, municipio)) {
+							vgeneral.ImprimirMensaje("Error: El municipio solicitado no existe \n\n");
+							vgeneral.Pausa();
+							vgeneral.Limpiar();
+
+							Imunicipio.ImprimirListaMunicipio(estado);
+							municipioCodigo = vgeneral.LeerString("\n Ingrese el codigo del municipio: ");
+						};
+
+						vgeneral.Limpiar();
+
+
+						Icentinela.ImprimirListaCentinela(municipio);
+
+						municipio.agregarCentinela(centinela);
+						estado.agregarMunicipio(municipio);
+
 }
 
 void Controlador::consultarCubiculos(){
