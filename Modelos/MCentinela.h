@@ -34,8 +34,13 @@ public:
 	bool aumentarVacunas(string marca, int cantidad);
 	bool agregarVacuna(MAlmacenVacuna &vacunas);
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
+	bool removerPrimeraVacuna(MAlmacenVacuna &vacunas);
 	bool usarVacunas(string marca);
 	bool esVacia();
+	bool PVacia();
+
+	bool buscarvacunas(string marca,MAlmacenVacuna malmacen);
+
 };
 
 #endif /* MCENTINELA_H_ */

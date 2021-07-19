@@ -172,6 +172,98 @@ void Controlador::cargarDatos(){
 
 }
 
+void Controlador::recibirVacunas()
+{
+
+	IMunicipio imunicipio;
+    IAlmacen   ialmacen;
+	ICentinela icentinela;
+	MAlmacenVacuna almacen;
+	MCentinela centinelas;
+	MMunicipio municipio;
+
+	string codmuni, codcenti,marca;
+	int cant;
+
+			vGeneral.ImprimirMensaje("==========   R E C I B I R __ V A C U N A S   ==========");
+			imunicipio.ImprimirListaMunicipio(estado);
+			codmuni = vGeneral.LeerString("\n Codigo de Municipio: ");
+		 	municipio.setCodigo(codmuni);
+
+		 	while(!estado.removerMunicipio(codmuni,municipio))
+		 {
+		 		vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe \n\n");
+		 		vGeneral.Pausa();
+		 		vGeneral.Limpiar();
+
+		 		imunicipio.ImprimirListaMunicipio(estado);
+		 		codmuni = vGeneral.LeerString("\n Ingrese el codigo del municipio: ");
+		 }
+
+
+		 		vGeneral.Limpiar();
+
+		 		icentinela.ImprimirListaCentinela(municipio);
+		 		codcenti = vGeneral.LeerString("\n Ingrese el codigo del centinela: ");
+
+		 		while(!municipio.removerCentinela(codcenti, centinelas)) {
+		 		vGeneral.ImprimirMensaje("Error: El centinela solicitado no existe \n\n");
+		 		vGeneral.Pausa();
+		 		vGeneral.Limpiar();
+
+		 		icentinela.ImprimirListaCentinela(municipio);
+		 		codcenti = vGeneral.LeerString("\n Ingrese el codigo del centinela: ");
+		 			}
+
+		 		vGeneral.Limpiar();
+
+
+		 		ialmacen.ImprimirVacunas(centinelas);
+
+		 		vGeneral.ImprimirMensaje("Nota: Puede agregar marcas que no esten en la lista \n");
+		 		marca = vGeneral.LeerString("\nEscribir marca: ");
+		 		almacen.setMarca(marca);
+
+		 		while(!centinelas.buscarvacunas(marca, almacen)) {
+		 		vGeneral.ImprimirMensaje("Error: La marca solicitada no existe \n");
+
+
+
+		 		int rpta = vGeneral.LeerValidarNro("\nDesea Agregarla? [1]. SI, [2].No:  ",1,2);
+
+		 	    	if(rpta==1)
+		 	    	{
+		 	    		   cant=0;
+                           almacen.setCantidad(cant);
+                           centinelas.agregarVacuna(almacen);
+
+		 	    	}
+		 	    	else
+		 	    	{
+		 	    			vGeneral.Limpiar();
+		 	    			ialmacen.ImprimirVacunas(centinelas);
+		 	    			marca = vGeneral.LeerString("\n Ingrese la marca de la vacuna: ");
+		 	    			almacen.setMarca(marca);
+		 	    	}
+		 		}
+
+		 		cant = vGeneral.LeerValidarNro("\n Cantidad: ", 0, 300);
+		 		almacen.setCantidad(cant);
+
+
+		 		while (cant% 3 != 0)
+		 		{
+		 			vGeneral.ImprimirMensaje("\n La cantidad Ingresada debe ser Multiplo de 3!\n");
+		 			cant = vGeneral.LeerValidarNro("\n Cantidad: ", 0, 300);
+		 		}
+		 		centinelas.aumentarVacunas(marca,cant);
+		 		vGeneral.ImprimirMensaje("\n Cantidad Ingresada Exitosamente!\n");
+		 		municipio.agregarCentinela(centinelas);
+		 		estado.agregarMunicipio(municipio);
+		 		vGeneral.Pausa();
+		 		vGeneral.Limpiar();
+}
+
 void Controlador::procesar(){
 	/* PARA PROBAR LA ESTABILIDAD DE LAS ESTRUCTURAS DE DATOS
 	MEstado estadoAux;
@@ -232,6 +324,7 @@ void Controlador::procesar(){
 			agregarCentinela();
 			break;
 		case 3:
+			recibirVacunas();
 			break;
 		case 4:
 			procesar2();
@@ -298,6 +391,7 @@ void Controlador::procesar2(){
 			consultarCubiculos();
 			break;
 		case 5:
+			consultarVacunas();
 			break;
 		case 6:
 			incluirPacienteACola();
@@ -576,6 +670,54 @@ void Controlador::consultarVacunas(){
 	 * Don Juancho 25.317.962
 	 * ...
 	 */
+                 IAlmacen ialmacen;
+                 IMunicipio imunicipio;
+                 ICentinela icentinela;
+                 MAlmacenVacuna almacen;
+                 	MCentinela centinelas;
+                 	MMunicipio municipio;
+
+			   string codmuni, marca,codcenti,codcubi;
+
+
+			vGeneral.ImprimirMensaje("==========   C O N S U L T A R  V A C U N A S   ==========");
+
+						imunicipio.ImprimirListaMunicipio(estado);
+						codmuni = vGeneral.LeerString("\n Codigo de Municipio: ");
+					 	municipio.setCodigo(codmuni);
+
+					 	while(!estado.removerMunicipio(codmuni,municipio))
+					 {
+					 		vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe \n\n");
+					 		vGeneral.Pausa();
+					 		vGeneral.Limpiar();
+
+					 		imunicipio.ImprimirListaMunicipio(estado);
+					 		codmuni = vGeneral.LeerString("\n Ingrese el codigo del municipio: ");
+					 }
+
+
+					 		vGeneral.Limpiar();
+
+					 		icentinela.ImprimirListaCentinela(municipio);
+					 		codcenti = vGeneral.LeerString("\n Ingrese el codigo del centinela: ");
+
+					 		while(!municipio.removerCentinela(codcenti, centinelas)) {
+					 		vGeneral.ImprimirMensaje("Error: El centinela solicitado no existe \n\n");
+					 		vGeneral.Pausa();
+					 		vGeneral.Limpiar();
+
+					 		icentinela.ImprimirListaCentinela(municipio);
+					 		codcenti = vGeneral.LeerString("\n Ingrese el codigo del centinela: ");
+					 		}
+
+                            ialmacen.ImprimirCantidadVacunas(centinelas);
+                            vGeneral.ImprimirLineasBlanco(2);
+                            vGeneral.Pausa();
+                            vGeneral.Limpiar();
+                            municipio.agregarCentinela(centinelas);
+                            estado.agregarMunicipio(municipio);
+
 }
 
 void Controlador::incluirPacienteACola(){

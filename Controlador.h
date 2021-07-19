@@ -15,6 +15,7 @@
 #include "Interfaces/IMunicipio.h"
 #include "Interfaces/ICubiculo.h"
 #include "Interfaces/ICentinela.h"
+#include "Interfaces/IAlmacen.h"
 
 class Controlador {
 private:

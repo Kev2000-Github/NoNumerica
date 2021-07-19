@@ -157,3 +157,38 @@ bool MCentinela::aumentarVacunas(string marca, int cantidad){
 int MCentinela::totalCubiculos(){
 	return cubiculos.Contar();
 }
+
+
+bool MCentinela::PVacia()
+{
+	return vacuna.Vacia();
+}
+
+
+bool MCentinela::buscarvacunas(string marca,MAlmacenVacuna malmacen)
+
+{
+		Pila<MAlmacenVacuna> auxvacuna;
+		bool encontrado=false;
+		while(!vacuna.Vacia())
+			{
+				vacuna.Remover(malmacen);
+			    if(malmacen.getMarca()== marca)
+			    {
+			    	encontrado=true;
+			    }
+			        auxvacuna.Insertar(malmacen);
+			}
+		while(!auxvacuna.Vacia())
+			{
+				auxvacuna.Remover(malmacen);
+				vacuna.Insertar(malmacen);
+			}
+
+			return encontrado;
+}
+
+bool MCentinela::removerPrimeraVacuna(MAlmacenVacuna &vacunas)
+{
+	return vacuna.Remover(vacunas);
+}
