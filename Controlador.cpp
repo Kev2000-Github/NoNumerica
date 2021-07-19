@@ -40,8 +40,13 @@ void Controlador::cargarDatos(){
 		vacunaPersona.setCedula(lineaActual[0]);
 		vacunaPersona.setVacunaTomada(lineaActual[3]);
 		vacunaPersona.setCodCentinela(lineaActual[4]);
+		for(int i=5; i<8; i++){
+			if(lineaActual[i] == "") {
+				break;
+			}
+			vacunaPersona.AgregarNuevaDosis(lineaActual[i]);
+		}
 		lineaActual.clear();
-		// TODO: agregar cargar pila DosisTomadas
 		listaPersonas.agregarPersona(persona);
 		listaExpedientes.agregarExpediente(vacunaPersona);
 	}
@@ -100,7 +105,6 @@ void Controlador::cargarDatos(){
 		MMunicipio municipio;
 		municipio.setCodigo(municipioCod);
 		municipio.setNombre(municipioNombre);
-		// TODO: agregar setNombre a MMunicipio
 
 		while(!vGeneral.FinArchivo(archCentinelas)){
 			string lineaCentinela = vGeneral.LeerLineaArchivo(archCentinelas);
