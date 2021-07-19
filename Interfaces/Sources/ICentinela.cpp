@@ -28,7 +28,7 @@ void ICentinela::ImprimirListaCentinela(MMunicipio &municipio){
     while(!municipio.esVacio()) {
         municipio.removerPrimerCentinela(centinelaActual);
 
-        vg.ImprimirString4("Centinela Nro ",i++,": Cod: "+centinelaActual.getCodigo()+ " Total:",centinelaActual.totalCubiculos());
+        vg.ImprimirString3("Centinela Nro",i++,": "+centinelaActual.getCodigo());
         auxCentinela.InsComienzo(centinelaActual);
     }
     while(!auxCentinela.Vacia()) {

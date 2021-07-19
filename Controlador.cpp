@@ -39,7 +39,6 @@ void Controlador::cargarDatos() {
 		vacunaPersona.setCedula(lineaActual[0]);
 		vacunaPersona.setVacunaTomada(lineaActual[3]);
 		vacunaPersona.setCodCentinela(lineaActual[4]);
-		cout << lineaActual.size() << endl;
 		lineaActual.clear();
 		listaPersonas.agregarPersona(persona);
 		listaExpedientes.agregarExpediente(vacunaPersona);
@@ -510,8 +509,6 @@ void Controlador::agregarCentinela() {
 
 			estado.agregarMunicipio(municipio);
 			vGeneral.ImprimirLineasBlanco(1);
-			vGeneral.Pausa();
-			vGeneral.Limpiar();
 	/**
 	 * Codigo del Municipio: //Ingresar// (buscar que sea codigo de un municipio existente)
 	 * Ingresar nro de centinelas: //Ingresar//
@@ -587,6 +584,8 @@ void Controlador::consultarCentinelas() {
 	vgeneral.Limpiar();
 
 	Icentinela.ImprimirListaCentinela(municipio);
+	vgeneral.Pausa();
+	vgeneral.Limpiar();
 
 	//municipio.agregarCentinela(centinela);
 	estado.agregarMunicipio(municipio);
