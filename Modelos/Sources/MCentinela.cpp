@@ -157,3 +157,14 @@ bool MCentinela::aumentarVacunas(string marca, int cantidad){
 int MCentinela::totalCubiculos(){
 	return cubiculos.Contar();
 }
+
+
+bool MCentinela::PVacia()
+{
+	return vacuna.Vacia();
+}
+
+bool MCentinela::removerPrimeraVacuna(MAlmacenVacuna &vacunas)
+{
+	return vacuna.Remover(vacunas);
+}
