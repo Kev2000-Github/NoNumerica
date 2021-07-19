@@ -39,12 +39,7 @@ void Controlador::cargarDatos() {
 		vacunaPersona.setCedula(lineaActual[0]);
 		vacunaPersona.setVacunaTomada(lineaActual[3]);
 		vacunaPersona.setCodCentinela(lineaActual[4]);
-		for(int i=5; i<8; i++){
-			if(lineaActual[i] == "") {
-				break;
-			}
-			vacunaPersona.AgregarNuevaDosis(lineaActual[i]);
-		}
+		cout << lineaActual.size() << endl;
 		lineaActual.clear();
 		listaPersonas.agregarPersona(persona);
 		listaExpedientes.agregarExpediente(vacunaPersona);
