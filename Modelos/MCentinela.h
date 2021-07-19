@@ -38,9 +38,6 @@ public:
 	bool usarVacunas(string marca);
 	bool esVacia();
 	bool PVacia();
-
-	bool buscarvacunas(string marca,MAlmacenVacuna malmacen);
-
 };
 
 #endif /* MCENTINELA_H_ */

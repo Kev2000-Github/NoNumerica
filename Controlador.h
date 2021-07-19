@@ -7,6 +7,7 @@
 
 #ifndef CONTROLADOR_H_
 #define CONTROLADOR_H_
+#include <climits>
 #include "Modelos/MListaExpediente.h"
 #include "Modelos/MCensoPersonas.h"
 #include "Modelos/MEstado.h"

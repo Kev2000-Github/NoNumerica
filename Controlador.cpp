@@ -226,10 +226,9 @@ void Controlador::recibirVacunas()
 
 		 		vGeneral.ImprimirMensaje("Nota: Puede agregar marcas que no esten en la lista \n");
 		 		marca = vGeneral.LeerString("\nEscribir marca: ");
-		 		almacen.setMarca(marca);
 
-		 		while(!centinelas.buscarvacunas(marca, almacen)) {
-		 		vGeneral.ImprimirMensaje("Error: La marca solicitada no existe \n");
+		 		while(!centinelas.removerVacuna(marca, almacen)) {
+		 		vGeneral.ImprimirMensaje("La marca solicitada no existe \n");
 
 
 
@@ -237,8 +236,8 @@ void Controlador::recibirVacunas()
 
 		 	    	if(rpta==1)
 		 	    	{
-		 	    		   cant=0;
-                           almacen.setCantidad(cant);
+		 	    		   almacen.setMarca(marca);
+                           almacen.setCantidad(0);
                            centinelas.agregarVacuna(almacen);
 
 		 	    	}
@@ -250,15 +249,14 @@ void Controlador::recibirVacunas()
 		 	    			almacen.setMarca(marca);
 		 	    	}
 		 		}
-
-		 		cant = vGeneral.LeerValidarNro("\n Cantidad: ", 0, 300);
-		 		almacen.setCantidad(cant);
+		 		centinelas.agregarVacuna(almacen);
+		 		cant = vGeneral.LeerValidarNro("\n Cantidad: ", 0, INT_MAX);
 
 
 		 		while (cant% 3 != 0)
 		 		{
 		 			vGeneral.ImprimirMensaje("\n La cantidad Ingresada debe ser Multiplo de 3!\n");
-		 			cant = vGeneral.LeerValidarNro("\n Cantidad: ", 0, 300);
+		 			cant = vGeneral.LeerValidarNro("\n Cantidad: ", 0, INT_MAX);
 		 		}
 		 		centinelas.aumentarVacunas(marca,cant);
 		 		vGeneral.ImprimirMensaje("\n Cantidad Ingresada Exitosamente!\n");
