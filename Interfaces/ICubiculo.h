@@ -17,6 +17,7 @@ public:
 	void reportarCedula(MCubiculo colacubiculo);
 	void ImprimirListaCubiculo(MCentinela &centinela);
 	void ReportarCubiculo(MCentinela &centinela);
+	void reportarCedulasDelaCola(MCubiculo &cubiculo);
 };
 
 #endif /* ICUBICULO_H_ */

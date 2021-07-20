@@ -68,3 +68,21 @@ void ICubiculo::ReportarCubiculo(MCentinela &centinela){
     vg.Limpiar();
 }
 
+void ICubiculo::reportarCedulasDelaCola(MCubiculo &cubiculo){
+  	Cola<string> cedulaPaciente;
+  	string cedulaActual;
+  	VGeneral vg;
+  		vg.ImprimirMensaje("\n Lista de Pacietes en Cola:\n");
+  		vg.ImprimirLineasBlanco(1);
+  		while(!cubiculo.esVacia()) {
+  			    	cubiculo.removerPrimerPaciente(cedulaActual);
+  			    	vg.ImprimirString("Cedula: ",cedulaActual);
+  			    	vg.ImprimirLineasBlanco(1);
+  			        cedulaPaciente.Insertar(cedulaActual);
+  			    }
+  			    while(!cedulaPaciente.Vacia()) {
+  			    	cedulaPaciente.Remover(cedulaActual);
+  			        cubiculo.agregarPaciente(cedulaActual);
+
+    }
+}

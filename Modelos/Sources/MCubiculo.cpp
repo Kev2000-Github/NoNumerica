@@ -29,6 +29,29 @@ bool MCubiculo::removerPrimerPaciente(string &cedula){
 	return cedulaPaciente.Remover(cedula);
 }
 
+bool MCubiculo::removerPaciente(string &cedula){
+	Cola<string> colaAux;
+	string auxced;
+		bool encontrado = false;
+		while(!cedulaPaciente.Vacia()){
+			cedulaPaciente.Remover(auxced);
+			if(auxced == cedula){
+				cedula=auxced;
+				encontrado = true;
+
+				//break;
+			}
+			else
+
+			{	colaAux.Insertar(auxced);}
+		}
+		while(!colaAux.Vacia()){
+			colaAux.Remover(auxced);
+			cedulaPaciente.Insertar(auxced);
+		}
+		return encontrado;
+	}
+
 bool MCubiculo::esVacia(){
 	return cedulaPaciente.Vacia();
 }
@@ -49,7 +72,7 @@ int MCubiculo::total(){
       else{
         agregarPaciente(ced);
       };
-      return cont;
     };
   };
+  return cont;
 }
