@@ -6,6 +6,18 @@
 #include <sstream>
 using namespace std;
 #include "../Date.h"
+#include "../VGeneral.h"
+
+Date::Date(){
+
+}
+
+Date::Date(int _dia, int _mes, int _annio){
+	dia=_dia;
+	mes=_mes;
+	annio=_annio;
+
+}
 
 Date::Date(string fecha) {
 	string aux = "";
@@ -46,6 +58,19 @@ int Date::getmes(){
 }
 int Date::getannio(){
 	return annio;
+}
+string Date::getFecha(){
+	return parseFecha(dia, mes, annio);
+}
+
+string Date::parseFecha(int _dia, int _mes, int _annio){
+	VGeneral vg;
+	string fecha;
+	if(_dia < 10) fecha += "0";
+	fecha += vg.toString(_dia) + "/";
+	if(_mes < 10) fecha += "0";
+	fecha += vg.toString(_mes) + "/" + vg.toString(_annio);
+	return fecha;
 }
 
 int Date::Bisiesto(int annio){
@@ -243,3 +268,30 @@ int Date::DiferenciaDias(Date fecha2)
         }
     }
 }
+
+string Date::avanzarFecha(int dias) {
+	VGeneral vg;
+	int annioA = annio;
+	int mesA = mes;
+	int diaA = dia;
+	int diasMes = NumeroDiasAnnio(mes, annio);
+
+	int diasR = min(diasMes - diaA, dias);
+	diaA += diasR;
+	dias -= diasR;
+	while (dias > 0) {
+		diasMes = NumeroDiasAnnio(mesA, annioA);
+		diasR = min(dias, diasMes);
+		diaA = diasR;
+		dias -= diasR;
+		if (mesA == 12) {
+			mesA = 1;
+			annioA++;
+		} else{
+			mesA++;}
+	}
+	string fecha = parseFecha(diaA,mesA,annioA);
+	return fecha;
+
+}
+

@@ -20,10 +20,11 @@ public:
 	string getCodigo();
 	void setCodigo(string _codigo);
 
-	bool removerPaciente(string &cedulaBuscada);
 	bool agregarPaciente(string cedula);
 	bool removerPrimerPaciente(string &cedula);
+	bool removerPaciente(string &cedula);
 	bool esVacia();
+	int total();
 };
 
 #endif /* MCUBICULO_H_ */

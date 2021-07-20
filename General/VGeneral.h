@@ -1,7 +1,7 @@
 /*
  *  VGeneral.h
  *  Creado: 16/02/2011
- *  Autores: Prof. Margarita Pereira, Prof. Rosa Díaz,
+ *  Autores: Prof. Margarita Pereira, Prof. Rosa Dï¿½az,
  *                  Prof. Giovanni Torrealba, Prof. Luis Pereira
  *  Ajustado: 07/05/2012 Prof. Margarita Pereia
  */
@@ -15,6 +15,8 @@
 #include <iostream> //incluye la clase iostream para usar los objetos cin y cout
 #include <cstring>
 #include <fstream>  // incluye la clase fstream para trabajar con archivos
+#include <sstream>   // incluye la clase sstream para trabajar con string
+#include <vector>   // incluye la clase vector para trabajar con vectores de string
 
 using namespace std;//se requiere siempre que se incluya una libreria estandar de C++
 
@@ -38,6 +40,9 @@ class VGeneral{
       double LeerValidarNroDecimalValorFinal(string msj,double valorfinal);
       void ImprimirChar(string msj, char c);
       void ImprimirString(string msj, string s);
+      void ImprimirString2(string msj,string a);
+      void ImprimirString3(string msj, int s, string a);
+      void ImprimirString4(string msj, int s, string a,int b);
       void ImprimirNro(string msj, long n);
       void ImprimirNroDecimal(string msj, double f);
       void ImprimirCharJustificado(char c, int espacio);
@@ -48,11 +53,13 @@ class VGeneral{
    // Metodos para trabajar con archivos de texto
 
      void LeerNombreArchivo(string, char[128]);
+     vector<string> Split(string &texto, char delimitador);
 
    // Archivos TEXTO de ENTRADA
 
       bool AbrirArchivoEntrada(std::ifstream &archivo, char nomb_arch [128]);
       string LeerLineaArchivo(std::ifstream &archivo);
+      void RegresarPrimeraLinea(std::ifstream &archivo);
       char LeerDatoCharArchivo(std::ifstream &archivo);
       long LeerDatoNroArchivo(std::ifstream &archivo);
       double LeerDatoNroDecimalArchivo(std::ifstream &archivo);
@@ -66,5 +73,9 @@ class VGeneral{
       void GrabarDatoNroArchivo(std::ofstream &archivo, long nro);
       void GrabarDatoNroDecimalArchivo(std::ofstream &archivo, double nro);
       void CerrarArchivoSalida(std::ofstream &archivo);
+
+      //Utilidades
+      int parseInt(string numero);
+      string toString(int numero);
 };
 #endif

@@ -13,6 +13,13 @@ private:
 
 public:
         MPersona();
+        MPersona(string _nombre, string _apellido, string _cedula);
+        void setnombre(string n);
+        void setapellido(string a);
+        void setcedula(string c);
+        string getnombre();
+        string getapellido();
+        string getcedula();
 
         void setnombre(string n);
         void setapellido(string a);

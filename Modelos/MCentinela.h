@@ -25,17 +25,19 @@ public:
 	string getCodigo();
 	void setCodigo(string _codigo);
 
-	bool agregarCubiculo(MCubiculo cubiculo);
+	bool agregarCubiculo(MCubiculo &cubiculo);
 	bool removerCubiculo(string codigo, MCubiculo &cubiculo);
 	bool removerPrimerCubiculo(MCubiculo &cubiculo);
 	int totalCubiculos();
 
 	int ConsultarCantidadPorMarca(string marca);
 	bool aumentarVacunas(string marca, int cantidad);
-	bool agregarVacuna(MAlmacenVacuna vacunas);
+	bool agregarVacuna(MAlmacenVacuna &vacunas);
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
+	bool removerPrimeraVacuna(MAlmacenVacuna &vacunas);
 	bool usarVacunas(string marca);
 	bool esVacia();
+	bool PVacia();
 };
 
 #endif /* MCENTINELA_H_ */

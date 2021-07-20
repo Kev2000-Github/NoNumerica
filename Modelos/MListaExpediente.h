@@ -19,7 +19,7 @@ private:
 public:
   MListaExpediente();
 
-  bool agregarExpediente(MExpedienteVacunacion expediente);
+  bool agregarExpediente(MExpedienteVacunacion &expediente);
   bool removerExpediente(string cedula, MExpedienteVacunacion &Expediente);
   bool removerPrimerExpediente (MExpedienteVacunacion &Expediente);
 

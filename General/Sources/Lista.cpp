@@ -2,7 +2,7 @@
 #include "../Lista.h"
 
 template <class Tipo>
-nodo<Tipo>* Lista<Tipo>::ObtPrimero(){
+nodo<Tipo>* Lista<Tipo>::ObtPrimero() {
   return Primero;          
 };
 
@@ -15,6 +15,72 @@ template <class Tipo>
 Lista<Tipo>::Lista()
 {
      Primero=NULL;
+};
+
+template <class Tipo>
+Lista<Tipo>::Lista(const Lista<Tipo> &that)
+{
+	Apuntador p;
+	Apuntador thatP;
+	while(!Vacia()){
+		p = Primero->prox;
+		delete Primero;
+		Primero = p;
+	}
+
+	if(that.Primero != NULL){
+		thatP = that.Primero;
+		InsComienzo(thatP->info);
+		thatP = thatP->prox;
+		p = ObtPrimero();
+		while(thatP != NULL)
+		{
+			Apuntador nuevo;
+			if (!Llena()){
+	               nuevo=new nodo<Tipo>;
+	               nuevo->info=thatP->info;
+	               nuevo->prox=p->prox;
+	               p->prox=nuevo;
+	               p = p->prox;
+			}
+			thatP = thatP->prox;
+		}
+	}
+};
+
+template <class Tipo>
+Lista<Tipo>& Lista<Tipo>::operator= (const Lista<Tipo> &that)
+{
+	if(this != &that){
+		Apuntador p;
+		Apuntador thatP;
+
+		while(!Vacia()){
+			p = Primero->prox;
+			delete Primero;
+			Primero = p;
+		}
+
+		if(that.Primero != NULL){
+			thatP = that.Primero;
+			InsComienzo(thatP->info);
+			thatP = thatP->prox;
+			p = ObtPrimero();
+			while(thatP != NULL)
+			{
+				Apuntador nuevo;
+				if (!Llena()){
+		               nuevo=new nodo<Tipo>;
+		               nuevo->info=thatP->info;
+		               nuevo->prox=p->prox;
+		               p->prox=nuevo;
+		               p = p->prox;
+				}
+				thatP = thatP->prox;
+			}
+		}
+	}
+	return *this;
 };
 
 template <class Tipo>
@@ -38,7 +104,7 @@ bool Lista<Tipo>::Llena()
 };  
 
 template <class Tipo>
-bool Lista<Tipo>::InsComienzo(Tipo Valor)
+bool Lista<Tipo>::InsComienzo(Tipo &Valor)
 {
   Apuntador nuevo;
   if (!Llena()) 
@@ -142,27 +208,6 @@ Lista<Tipo>::~Lista()
    };
 };
 
-
-/*template <class Tipo>
-int Lista<Tipo>::Contar()
-
-{
-   int cont=0;
-   nodo<Tipo> *ap;
-   if(!Vacia())
-{
-	ap= ObtProx(Primero);
-while(ap!=NULL)
-{
-	ap=ObtProx(ap);
-	cont++;
-};
-	return cont;
-}
-else
-return 0;
-}
-*/
 template <class Tipo>
 int Lista<Tipo>::Contar(){
 	nodo<Tipo>* p;

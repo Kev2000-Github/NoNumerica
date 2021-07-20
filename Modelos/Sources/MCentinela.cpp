@@ -21,7 +21,7 @@ void MCentinela::setCodigo(string _codigo){
 	codigo = _codigo;
 }
 
-bool MCentinela::agregarCubiculo(MCubiculo cubiculo){
+bool MCentinela::agregarCubiculo(MCubiculo &cubiculo){
 	return cubiculos.InsComienzo(cubiculo);
 }
 bool MCentinela::removerCubiculo(string codigo, MCubiculo &cubiculoBuscado){
@@ -72,7 +72,7 @@ int MCentinela::ConsultarCantidadPorMarca(string marca)
 		return cant;
 }
 
-bool MCentinela::agregarVacuna(MAlmacenVacuna vacunas){
+bool MCentinela::agregarVacuna(MAlmacenVacuna &vacunas){
 	return vacuna.Insertar(vacunas);
 }
 
@@ -156,4 +156,15 @@ bool MCentinela::aumentarVacunas(string marca, int cantidad){
 
 int MCentinela::totalCubiculos(){
 	return cubiculos.Contar();
+}
+
+
+bool MCentinela::PVacia()
+{
+	return vacuna.Vacia();
+}
+
+bool MCentinela::removerPrimeraVacuna(MAlmacenVacuna &vacunas)
+{
+	return vacuna.Remover(vacunas);
 }

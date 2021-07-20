@@ -1,7 +1,7 @@
 /*
  *  VGeneral.cpp
  *  Creado: 16/02/2011
- *  Autores: Prof. Margarita Pereira, Prof. Rosa Díaz,
+ *  Autores: Prof. Margarita Pereira, Prof. Rosa Dï¿½az,
  *                 Prof. Giovanni Torrealba, Prof. Luis Pereira
  *  Ajustado: 07/05/2012 Prof. Margarita Pereia
  */
@@ -192,6 +192,18 @@ void VGeneral :: ImprimirString(string msj, string s)
 {
      cout << msj << s;
 }
+void VGeneral :: ImprimirString2(string msj, string a)
+{
+     cout << msj << setw(5) << a<<endl;
+}
+void VGeneral :: ImprimirString3(string msj, int s, string a)
+{
+	cout << msj << s << setw(5) << a<<endl;
+}
+void VGeneral :: ImprimirString4(string msj, int s, string a,int b)
+{
+	cout << msj  << s << setw(5) << a << setw(4) << b<<endl;
+}
 // Escribe un mensaje e imprime un dato numerico (int,long)
 void VGeneral :: ImprimirNro(string msj, long n)
 {
@@ -234,10 +246,10 @@ void VGeneral :: ImprimirNroDecimalJustificado(double f, int espacio)
 //-------------------------------------------------------------------------------------------------
 // ****************METODOS PARA TRABAJAR CON ARCHIVOS TEXTO DE ENTRADA DE DATOS********************
 //-------------------------------------------------------------------------------------------------
-// Permite Leer el nombre físico del archivo
+// Permite Leer el nombre fï¿½sico del archivo
 // Aporte de Tapias Jean Carlos
 // http://www.cplusplus.com/reference/clibrary/cstdio/fgets/
-/* Lee el nombre físico del archivo a nivel de teclado y si es necesario se puede
+/* Lee el nombre fï¿½sico del archivo a nivel de teclado y si es necesario se puede
    incluir la ruta donde se localiza el archivo */
 void VGeneral::LeerNombreArchivo(string msj, char V[128])
 {
@@ -246,6 +258,20 @@ void VGeneral::LeerNombreArchivo(string msj, char V[128])
     fgets (V, 128 , stdin);      // Metodo que funciona igual al getline..
     V[strlen(V)-1] = '\0';
 
+}
+// Permite separar un string dado un delimitador
+vector<string> VGeneral::Split(string &texto, char delimitador)
+{
+   vector<string> resultado;
+   stringstream ss(texto);
+   string item;
+
+   while(getline(ss, item, delimitador))
+   {
+      resultado.push_back(item);
+   }
+
+   return resultado;
 }
 // Permite abrir un archivo de entrada
 bool VGeneral :: AbrirArchivoEntrada (std::ifstream &archivo, char nomb_arch [120])
@@ -260,6 +286,11 @@ string VGeneral :: LeerLineaArchivo(std::ifstream &archivo)
    getline(archivo, linea);
    return linea;
 }
+// Regresa a la primera linea del archivo
+void VGeneral::RegresarPrimeraLinea(std::ifstream &archivo){
+	archivo.clear();
+	archivo.seekg(0);
+}
 // Lee un dato char  del archivo
 char VGeneral :: LeerDatoCharArchivo(std::ifstream &archivo)
 {
@@ -269,7 +300,7 @@ char VGeneral :: LeerDatoCharArchivo(std::ifstream &archivo)
    getline(archivo, resto);
    return caracter;
 }
-// Lee del archivo un dato numérico sin decimales (long, int)
+// Lee del archivo un dato numï¿½rico sin decimales (long, int)
 long VGeneral :: LeerDatoNroArchivo(std::ifstream &archivo)
 {
    long nro;
@@ -278,7 +309,7 @@ long VGeneral :: LeerDatoNroArchivo(std::ifstream &archivo)
    getline(archivo, resto);
    return nro;
 }
-// Lee del archivo un dato numérico con decimales (float, dobule)
+// Lee del archivo un dato numï¿½rico con decimales (float, dobule)
 double VGeneral :: LeerDatoNroDecimalArchivo(std::ifstream &archivo)
 {
    double nro;
@@ -316,12 +347,12 @@ void VGeneral :: GrabarDatoCharArchivo(std::ofstream &archivo, char caracter)
 {
    archivo << caracter << endl;
 }
-// Graba en el archivo una línea con un dato numérico sin decimales (int, long)
+// Graba en el archivo una lï¿½nea con un dato numï¿½rico sin decimales (int, long)
 void VGeneral :: GrabarDatoNroArchivo(std::ofstream &archivo, long nro)
 {
     archivo << nro << endl;
 }
-// Graba en el archivo una línea con un dato numérico con decimales (float, double)
+// Graba en el archivo una lï¿½nea con un dato numï¿½rico con decimales (float, double)
 void VGeneral :: GrabarDatoNroDecimalArchivo(std::ofstream &archivo, double nro)
 {
     archivo << setiosflags(ios::fixed) << setprecision(2) << nro << endl;
@@ -330,4 +361,19 @@ void VGeneral :: GrabarDatoNroDecimalArchivo(std::ofstream &archivo, double nro)
 void VGeneral :: CerrarArchivoSalida (std::ofstream &archivo)
 {
    archivo.close();
+}
+int VGeneral :: parseInt(string numero){
+	int integer;
+	stringstream _ss;
+	_ss << numero;
+	_ss >> integer;
+	return integer;
+}
+
+string VGeneral::toString(int numero){
+	stringstream ss;
+	string result;
+	ss << numero;
+	ss >> result;
+	return result;
 }

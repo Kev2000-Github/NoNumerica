@@ -24,7 +24,7 @@ int MEstado::totalMunicipio(){
     return municipios.Contar();
 }
 
-bool MEstado::agregarMunicipio(MMunicipio municipio){
+bool MEstado::agregarMunicipio(MMunicipio &municipio){
     return municipios.InsComienzo(municipio);
 
 }
@@ -46,4 +46,12 @@ bool MEstado::removerMunicipio(string codigo, MMunicipio &municipioBuscado){
 		municipios.InsComienzo(municipioActual);
 	}
 	return encontrado;
+}
+
+bool MEstado::esVacio(){
+	return municipios.Contar() == 0;
+}
+
+bool MEstado:: removerPrimerMunicipio(MMunicipio &municipio){
+	return municipios.EliComienzo(municipio);
 }
