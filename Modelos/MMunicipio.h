@@ -6,19 +6,21 @@
 #include "../General/Lista.h"
 using namespace std;
 
-class MMunicipio {
+class MMunicipio
+{
 private:
     string nombre;
     string codigo;
     Lista<MCentinela> centinelas;
+
 public:
     MMunicipio();
     MMunicipio(string codi);
 
     string getCodigo();
-	void setCodigo(string codi);
-	string getNombre();
-	void setNombre(string _nombre);
+    void setCodigo(string codi);
+    string getNombre();
+    void setNombre(string _nombre);
 
     int totalCentinelas();
     bool agregarCentinela(MCentinela &centinela);

@@ -7,36 +7,38 @@
 
 #include "../MListaExpediente.h"
 
-MListaExpediente::MListaExpediente() {
-};
+MListaExpediente::MListaExpediente(){};
 
-bool MListaExpediente::agregarExpediente(MExpedienteVacunacion &expediente )
+bool MListaExpediente::agregarExpediente(MExpedienteVacunacion &expediente)
 {
 	return expedientes.InsComienzo(expediente);
 }
 
-bool MListaExpediente::removerExpediente(string cedula ,MExpedienteVacunacion &expedienteBuscado)
+bool MListaExpediente::removerExpediente(string cedula, MExpedienteVacunacion &expedienteBuscado)
 {
-			Lista<MExpedienteVacunacion> listaAux;
-			MExpedienteVacunacion expedienteActual;
-			bool encontrado = false;
-			while(!expedientes.Vacia()){
-				expedientes.EliComienzo(expedienteActual);
-				if(expedienteActual.getCedula() == cedula){
-					expedienteBuscado = expedienteActual;
-					encontrado = true;
-					break;
-				}
-				listaAux.InsComienzo(expedienteActual);
-			}
-			while(!listaAux.Vacia()){
-				listaAux.EliComienzo(expedienteActual);
-				expedientes.InsComienzo(expedienteActual);
-			}
-			return encontrado;
+	Lista<MExpedienteVacunacion> listaAux;
+	MExpedienteVacunacion expedienteActual;
+	bool encontrado = false;
+	while (!expedientes.Vacia())
+	{
+		expedientes.EliComienzo(expedienteActual);
+		if (expedienteActual.getCedula() == cedula)
+		{
+			expedienteBuscado = expedienteActual;
+			encontrado = true;
+			break;
+		}
+		listaAux.InsComienzo(expedienteActual);
+	}
+	while (!listaAux.Vacia())
+	{
+		listaAux.EliComienzo(expedienteActual);
+		expedientes.InsComienzo(expedienteActual);
+	}
+	return encontrado;
 }
 
 bool MListaExpediente::removerPrimerExpediente(MExpedienteVacunacion &expediente)
 {
-	       return expedientes.EliComienzo(expediente);
+	return expedientes.EliComienzo(expediente);
 }

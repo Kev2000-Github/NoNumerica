@@ -12,10 +12,9 @@
 #include "../General/Pila.h"
 #include "../General/Date.h"
 
-
-class MExpedienteVacunacion {
+class MExpedienteVacunacion
+{
 private:
-
 	string cedula, vacunaTomada, codCentinela;
 	Pila<Date> DosisTomadas;
 
@@ -31,10 +30,8 @@ public:
 	void setCodCentinela(string cod);
 	string getCodCentinela();
 
-
 	bool AgregarNuevaDosis(Date DosisTomada);
 	Date getSigFechaEstipulada();
-
 };
 
 #endif /* MEXPEDIENTEVACUNACION_H_ */
