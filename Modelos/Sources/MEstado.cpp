@@ -9,49 +9,59 @@
 
 MEstado::MEstado() {}
 
-MEstado::MEstado(string n) {
+MEstado::MEstado(string n)
+{
 	nombre = n;
 }
 
-string MEstado::getNombre(){
+string MEstado::getNombre()
+{
 	return nombre;
 }
-void MEstado::setNombre(string n){
+void MEstado::setNombre(string n)
+{
 	nombre = n;
 }
 
-int MEstado::totalMunicipio(){
-    return municipios.Contar();
+int MEstado::totalMunicipio()
+{
+	return municipios.Contar();
 }
 
-bool MEstado::agregarMunicipio(MMunicipio &municipio){
-    return municipios.InsComienzo(municipio);
-
+bool MEstado::agregarMunicipio(MMunicipio &municipio)
+{
+	return municipios.InsComienzo(municipio);
 }
-bool MEstado::removerMunicipio(string codigo, MMunicipio &municipioBuscado){
+bool MEstado::removerMunicipio(string codigo, MMunicipio &municipioBuscado)
+{
 	Lista<MMunicipio> listaAux;
 	MMunicipio municipioActual;
 	bool encontrado = false;
-	while(!municipios.Vacia()){
+	while (!municipios.Vacia())
+	{
 		municipios.EliComienzo(municipioActual);
-		if(municipioActual.getCodigo() == codigo){
+		if (municipioActual.getCodigo() == codigo)
+		{
 			municipioBuscado = municipioActual;
 			encontrado = true;
 			break;
 		}
 		listaAux.InsComienzo(municipioActual);
 	}
-	while(!listaAux.Vacia()){
+	while (!listaAux.Vacia())
+	{
 		listaAux.EliComienzo(municipioActual);
 		municipios.InsComienzo(municipioActual);
 	}
 	return encontrado;
 }
 
-bool MEstado::esVacio(){
+bool MEstado::esVacio()
+{
 	return municipios.Contar() == 0;
 }
 
-bool MEstado:: removerPrimerMunicipio(MMunicipio &municipio){
+bool MEstado::removerPrimerMunicipio(MMunicipio &municipio)
+{
 	return municipios.EliComienzo(municipio);
 }

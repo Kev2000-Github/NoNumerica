@@ -10,10 +10,12 @@
 #include "../General/Lista.h"
 #include "MMunicipio.h"
 
-class MEstado {
+class MEstado
+{
 private:
 	string nombre;
 	Lista<MMunicipio> municipios;
+
 public:
 	MEstado();
 	MEstado(string nombre);
@@ -23,7 +25,7 @@ public:
 
 	int totalMunicipio();
 	bool agregarMunicipio(MMunicipio &municipio);
-	bool removerMunicipio (string codigo, MMunicipio &municipio);
+	bool removerMunicipio(string codigo, MMunicipio &municipio);
 	bool removerPrimerMunicipio(MMunicipio &municipio);
 	bool esVacio();
 };
