@@ -3,7 +3,8 @@
 using namespace std;
 #include <string>
 
-class MPersona{
+class MPersona
+{
 
 private:
         string nombre;
@@ -11,16 +12,14 @@ private:
         string cedula;
 
 public:
-         MPersona();
+        MPersona();
 
-         void setnombre(string n);
-	     void setapellido(string a);
-	     void setcedula(string c);
-	     string getnombre();
-	     string getapellido();
-	     string getcedula();
-
+        void setnombre(string n);
+        void setapellido(string a);
+        void setcedula(string c);
+        string getnombre();
+        string getapellido();
+        string getcedula();
 };
-
 
 #endif // PERSONA_H_INCLUDED
