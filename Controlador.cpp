@@ -547,7 +547,7 @@ void Controlador::menuModificar(){
 		vGeneral.Limpiar();
 		switch (rpta)
 		{
-		case 1:
+		case 1: modificarMunicipio();
 			break;
 		case 2:
 			break;
@@ -574,8 +574,6 @@ void Controlador::modificarMunicipio(){
 
 	MMunicipio municipio;
 	IMunicipio Imunicipio;
-	ICentinela Icentinela;
-	ICubiculo Icubiculo;
 
 	vGeneral.Limpiar();
 	Imunicipio.ImprimirListaMunicipio(estado);
@@ -593,8 +591,19 @@ void Controlador::modificarMunicipio(){
 		};
 
 	vGeneral.Limpiar();
+	vGeneral.ImprimirLineasBlanco(1);
+	vGeneral.ImprimirString2("El Nombre del Municipio seleccionado es: ", municipio.getNombre());
+	vGeneral.ImprimirLineasBlanco(1);
+
 	string nombreMunicipio = vGeneral.LeerString("Ingrese el nuevo nombre del Municipio: ");
 	municipio.setNombre(nombreMunicipio);
+	vGeneral.Pausa();
+	vGeneral.Limpiar();
+	vGeneral.ImprimirLineasBlanco(1);
+
+	vGeneral.ImprimirMensaje("Nombre modificado exitosamente \n\n");
+	estado.agregarMunicipio(municipio);
+
 	/*Ingresar codigo del municipio:
 	 	 Verificar que existe
 	  Ingresar el nuevo nombre del municipio
