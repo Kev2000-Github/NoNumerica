@@ -34,6 +34,10 @@ public:
 
 	void procesar();
 	void procesar2();
+	void procesarAdmin();
+	void menuEliminar();
+	void menuAgregar();
+	void menuModificar();
 
 	void consultarPersona();
 	void consultarMunicipios();

@@ -280,55 +280,27 @@ void Controlador::recibirVacunas()
 
 void Controlador::procesar()
 {
-	/* PARA PROBAR LA ESTABILIDAD DE LAS ESTRUCTURAS DE DATOS
-	 MEstado estadoAux;
-	 MMunicipio municipio;
-	 MCentinela centinela;
-	 MCubiculo cubiculo;
-	 string cedula;
-	 while(!estado.esVacio()){
-	 estado.removerPrimerMunicipio(municipio);
-	 cout << "-----------MUNICIPIO: " << municipio.getNombre() << endl;
-	 while(!municipio.esVacio()){
-	 municipio.removerPrimerCentinela(centinela);
-	 cout << "-->CENTINELA: " << centinela.getCodigo() << endl;
-	 while(!centinela.esVacia()){
-	 centinela.removerPrimerCubiculo(cubiculo);
-	 cout << "CUBICULO: " << cubiculo.getCodigo() << endl;
-	 while(!cubiculo.esVacia()){
-	 cubiculo.removerPrimerPaciente(cedula);
-	 cout << "<cedula>: " << cedula << endl;
-	 }
-	 }
-	 }
-	 estadoAux.agregarMunicipio(municipio);
-	 }
-	 */
-
 	/**
 	 * Antes de esto, se cargan los datos justo al iniciar el programa
 	 *
 	 * MOSTRAR MENU INICIAL 1
 	 *  M E N U
-	 *  1) CrearMunicipio (no estamos seguros de esto profesor, AYUDA) //DEBUG
-	 *  2) CrearCentinela (no estamos seguros de esto profesor, HELP US) //DEBUG
-	 *  3) Recibir Vacunas
-	 *  4) Iniciar Proceso de Vacunacion
-	 *  5) Salir
+	 *  1) Administrar
+	 *  2) Recibir Vacunas
+	 *  3) Iniciar Proceso de Vacunacion
+	 *  4) Salir
 	 */
 	int rpta;
-	while (rpta != 5)
+	while (rpta != 4)
 	{
 		vGeneral.ImprimirEncabezado("M E N U", "_______");
-		vGeneral.ImprimirMensaje("1) Crear Municipio");
+		vGeneral.ImprimirMensaje("1) Administrar");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("2) Crear Centinela");
+		vGeneral.ImprimirMensaje("2) Recibir Vacunas");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("3) Recibir Vacunas");
+		vGeneral.ImprimirMensaje("3) Iniciar Proceso de Vacunacion");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("4) Iniciar Proceso de Vacunacion");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("5) Salir");
+		vGeneral.ImprimirMensaje("4) Salir");
 		vGeneral.ImprimirLineasBlanco(1);
 
 		rpta = vGeneral.LeerNro("Respuesta: ");
@@ -336,17 +308,15 @@ void Controlador::procesar()
 		switch (rpta)
 		{
 		case 1:
+			procesarAdmin();
 			break;
 		case 2:
-			agregarCentinela();
-			break;
-		case 3:
 			recibirVacunas();
 			break;
-		case 4:
+		case 3:
 			procesar2();
 			break;
-		case 5:
+		case 4:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
@@ -429,6 +399,217 @@ void Controlador::procesar2()
 		case 9:
 			break;
 		case 10:
+			return;
+		default:
+			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			break;
+		}
+	}
+}
+
+void Controlador::procesarAdmin(){
+	/**
+	 * MOSTRAR MENU INICIAL 1
+	 *  M E N U  V A C U N A C I O N
+	 *  1) Modificar
+	 *  2) Eliminar
+	 *  3) Agregar
+	 *  4) Salir
+	 */
+
+	int rpta;
+	while (rpta != 4)
+	{
+		vGeneral.ImprimirEncabezado("M E N U  A D M I N I S T R A C I O N",
+									"_______  ___________________________");
+		vGeneral.ImprimirMensaje("1) Modificar");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("2) Eliminar");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("3) Agregar");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("4) Salir");
+		vGeneral.ImprimirLineasBlanco(1);
+
+		rpta = vGeneral.LeerNro("Respuesta: ");
+		vGeneral.Limpiar();
+		switch (rpta)
+		{
+		case 1:
+			menuModificar();
+			break;
+		case 2:
+			menuEliminar();
+			break;
+		case 3:
+			menuAgregar();
+			break;
+		case 4:
+			return;
+		default:
+			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			break;
+		}
+	}
+}
+void Controlador::menuEliminar(){
+	/**
+	 * MOSTRAR MENU INICIAL 1
+	 *  M E N U  V A C U N A C I O N
+	 *  1) Eliminar Municipio
+	 *  2) Eliminar Centinela
+	 *  3) Eliminar Cubiculo
+	 *  4) Eliminar Persona
+	 *  5) Eliminar Vacuna
+	 *  6) Salir
+	 */
+
+	int rpta;
+	while (rpta != 6)
+	{
+		vGeneral.ImprimirEncabezado("M E N U  E L I M I N A R",
+									"_______  _______________");
+		vGeneral.ImprimirMensaje("1) Eliminar Municipio");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("2) Eliminar Centinela");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("3) Eliminar Cubiculo");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("4) Eliminar Persona");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("5) Eliminar Vacuna");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("6) Salir");
+		vGeneral.ImprimirLineasBlanco(1);
+
+		rpta = vGeneral.LeerNro("Respuesta: ");
+		vGeneral.Limpiar();
+		switch (rpta)
+		{
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			return;
+		default:
+			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			break;
+		}
+	}
+}
+
+void Controlador::menuModificar(){
+	/**
+	 * MOSTRAR MENU INICIAL 1
+	 *  M E N U  V A C U N A C I O N
+	 *  1) Modificar Municipio
+	 *  2) Modificar Centinela
+	 *  3) Modificar Cubiculo
+	 *  4) Modificar Persona
+	 *  5) Modificar Expediente
+	 *  6) Modificar Vacuna
+	 *  7) Salir
+	 */
+	int rpta;
+	while (rpta != 7)
+	{
+		vGeneral.ImprimirEncabezado("M E N U  M O D I F I C A R",
+									"_______  _________________");
+		vGeneral.ImprimirMensaje("1) Modificar Municipio");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("2) Modificar Centinela");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("3) Modificar Cubiculo");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("4) Modificar Persona");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("5) Modificar Expediente");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("6) Modificar Vacuna");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("7) Salir");
+		vGeneral.ImprimirLineasBlanco(1);
+
+		rpta = vGeneral.LeerNro("Respuesta: ");
+		vGeneral.Limpiar();
+		switch (rpta)
+		{
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			return;
+		default:
+			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			break;
+		}
+	}
+}
+
+void Controlador::menuAgregar(){
+	/**
+	 * MOSTRAR MENU INICIAL 1
+	 *  M E N U  V A C U N A C I O N
+	 *  1) Agregar Municipio
+	 *  2) Agregar Centinela
+	 *  3) Agregar Cubiculo
+	 *  4) Agregar Persona
+	 *  5) Salir
+	 */
+	int rpta;
+	while (rpta != 5)
+	{
+		vGeneral.ImprimirEncabezado("M E N U  A G R E G A R",
+									"_______  _____________");
+		vGeneral.ImprimirMensaje("1) Agregar Municipio");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("2) Agregar Centinela");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("3) Agregar Cubiculo");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("4) Agregar Persona");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("5) Salir");
+		vGeneral.ImprimirLineasBlanco(1);
+
+		rpta = vGeneral.LeerNro("Respuesta: ");
+		vGeneral.Limpiar();
+		switch (rpta)
+		{
+		case 1:
+			break;
+		case 2:
+			agregarCentinela();
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
