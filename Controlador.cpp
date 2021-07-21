@@ -42,6 +42,11 @@ void Controlador::cargarDatos()
 		vacunaPersona.setCedula(lineaActual[0]);
 		vacunaPersona.setVacunaTomada(lineaActual[3]);
 		vacunaPersona.setCodCentinela(lineaActual[4]);
+		for (int i = 5; i < lineaActual.size(); i++)
+		{
+			Date fecha(lineaActual[i]);
+			vacunaPersona.AgregarNuevaDosis(fecha);
+		}
 		lineaActual.clear();
 		listaPersonas.agregarPersona(persona);
 		listaExpedientes.agregarExpediente(vacunaPersona);
