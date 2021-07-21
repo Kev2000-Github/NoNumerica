@@ -48,6 +48,7 @@ public:
 	void incluirPacienteACola();
 	void SacarPacienteDeCola();
 	void procesarPaciente();
+	void modificarMunicipio();
 
 };
 

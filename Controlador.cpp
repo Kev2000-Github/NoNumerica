@@ -570,6 +570,37 @@ void Controlador::menuModificar(){
 	}
 }
 
+void Controlador::modificarMunicipio(){
+
+	MMunicipio municipio;
+	IMunicipio Imunicipio;
+	ICentinela Icentinela;
+	ICubiculo Icubiculo;
+
+	vGeneral.Limpiar();
+	Imunicipio.ImprimirListaMunicipio(estado);
+	string municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+	municipio.setCodigo(municipioCodigo);
+
+		while (!estado.removerMunicipio(municipioCodigo, municipio))
+		{
+			vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+
+			Imunicipio.ImprimirListaMunicipio(estado);
+			municipioCodigo = vGeneral.LeerString("Ingrese el codigo del Municipio: ");
+		};
+
+	vGeneral.Limpiar();
+	string nombreMunicipio = vGeneral.LeerString("Ingrese el nuevo nombre del Municipio: ");
+	municipio.setNombre(nombreMunicipio);
+	/*Ingresar codigo del municipio:
+	 	 Verificar que existe
+	  Ingresar el nuevo nombre del municipio
+	  */
+}
+
 void Controlador::menuAgregar(){
 	/**
 	 * MOSTRAR MENU INICIAL 1
