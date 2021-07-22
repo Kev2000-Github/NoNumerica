@@ -16,6 +16,7 @@ int main(){
 	Controlador con;
 	con.cargarDatos();
 	con.procesar();
+	con.guardarDatos();
 	return 0;
 }
 

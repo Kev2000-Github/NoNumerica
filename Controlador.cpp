@@ -21,7 +21,6 @@ void Controlador::cargarDatos()
 	 * ColasPacientes.txt
 	 */
 	MPersona persona;
-	MExpedienteVacunacion vacunaPersona;
 	ifstream archCensoPersonas;
 	string instructions = "Por favor, verifique que existe la carpeta /Datos \nen el directorio del ejecutable y dentro el txt correspondiente\n";
 	while (!vGeneral.AbrirArchivoEntrada(archCensoPersonas, "Datos/CensoPersonas.txt"))
@@ -34,6 +33,7 @@ void Controlador::cargarDatos()
 	vector<string> lineaActual;
 	while (!vGeneral.FinArchivo(archCensoPersonas))
 	{
+		MExpedienteVacunacion vacunaPersona;
 		string linea = vGeneral.LeerLineaArchivo(archCensoPersonas);
 		lineaActual = vGeneral.Split(linea, ',');
 		persona.setcedula(lineaActual[0]);
@@ -189,6 +189,65 @@ void Controlador::cargarDatos()
 	vGeneral.ImprimirMensaje("\n DATOS VacunasEnExistencia.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
 	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
+	vGeneral.Limpiar();
+}
+
+void Controlador::guardarDatos()
+{
+	/**
+	 * Cargar los datos iniciales almacenados en los .txt
+	 * los TXT son:
+	 * CensoPersonas.txt
+	 * VacunasEnExistencia.txt
+	 * Municipios.txt
+	 * Centinelas.txt
+	 * Cubiculos.txt
+	 * ColasPacientes.txt
+	 */
+	MPersona persona;
+	MExpedienteVacunacion vacunaPersona;
+	Pila<Date> fechasAux;
+	Lista<MPersona> personasAux;
+	Date fecha;
+	ofstream archCensoPersonas;
+	string instructions = "Por favor, verifique que existe la carpeta /Datos/Salida \nen el directorio del ejecutable y dentro el txt correspondiente\n";
+	while (!vGeneral.AbrirArchivoSalida(archCensoPersonas, "CensoPersonas.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo CensoPersonas.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS CensoPersonas.txt...");
+	vector<string> lineaActual;
+	string linea;
+	while(!listaPersonas.esVacia()){
+		listaPersonas.removerPrimerPersona(persona);
+		personasAux.InsComienzo(persona);
+	}
+	while (!personasAux.Vacia())
+	{
+		linea="";
+		personasAux.EliComienzo(persona);
+		listaExpedientes.removerExpediente(persona.getcedula(), vacunaPersona);
+		linea += persona.getcedula() + ",";
+		linea += persona.getnombre() + ",";
+		linea += persona.getapellido() + ",";
+		linea += vacunaPersona.getVacunaTomada() + ",";
+		linea += vacunaPersona.getCodCentinela() + ",";
+		while(vacunaPersona.removerTopeDosis(fecha)){
+			fechasAux.Insertar(fecha);
+		}
+		while(fechasAux.Remover(fecha)){
+			linea += fecha.getFecha();
+			if(!fechasAux.Vacia()){
+				linea += ",";
+			}
+		}
+		if(!personasAux.Vacia()) linea += "\n";
+		archCensoPersonas << linea;
+	}
+	vGeneral.CerrarArchivoSalida(archCensoPersonas);
+	vGeneral.ImprimirMensaje("\n DATOS CensoPersonas.txt GUARDADOS EXITOSAMENTE");
 	vGeneral.Limpiar();
 }
 

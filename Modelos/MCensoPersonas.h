@@ -20,6 +20,7 @@ public:
   bool agregarPersona(MPersona &persona);
   bool removerPersona(string cedula, MPersona &persona);
   bool removerPrimerPersona (MPersona &persona);
+  bool esVacia();
 };
 
 #endif /* CENSOPERSONAS_H_ */

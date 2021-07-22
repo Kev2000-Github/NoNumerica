@@ -1,0 +1,4 @@
+PFizer, 3
+Sputnik V, 2
+Sinopharm, 2
+Sinovac, 2

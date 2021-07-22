@@ -68,7 +68,8 @@ public:
    void CerrarArchivoEntrada(std::ifstream &archivo);
 
    // Archivos TEXTO de SALIDA
-   bool AbrirArchivoSalida(std::ofstream &archivo, char nomb_arch[128]);
+   bool AbrirArchivoSalida(std::ofstream &archivo, char nomb_arch[120]);
+   void RegresarPrimeraLineaOut(std::ofstream &archivo);
    void GrabarLineaArchivo(std::ofstream &archivo, string linea);
    void GrabarDatoCharArchivo(std::ofstream &archivo, char caracter);
    void GrabarDatoNroArchivo(std::ofstream &archivo, long nro);

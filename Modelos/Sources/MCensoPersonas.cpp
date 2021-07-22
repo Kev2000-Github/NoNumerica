@@ -17,3 +17,7 @@ bool MCensoPersonas::removerPrimerPersona(MPersona &persona)
 {
 	return personas.EliComienzo(persona);
 }
+
+bool MCensoPersonas::esVacia(){
+	return personas.Vacia();
+}
