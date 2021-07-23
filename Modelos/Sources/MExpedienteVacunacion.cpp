@@ -59,3 +59,11 @@ Date MExpedienteVacunacion::getSigFechaEstipulada()
 	DosisTomadas.Insertar(d);
 	return newD;
 }
+
+bool MExpedienteVacunacion::removerTopeDosis(Date &fecha){
+	return DosisTomadas.Remover(fecha);
+}
+
+int MExpedienteVacunacion::contarTotalDosis(){
+	return DosisTomadas.Contar();
+}

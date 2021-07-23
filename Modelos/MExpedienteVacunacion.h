@@ -31,7 +31,10 @@ public:
 	string getCodCentinela();
 
 	bool AgregarNuevaDosis(Date DosisTomada);
+    bool removerTopeDosis(Date &fecha);
 	Date getSigFechaEstipulada();
+	int contarTotalDosis();
+
 };
 
 #endif /* MEXPEDIENTEVACUNACION_H_ */

@@ -28,6 +28,7 @@ private:
 public:
 	Controlador();
 	void cargarDatos();
+	void guardarDatos();
 	void recibirVacunas();
 	void agregarMunicipio();
 	void agregarCentinela();

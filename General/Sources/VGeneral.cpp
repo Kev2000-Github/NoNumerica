@@ -291,6 +291,11 @@ void VGeneral::RegresarPrimeraLinea(std::ifstream &archivo){
 	archivo.clear();
 	archivo.seekg(0);
 }
+// Regresa a la primera linea del archivo
+void VGeneral::RegresarPrimeraLineaOut(std::ofstream &archivo){
+	archivo.clear();
+	archivo.seekp(0);
+}
 // Lee un dato char  del archivo
 char VGeneral :: LeerDatoCharArchivo(std::ifstream &archivo)
 {
@@ -332,7 +337,7 @@ void VGeneral :: CerrarArchivoEntrada (std::ifstream &archivo)
 // ****************METODOS PARA TRABAJAR CON ARCHIVOS TEXTO DE SALIDA********************
 //---------------------------------------------------------------------------------------
 // Permite abrir un archivo de salida
-bool VGeneral :: AbrirArchivoSalida (std::ofstream &archivo, char nomb_arch [128])
+bool VGeneral :: AbrirArchivoSalida (std::ofstream &archivo, char nomb_arch [120])
 {
    archivo.open (nomb_arch, ios::out);
    return archivo.is_open();
