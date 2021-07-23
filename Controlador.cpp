@@ -549,7 +549,7 @@ void Controlador::menuEliminar(){
 		vGeneral.Limpiar();
 		switch (rpta)
 		{
-		case 1:
+		case 1: eliminarMunicipio();
 			break;
 		case 2:
 			break;
@@ -569,6 +569,98 @@ void Controlador::menuEliminar(){
 		}
 	}
 }
+void Controlador::eliminarMunicipio()
+{
+	MMunicipio municipio;
+	IMunicipio Imunicipio;
+    MCentinela centinela;
+    ICentinela Icentinela;
+    MCubiculo cubiculo;
+    ICubiculo Icubiculo;
+    string paciente="";
+
+    vGeneral.Limpiar();
+    Imunicipio.ImprimirListaMunicipio(estado);
+    string municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+    municipio.setCodigo(municipioCodigo);
+
+    while (!estado.removerMunicipio(municipioCodigo, municipio)){
+    	vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe");
+    	vGeneral.Pausa();
+    	vGeneral.Limpiar();
+
+    	Imunicipio.ImprimirListaMunicipio(estado);
+    	municipioCodigo = vGeneral.LeerString("Ingrese el codigo del Municipio: ");
+    };
+
+    if(municipio.esVacio()){
+    	estado.removerMunicipio(municipioCodigo, municipio);//posiblemente borrado
+
+    	vGeneral.ImprimirMensaje("Municipio eliminado exitosamente");
+    	vGeneral.ImprimirLineasBlanco(1);
+    	vGeneral.Pausa();
+    	vGeneral.Limpiar();
+    }
+    else{
+
+        for (int i=0; i<municipio.totalCentinelas(); i++){
+        	if(centinela.esVacia()){
+        		municipio.removerPrimerCentinela(centinela);
+
+        		vGeneral.ImprimirMensaje("Centinela eliminado exitosamente");
+        		vGeneral.ImprimirLineasBlanco(1);
+        		vGeneral.Pausa();
+        		vGeneral.Limpiar();
+
+        	}
+            else{
+            	for (int i=0; i<centinela.totalCubiculos(); i++){
+            		if(cubiculo.esVacia()){
+            			centinela.removerPrimerCubiculo(cubiculo);
+
+            			vGeneral.ImprimirMensaje("Cubiculo eliminado exitosamente");
+            			vGeneral.ImprimirLineasBlanco(1);
+            			vGeneral.Pausa();
+            			vGeneral.Limpiar();
+
+            		}
+
+            		else{
+
+            			for(int i=0; i< cubiculo.total(); i++){
+            				cubiculo.removerPrimerPaciente(paciente); //==========> Buscar la cedula?
+
+            			}
+            			centinela.removerPrimerCubiculo(cubiculo);
+            			vGeneral.ImprimirMensaje("Pacientes eliminado exitosamente");
+            			vGeneral.ImprimirLineasBlanco(1);
+            			vGeneral.Pausa();
+            			vGeneral.Limpiar();
+
+            		}//else cubiculo
+            	}//for cubiculo
+            }//else centinela
+        	municipio.removerPrimerCentinela(centinela);
+        	vGeneral.ImprimirMensaje("2Centinela eliminado exitosamente");
+        	vGeneral.ImprimirLineasBlanco(1);
+        	vGeneral.Pausa();
+        	vGeneral.Limpiar();
+        }//for centinela
+        estado.removerMunicipio(municipioCodigo, municipio);
+
+        vGeneral.ImprimirMensaje("2Municipio eliminado exitosamente");
+        vGeneral.ImprimirLineasBlanco(1);
+        vGeneral.Pausa();
+        vGeneral.Limpiar();
+        Icubiculo.reportarCedulasDelaCola(cubiculo);
+        vGeneral.ImprimirLineasBlanco(1);
+        Icubiculo.ImprimirListaCubiculo(centinela);
+        vGeneral.ImprimirLineasBlanco(1);
+        Icentinela.ImprimirListaCentinela(municipio);
+        vGeneral.ImprimirLineasBlanco(1);
+        Imunicipio.ImprimirListaMunicipio(estado);
+    }//else municipio
+}//final metodo
 
 void Controlador::menuModificar(){
 	/**

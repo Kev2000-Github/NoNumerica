@@ -50,6 +50,7 @@ public:
 	void SacarPacienteDeCola();
 	void procesarPaciente();
 	void modificarMunicipio();
+	void eliminarMunicipio();
 
 };
 
