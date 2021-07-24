@@ -11,6 +11,23 @@ bool MCensoPersonas::agregarPersona(MPersona &persona)
 
 bool MCensoPersonas::removerPersona(string cedula, MPersona &persona)
 {
+	Lista<MPersona> auxPersonas;
+			MPersona personaActual;
+			bool encontrado = false;
+			while(!personas.Vacia()){
+				personas.EliComienzo(personaActual);
+					if(personaActual.getcedula() == cedula){
+						persona = personaActual;
+						encontrado = true;
+						break;
+					}
+					auxPersonas.InsComienzo(personaActual);
+				}
+				while(!auxPersonas.Vacia()){
+					auxPersonas.EliComienzo(personaActual);
+					personas.InsComienzo(personaActual);
+				}
+				return encontrado;
 }
 
 bool MCensoPersonas::removerPrimerPersona(MPersona &persona)

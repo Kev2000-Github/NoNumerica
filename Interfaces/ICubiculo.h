@@ -10,6 +10,8 @@
 #include "../Modelos/MCubiculo.h"
 #include "../Modelos/MCentinela.h"
 #include "../General/VGeneral.h"
+#include "../Modelos/MCensoPersonas.h"
+#include "../Modelos/MListaExpediente.h"
 
 class ICubiculo {
 public:
@@ -17,7 +19,9 @@ public:
 	void reportarCedula(MCubiculo colacubiculo);
 	void ImprimirListaCubiculo(MCentinela &centinela);
 	void ReportarCubiculo(MCentinela &centinela);
-	void reportarCedulasDelaCola(MCubiculo &cubiculo);
+	void reportarPersonasDelaCola(MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
+	void reportarPersonas1Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
+	void reportarPersonas2Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
 };
 
 #endif /* ICUBICULO_H_ */

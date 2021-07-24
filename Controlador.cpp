@@ -554,6 +554,7 @@ void Controlador::menuEliminar(){
 		case 2:
 			break;
 		case 3:
+			eliminarCubiculo();
 			break;
 		case 4:
 			break;
@@ -1000,15 +1001,75 @@ void Controlador::consultarColas()
 
 	vGeneral.ImprimirLineasBlanco(1);
 	vgeneral.Limpiar();
-	vGeneral.ImprimirString("-------CUBICULO: ", cubiculo.getCodigo());
-	Icubiculo.reportarCedulasDelaCola(cubiculo);
+
+	vGeneral.ImprimirLineasBlanco(1);
+		int respuesta;
+			while (respuesta != 4)
+			{
+				vGeneral.ImprimirLineasBlanco(1);
+				vGeneral.ImprimirString("-------CUBICULO: ", cubiculo.getCodigo());
+				vGeneral.ImprimirLineasBlanco(2);
+				vGeneral.ImprimirEncabezado("Menu de Consulta en la cola",
+											"___________________________");
+				vGeneral.ImprimirMensaje("1) Pacientes con 1 dosis");
+				vGeneral.ImprimirLineasBlanco(1);
+				vGeneral.ImprimirMensaje("2) Pacientes con 2 dosis");
+				vGeneral.ImprimirLineasBlanco(1);
+				vGeneral.ImprimirMensaje("3) Totalidad de Pacientes");
+				vGeneral.ImprimirLineasBlanco(1);
+				vGeneral.ImprimirMensaje("4)  Salir");
+				vGeneral.ImprimirLineasBlanco(1);
+
+				respuesta = vGeneral.LeerNro("Respuesta: ");
+				vGeneral.Limpiar();
+				switch (respuesta)
+				{
+				case 1:
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.ImprimirString("-------CUBICULO: ", cubiculo.getCodigo());
+					vGeneral.ImprimirLineasBlanco(1);
+					Icubiculo.reportarPersonas1Dosis(listaExpedientes,listaPersonas,cubiculo);
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
+					break;
+				case 2:
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.ImprimirString("-------CUBICULO: ", cubiculo.getCodigo());
+					vGeneral.ImprimirLineasBlanco(1);
+					Icubiculo.reportarPersonas2Dosis(listaExpedientes,listaPersonas,cubiculo);
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
+					break;
+				case 3:
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.ImprimirString("-------CUBICULO: ", cubiculo.getCodigo());
+					vGeneral.ImprimirLineasBlanco(1);
+					Icubiculo.reportarPersonasDelaCola(listaPersonas,cubiculo);
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
+
+					break;
+				case 4:
+					centinela.agregarCubiculo(cubiculo);
+					municipio.agregarCentinela(centinela);
+					estado.agregarMunicipio(municipio);
+					return;
+
+				default:
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
+					break;
+				}
+			}
+
 	vGeneral.ImprimirLineasBlanco(1);
 	vGeneral.Pausa();
 	vGeneral.Limpiar();
-
-	centinela.agregarCubiculo(cubiculo);
-	municipio.agregarCentinela(centinela);
-	estado.agregarMunicipio(municipio);
 }
 
 void Controlador::consultarVacunas()
@@ -1238,7 +1299,7 @@ void Controlador::SacarPacienteDeCola()
 
 	vgeneral.Limpiar();
 	vGeneral.ImprimirString("-------CUBICULO: ", cubiculo.getCodigo());
-	Icubiculo.reportarCedulasDelaCola(cubiculo);
+	Icubiculo.reportarPersonasDelaCola(listaPersonas,cubiculo);
 	string cedulaPaciente = vgeneral.LeerString("\n Ingrese la cedula a eliminar: ");
 
 	if (cubiculo.removerPaciente(cedulaPaciente))
@@ -1248,7 +1309,6 @@ void Controlador::SacarPacienteDeCola()
 	}
 	else
 	{
-		cubiculo.agregarPaciente(cedulaPaciente);
 		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirMensaje("El Paciente no pudo ser sacado \n");
 	}
@@ -1321,4 +1381,97 @@ void Controlador::procesarPaciente()
 	 * ------------------
 	 *
 	 */
+}
+
+
+void Controlador::eliminarCubiculo(){
+	VGeneral vgeneral;
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo;
+	IMunicipio Imunicipio;
+	ICentinela Icentinela;
+	ICubiculo Icubiculo;
+
+	vgeneral.Limpiar();
+	vGeneral.ImprimirMensaje("==========   ELIMINAR CUBICULO   =========");
+	vGeneral.ImprimirLineasBlanco(2);
+	Imunicipio.ImprimirListaMunicipio(estado);
+	string municipioCodigo = vgeneral.LeerString("\n Ingrese el codigo del municipio: ");
+
+	while (!estado.removerMunicipio(municipioCodigo, municipio))
+	{
+		vgeneral.ImprimirMensaje("Error: El municipio solicitado no existe \n\n");
+		vgeneral.Pausa();
+		vgeneral.Limpiar();
+
+		Imunicipio.ImprimirListaMunicipio(estado);
+		municipioCodigo = vgeneral.LeerString("\n Ingrese el codigo del municipio: ");
+	};
+
+	vgeneral.Limpiar();
+	vGeneral.ImprimirLineasBlanco(1);
+	vGeneral.ImprimirString("------MUNICIPIO: ", municipio.getNombre());
+	vGeneral.ImprimirLineasBlanco(1);
+	Icentinela.ImprimirListaCentinela(municipio);
+	string centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela: ");
+
+	while (!municipio.removerCentinela(centinelaCodigo, centinela))
+	{
+		vgeneral.ImprimirMensaje("Error: El centinela solicitado no existe \n\n");
+		vgeneral.Pausa();
+		vgeneral.Limpiar();
+
+		Icentinela.ImprimirListaCentinela(municipio);
+		centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela: ");
+	};
+
+	vgeneral.Limpiar();
+	vGeneral.ImprimirLineasBlanco(1);
+	vGeneral.ImprimirString("-------CENTINELA: ", centinela.getCodigo());
+	vGeneral.ImprimirLineasBlanco(1);
+	Icubiculo.ImprimirListaCubiculo(centinela);
+
+	if (centinela.totalCubiculos()<=3)
+	{
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirMensaje("Error: Este centinela tiene la cantidad minima de cubiculos \nen el, no puedes eliminar ningun cubiculo \n");
+		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	else
+ {
+	string cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo a Eliminar: ");
+
+	while (!centinela.removerCubiculo(cubiculoCodigo, cubiculo))
+	{
+		vgeneral.ImprimirMensaje("Error: El cubiculo solicitado no existe \n\n");
+		vgeneral.Pausa();
+		vgeneral.Limpiar();
+
+		Icubiculo.ImprimirListaCubiculo(centinela);
+		string cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo a Eliminar: ");
+	}
+
+	if (!cubiculo.esVacia())
+		{
+			vGeneral.ImprimirMensaje("Error: El cubiculo no puede ser eliminado por tener pacientes en la cola \n");
+			centinela.agregarCubiculo(cubiculo);
+		}
+		else
+		{
+			vGeneral.ImprimirMensaje("Cubiculo eliminado satisfactoriamente \n");
+         }
+
+ }
+
+
+
+	municipio.agregarCentinela(centinela);
+	estado.agregarMunicipio(municipio);
+
+	vGeneral.ImprimirLineasBlanco(1);
+	vGeneral.Pausa();
+	vGeneral.Limpiar();
 }

@@ -33,6 +33,8 @@ public:
 	void agregarMunicipio();
 	void agregarCentinela();
 
+	void eliminarCubiculo();
+
 	void procesar();
 	void procesar2();
 	void procesarAdmin();

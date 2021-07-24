@@ -68,21 +68,119 @@ void ICubiculo::ReportarCubiculo(MCentinela &centinela){
     vg.Limpiar();
 }
 
-void ICubiculo::reportarCedulasDelaCola(MCubiculo &cubiculo){
-  	Cola<string> cedulaPaciente;
-  	string cedulaActual;
+void ICubiculo::reportarPersonasDelaCola(MCensoPersonas &listaPersonas,MCubiculo &cubiculo){
+  	Lista<MPersona> auxpersonas;
+	Cola<string> cedulaPaciente;
+
+    string cedulaActual;
+    MPersona personaActual;
+
   	VGeneral vg;
   		vg.ImprimirMensaje("\n Lista de Pacietes en Cola:\n");
   		vg.ImprimirLineasBlanco(1);
-  		while(!cubiculo.esVacia()) {
+  		while(!cubiculo.esVacia() and !listaPersonas.esVacia()) {
   			    	cubiculo.removerPrimerPaciente(cedulaActual);
-  			    	vg.ImprimirString("Cedula: ",cedulaActual);
-  			    	vg.ImprimirLineasBlanco(1);
+  			    	listaPersonas.removerPersona(cedulaActual,personaActual);
+                    if(personaActual.getcedula()==cedulaActual){
+                    	cout<<"Paciete:"<<personaActual.getnombre()<<" "<<personaActual.getapellido()<<" "<<personaActual.getcedula();
+                    	vg.ImprimirLineasBlanco(1);
+                    }
+
   			        cedulaPaciente.Insertar(cedulaActual);
+  			        auxpersonas.InsComienzo(personaActual);
   			    }
-  			    while(!cedulaPaciente.Vacia()) {
+  			    while(!cedulaPaciente.Vacia() and !auxpersonas.Vacia()) {
   			    	cedulaPaciente.Remover(cedulaActual);
   			        cubiculo.agregarPaciente(cedulaActual);
+  			        auxpersonas.EliComienzo(personaActual);
+  			        listaPersonas.agregarPersona(personaActual);
+                   }
 
-    }
+
+
+}
+
+
+
+void ICubiculo::reportarPersonas1Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo){
+
+  	Lista<MPersona> auxPersonas;
+	Cola<string> cedulaPaciente;
+	Lista<MExpedienteVacunacion> auxExpedientes;
+
+    string cedulaActual;
+    MPersona personaActual;
+    MExpedienteVacunacion expActual;
+
+  	VGeneral vg;
+
+  		vg.ImprimirMensaje("\n Lista de Pacietes en Cola con 1 Dosis:\n");
+  		vg.ImprimirLineasBlanco(1);
+  		while(!cubiculo.esVacia() and !listaPersonas.esVacia() and !listaExpedientes.estaVacia()) {
+  			    	cubiculo.removerPrimerPaciente(cedulaActual);
+  			    	listaPersonas.removerPersona(cedulaActual,personaActual);
+  			    	listaExpedientes.removerExpediente(cedulaActual,expActual);
+                    if( expActual.getCedula()==cedulaActual and expActual.contarTotalDosis()==1){
+                    	cout<<"Paciete:"<<personaActual.getnombre()<<" "<<personaActual.getapellido()<<"- "<<cedulaActual;
+                    	vg.ImprimirLineasBlanco(1);
+                    }
+
+  			        cedulaPaciente.Insertar(cedulaActual);
+  			        auxPersonas.InsComienzo(personaActual);
+  			        auxExpedientes.InsComienzo(expActual);
+
+  			    }
+  			    while(!cedulaPaciente.Vacia() and !auxPersonas.Vacia()) {
+  			    	cedulaPaciente.Remover(cedulaActual);
+  			        cubiculo.agregarPaciente(cedulaActual);
+  			        auxPersonas.EliComienzo(personaActual);
+  			        listaPersonas.agregarPersona(personaActual);
+  			        auxExpedientes.EliComienzo(expActual);
+  			        listaExpedientes.agregarExpediente(expActual);
+
+                   }
+
+
+
+
+
+}
+
+void ICubiculo::reportarPersonas2Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo){
+
+  	Lista<MPersona> auxPersonas;
+	Cola<string> cedulaPaciente;
+	Lista<MExpedienteVacunacion> auxExpedientes;
+
+    string cedulaActual;
+    MPersona personaActual;
+    MExpedienteVacunacion expActual;
+
+  	VGeneral vg;
+
+  		vg.ImprimirMensaje("\n Lista de Pacietes en Cola con 2 Dosis:\n");
+  		vg.ImprimirLineasBlanco(1);
+  		while(!cubiculo.esVacia() and !listaPersonas.esVacia() and !listaExpedientes.estaVacia()) {
+  			    	cubiculo.removerPrimerPaciente(cedulaActual);
+  			    	listaPersonas.removerPersona(cedulaActual,personaActual);
+  			    	listaExpedientes.removerExpediente(cedulaActual,expActual);
+                    if( expActual.getCedula()==cedulaActual and expActual.contarTotalDosis()==2){
+                    	cout<<"Paciete:"<<personaActual.getnombre()<<" "<<personaActual.getapellido()<<"- "<<cedulaActual;
+                    	vg.ImprimirLineasBlanco(1);
+                    }
+
+  			        cedulaPaciente.Insertar(cedulaActual);
+  			        auxPersonas.InsComienzo(personaActual);
+  			        auxExpedientes.InsComienzo(expActual);
+
+  			    }
+  			    while(!cedulaPaciente.Vacia() and !auxPersonas.Vacia()) {
+  			    	cedulaPaciente.Remover(cedulaActual);
+  			        cubiculo.agregarPaciente(cedulaActual);
+  			        auxPersonas.EliComienzo(personaActual);
+  			        listaPersonas.agregarPersona(personaActual);
+  			        auxExpedientes.EliComienzo(expActual);
+  			        listaExpedientes.agregarExpediente(expActual);
+
+                   }
 }

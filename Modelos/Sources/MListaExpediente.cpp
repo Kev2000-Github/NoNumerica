@@ -42,3 +42,9 @@ bool MListaExpediente::removerPrimerExpediente(MExpedienteVacunacion &expediente
 {
 	return expedientes.EliComienzo(expediente);
 }
+
+bool MListaExpediente::estaVacia()
+{
+	return expedientes.Vacia();
+}
+
