@@ -7,6 +7,7 @@
 
 #ifndef CONTROLADOR_H_
 #define CONTROLADOR_H_
+#include <climits>
 #include "Modelos/MListaExpediente.h"
 #include "Modelos/MCensoPersonas.h"
 #include "Modelos/MEstado.h"
@@ -15,6 +16,7 @@
 #include "Interfaces/IMunicipio.h"
 #include "Interfaces/ICubiculo.h"
 #include "Interfaces/ICentinela.h"
+#include "Interfaces/IAlmacen.h"
 
 class Controlador {
 private:
@@ -26,12 +28,19 @@ private:
 public:
 	Controlador();
 	void cargarDatos();
+	void guardarDatos();
 	void recibirVacunas();
 	void agregarMunicipio();
 	void agregarCentinela();
 
+	void eliminarCubiculo();
+
 	void procesar();
 	void procesar2();
+	void procesarAdmin();
+	void menuEliminar();
+	void menuAgregar();
+	void menuModificar();
 
 	void consultarPersona();
 	void consultarMunicipios();
@@ -43,7 +52,6 @@ public:
 	void SacarPacienteDeCola();
 	void procesarPaciente();
 
-	void ModifiarCentinela();
 	void EliminarCentinela();
 
 };

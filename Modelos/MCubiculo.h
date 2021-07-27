@@ -22,6 +22,7 @@ public:
 
 	bool agregarPaciente(string cedula);
 	bool removerPrimerPaciente(string &cedula);
+	bool removerPaciente(string &cedula);
 	bool esVacia();
 	int total();
 };

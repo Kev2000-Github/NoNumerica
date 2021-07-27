@@ -12,17 +12,18 @@
 #include "MPersona.h"
 #include "MExpedienteVacunacion.h"
 
-class MListaExpediente {
+class MListaExpediente
+{
 private:
-  Lista <MExpedienteVacunacion> expedientes;
+  Lista<MExpedienteVacunacion> expedientes;
 
 public:
   MListaExpediente();
 
   bool agregarExpediente(MExpedienteVacunacion &expediente);
   bool removerExpediente(string cedula, MExpedienteVacunacion &Expediente);
-  bool removerPrimerExpediente (MExpedienteVacunacion &Expediente);
-
+  bool removerPrimerExpediente(MExpedienteVacunacion &Expediente);
+  bool estaVacia();
 };
 
 #endif

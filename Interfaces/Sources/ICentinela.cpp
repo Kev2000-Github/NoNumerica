@@ -5,7 +5,7 @@ ICentinela::ICentinela() {
 };
 
 void ICentinela::reporteCubiculos(MCentinela &centinela) {
-    Lista <MCubiculo> auxCubiculos;
+    Lista<MCubiculo> auxCubiculos;
     MCubiculo cubiculoActual;
     VGeneral vg;
 
@@ -27,6 +27,7 @@ void ICentinela::ImprimirListaCentinela(MMunicipio &municipio){
     vg.ImprimirMensaje("\n Lista de Centinelas:\n");
     while(!municipio.esVacio()) {
         municipio.removerPrimerCentinela(centinelaActual);
+
         vg.ImprimirString3("Centinela Nro",i++,": "+centinelaActual.getCodigo());
         auxCentinela.InsComienzo(centinelaActual);
     }
