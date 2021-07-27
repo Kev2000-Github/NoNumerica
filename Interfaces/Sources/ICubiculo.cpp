@@ -65,5 +65,6 @@ void ICubiculo::ReportarCubiculo(MCentinela &centinela){
         centinela.agregarCubiculo(cubiculoActual);
     }
     vg.Pausa();
+    vg.Limpiar();
 }
 

@@ -16,7 +16,6 @@ int main(){
 	Controlador con;
 	con.cargarDatos();
 	con.procesar();
-	con.consultarCubiculos();
 	return 0;
 }
 

@@ -36,6 +36,8 @@ public:
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
 	bool usarVacunas(string marca);
 	bool esVacia();
+
+	int PersonasCentinela(MCentinela &centinela);
 };
 
 #endif /* MCENTINELA_H_ */

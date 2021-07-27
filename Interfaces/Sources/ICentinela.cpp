@@ -5,7 +5,7 @@ ICentinela::ICentinela() {
 };
 
 void ICentinela::reporteCubiculos(MCentinela &centinela) {
-    Lista<MCubiculo> auxCubiculos;
+    Lista <MCubiculo> auxCubiculos;
     MCubiculo cubiculoActual;
     VGeneral vg;
 

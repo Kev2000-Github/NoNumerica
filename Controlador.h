@@ -43,6 +43,9 @@ public:
 	void SacarPacienteDeCola();
 	void procesarPaciente();
 
+	void ModifiarCentinela();
+	void EliminarCentinela();
+
 };
 
 

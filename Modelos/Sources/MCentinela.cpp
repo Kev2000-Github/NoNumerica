@@ -157,3 +157,18 @@ bool MCentinela::aumentarVacunas(string marca, int cantidad){
 int MCentinela::totalCubiculos(){
 	return cubiculos.Contar();
 }
+int MCentinela::PersonasCentinela(MCentinela &centinela){
+	Lista<MCubiculo>auxCubiculo;
+	MCubiculo cubiculo;
+	int TotalPersonas=0;
+	while(!centinela.esVacia()){
+		centinela.removerPrimerCubiculo(cubiculo);
+		TotalPersonas += cubiculo.total();
+		auxCubiculo.InsComienzo(cubiculo);
+	}
+    while(!auxCubiculo.Vacia()) {
+    	auxCubiculo.EliComienzo(cubiculo);
+        centinela.agregarCubiculo(cubiculo);
+    }
+	return TotalPersonas;
+}
