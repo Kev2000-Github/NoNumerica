@@ -32,8 +32,10 @@ public:
 	void recibirVacunas();
 	void agregarMunicipio();
 	void agregarCentinela();
+	void agregarCubiculo();
 
 	void eliminarCubiculo();
+	void EliminarCentinela();
 
 	void procesar();
 	void procesar2();
