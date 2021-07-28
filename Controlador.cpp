@@ -877,13 +877,33 @@ void Controlador::agregarCentinela()
 		string centiCodigo = vGeneral.LeerString("Ingrese el codigo del Centinela: ");
 		centinela.setCodigo(centiCodigo);
 
-		if (!municipio.removerCentinela(centiCodigo, centinela))
+		while (municipio.removerCentinela(centiCodigo, centinela))
 		{
+			vGeneral.ImprimirMensaje("Error: La centinela ya existe \n\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			municipio.agregarCentinela(centinela);
+			Icentinela.ImprimirListaCentinela(municipio);
+			centiCodigo = vGeneral.LeerString("Ingrese el codigo de la centinela: ");
+			centinela.setCodigo(centiCodigo);
+		}
 
 			int numCubiculo = vGeneral.LeerNro("Ingrese el numero de Cubiculos que desea agregar en el Centinela: ");
-
 			MCubiculo cubiculo;
-			if(numCubiculo>=3){
+
+
+			while(numCubiculo<3){
+
+				vGeneral.ImprimirMensaje("Error: Se deben ingresar 3 cubiculos minimo \n\n");
+				vGeneral.Pausa();
+				vGeneral.Limpiar();
+				numCubiculo = vGeneral.LeerNro("Ingrese el numero de Cubiculos que desea agregar en el Centinela: ");
+			}
+
+			for (int j = 0; j < numCubiculo; ++j)
+			{
+			centinela.removerPrimerCubiculo(cubiculo);
+			}
 
 			for (int j = 0; j < numCubiculo; ++j)
 			{
@@ -891,52 +911,51 @@ void Controlador::agregarCentinela()
 				string cubiCodigo = vGeneral.LeerString("Ingrese el codigo del Cubiculo: ");
 				cubiculo.setCodigo(cubiCodigo);
 
-				if (centinela.removerCubiculo(cubiCodigo, cubiculo))
-				{
+
+				while(centinela.removerCubiculo(cubiCodigo,cubiculo)){
 					vGeneral.ImprimirMensaje("Error: El cubiculo ya existe \n\n");
 					vGeneral.Pausa();
 					vGeneral.Limpiar();
 					centinela.agregarCubiculo(cubiculo);
+					cubiCodigo = vGeneral.LeerString("Ingrese el codigo del Cubiculo: ");
+					cubiculo.setCodigo(cubiCodigo);
+
 				}
-				else if (centinela.agregarCubiculo(cubiculo))
+				/*if (centinela.removerCubiculo(cubiCodigo, cubiculo))
+				{
+					vGeneral.ImprimirMensaje("Error: El cubiculo ya existe \n\n");
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
+
+					centinela.agregarCubiculo(cubiculo);
+				}
+				else*/
+				if (centinela.agregarCubiculo(cubiculo))
 				{
 					vGeneral.ImprimirMensaje("Cubiculo agregado exitosamente \n\n");
 
 				} //final del else if de cubiculo
-				else
+				/*else
 				{
 					vGeneral.ImprimirMensaje("Error: El cubiculo no pudo ser agregado \n\n");
-				} //final else cubiculo
-			}//FINAL FOR CUBICULO
-			}//final if
-			else{
-				vGeneral.ImprimirMensaje("Error: Se deben ingresar 3 cubiculos minimo \n\n");
-
-			}//FINAL ELSE CUBICULO
-
+				*/}
 			if (municipio.agregarCentinela(centinela))
-			{
-				vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
-				vGeneral.ImprimirLineasBlanco(1);
-				vGeneral.Pausa();
-				vGeneral.Limpiar();
+						{
+							vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
+							vGeneral.ImprimirLineasBlanco(1);
+							vGeneral.Pausa();
+							vGeneral.Limpiar();
+						}//final else cubiculo
 			}
-			for (int j = 0; j < numCubiculo; ++j)
-			{
-				centinela.removerPrimerCubiculo(cubiculo);
-			}
-		}
-		else
-		{
-			municipio.agregarCentinela(centinela);
-			vGeneral.ImprimirMensaje("Error: El centinela no pudo ser agregado \n\n");
-			vGeneral.Pausa();
-			vGeneral.Limpiar();
-		}
+
+
+				//FINAL FOR CUBICULO
+			//final if
+				//FINAL ELSE CUBICULO
 		//Agrega Cubiculo
 		//final de for de cubiculo
 
-	} //final del else if de centinela
+	//final del else if de centinela
 	  //final else centinela
 
 	estado.agregarMunicipio(municipio);
