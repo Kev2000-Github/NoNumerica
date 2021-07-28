@@ -28,3 +28,4 @@ public:
 };
 
 #endif /* MCUBICULO_H_ */
+
