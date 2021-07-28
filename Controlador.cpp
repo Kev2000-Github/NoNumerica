@@ -388,20 +388,6 @@ void Controlador::procesar()
 
 void Controlador::procesar2()
 {
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Consultar Persona
-	 *  2) Consultar Municipios
-	 *  3) Consultar Centinelas
-	 *  4) Consultar Cubiculos
-	 *  5) Consultar Vacunas en Almacen
-	 *  6) Incluir Paciente a una Cola
-	 *  7) Sacar Paciente de la Cola (HELP ME)??
-	 *  8) Procesar Paciente
-	 *  9) Salir
-	 */
-
 	int rpta;
 	while (rpta != 10)
 	{
@@ -469,15 +455,6 @@ void Controlador::procesar2()
 }
 
 void Controlador::procesarAdmin(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Modificar
-	 *  2) Eliminar
-	 *  3) Agregar
-	 *  4) Salir
-	 */
-
 	int rpta;
 	while (rpta != 4)
 	{
@@ -516,19 +493,8 @@ void Controlador::procesarAdmin(){
 	}
 }
 void Controlador::menuEliminar(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Eliminar Municipio
-	 *  2) Eliminar Centinela
-	 *  3) Eliminar Cubiculo
-	 *  4) Eliminar Persona
-	 *  5) Eliminar Vacuna
-	 *  6) Salir
-	 */
-
 	int rpta;
-	while (rpta != 6)
+	while (rpta != 5)
 	{
 		vGeneral.ImprimirEncabezado("M E N U  E L I M I N A R",
 									"_______  _______________");
@@ -538,11 +504,9 @@ void Controlador::menuEliminar(){
 		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirMensaje("3) Eliminar Cubiculo");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("4) Eliminar Persona");
+		vGeneral.ImprimirMensaje("4) Eliminar Vacuna");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("5) Eliminar Vacuna");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("6) Salir");
+		vGeneral.ImprimirMensaje("5) Salir");
 		vGeneral.ImprimirLineasBlanco(1);
 
 		rpta = vGeneral.LeerNro("Respuesta: ");
@@ -560,8 +524,6 @@ void Controlador::menuEliminar(){
 		case 4:
 			break;
 		case 5:
-			break;
-		case 6:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
@@ -573,35 +535,20 @@ void Controlador::menuEliminar(){
 }
 
 void Controlador::menuModificar(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Modificar Municipio
-	 *  2) Modificar Centinela
-	 *  3) Modificar Cubiculo
-	 *  4) Modificar Persona
-	 *  5) Modificar Expediente
-	 *  6) Modificar Vacuna
-	 *  7) Salir
-	 */
 	int rpta;
-	while (rpta != 7)
+	while (rpta != 5)
 	{
 		vGeneral.ImprimirEncabezado("M E N U  M O D I F I C A R",
 									"_______  _________________");
 		vGeneral.ImprimirMensaje("1) Modificar Municipio");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("2) Modificar Centinela");
+		vGeneral.ImprimirMensaje("2) Modificar Persona");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("3) Modificar Cubiculo");
+		vGeneral.ImprimirMensaje("3) Modificar Expediente");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("4) Modificar Persona");
+		vGeneral.ImprimirMensaje("4) Modificar Vacuna");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("5) Modificar Expediente");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("6) Modificar Vacuna");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("7) Salir");
+		vGeneral.ImprimirMensaje("5) Salir");
 		vGeneral.ImprimirLineasBlanco(1);
 
 		rpta = vGeneral.LeerNro("Respuesta: ");
@@ -617,10 +564,6 @@ void Controlador::menuModificar(){
 		case 4:
 			break;
 		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
@@ -632,15 +575,6 @@ void Controlador::menuModificar(){
 }
 
 void Controlador::menuAgregar(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Agregar Municipio
-	 *  2) Agregar Centinela
-	 *  3) Agregar Cubiculo
-	 *  4) Agregar Persona
-	 *  5) Salir
-	 */
 	int rpta;
 	while (rpta != 5)
 	{
@@ -652,9 +586,7 @@ void Controlador::menuAgregar(){
 		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirMensaje("3) Agregar Cubiculo");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("4) Agregar Persona");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("5) Salir");
+		vGeneral.ImprimirMensaje("4) Salir");
 		vGeneral.ImprimirLineasBlanco(1);
 
 		rpta = vGeneral.LeerNro("Respuesta: ");
@@ -671,8 +603,6 @@ void Controlador::menuAgregar(){
 			agregarCubiculo();
 			break;
 		case 4:
-			break;
-		case 5:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
@@ -876,18 +806,6 @@ void Controlador::consultarMunicipios()
 
 void Controlador::consultarCentinelas()
 {
-	/**
-	 * Municipio: //Ingresar//
-	 *
-	 * Reportar Informacion de los Centinelas
-	 * ----------------------------------
-	 * Municipio [123]
-	 * Centinela<abc>: (10) //Sumatoria de todas las cedulas de todas las colas
-	 * Centinela<cdz>: (30) //Sumatoria de todas las cedulas de todas las colas
-	 * Centinela<cdz>: (50) //Sumatoria de todas las cedulas de todas las colas
-	 * ----------------------------------
-	 * ...
-	 */
 	VGeneral vgeneral;
 	MMunicipio municipio;
 	MCentinela centinela;
@@ -960,34 +878,10 @@ void Controlador::consultarCubiculos()
 
 	municipio.agregarCentinela(centinela);
 	estado.agregarMunicipio(municipio);
-
-	/**
-	 * Reportar Informacion de los Cubiculos
-	 * ----------------------------------
-	 * Centinela [abc]
-	 * Cubiculo<111>: (10) //Sumatoria de todas las cedulas de todas las colas
-	 * Cubiculo<222>: (30) //Sumatoria de todas las cedulas de todas las colas
-	 * Cubiculo<333>: (50) //Sumatoria de todas las cedulas de todas las colas
-	 * ----------------------------------
-	 * ...
-	 */
 }
 
 void Controlador::consultarColas()
 {
-
-	/**
-	 * Municipio: //ingresar//
-	 * Centinela: //ingresar//
-	 * Cubiculo: //ingresar//
-	 *
-	 * Reportar Informacion de la cola
-	 * ----------------------------------
-	 * Cubiculo [111]
-	 * Kevin Cheng 27.317.962
-	 * Don Juancho 25.317.962
-	 * ...
-	 */
 	VGeneral vgeneral;
 	MMunicipio municipio;
 	MCentinela centinela;
@@ -1121,17 +1015,6 @@ void Controlador::consultarColas()
 
 void Controlador::consultarVacunas()
 {
-	/**
-	 * Municipio: //ingresar//
-	 * Centinelas: //ingresar//
-	 *
-	 * Reportar las Vacunas Existentes
-	 * ----------------------------------
-	 * Cubiculo [111]
-	 * Kevin Cheng 27.317.962
-	 * Don Juancho 25.317.962
-	 * ...
-	 */
 	IAlmacen ialmacen;
 	IMunicipio imunicipio;
 	ICentinela icentinela;
@@ -1279,13 +1162,6 @@ void Controlador::incluirPacienteACola()
 
 void Controlador::SacarPacienteDeCola()
 {
-	/**
-	 * Municipio: //ingresar//
-	 * Centinelas: //ingresar//
-	 * Cubiculo: //ingresar//
-	 *
-	 * Buscar cedula en la cola y sacarlo de ahi
-	 */
 	VGeneral vgeneral;
 	MMunicipio municipio;
 	MCentinela centinela;
