@@ -653,7 +653,7 @@ void Controlador::eliminarMunicipio()
         vGeneral.ImprimirLineasBlanco(1);
         vGeneral.Pausa();
         vGeneral.Limpiar();
-        Icubiculo.reportarCedulasDelaCola(cubiculo);
+       //cubiculo.reportarCedulasDelaCola(cubiculo);
         vGeneral.ImprimirLineasBlanco(1);
         Icubiculo.ImprimirListaCubiculo(centinela);
         vGeneral.ImprimirLineasBlanco(1);
@@ -865,6 +865,7 @@ void Controlador::agregarCentinela()
 			int numCubiculo = vGeneral.LeerNro("Ingrese el numero de Cubiculos que desea agregar en el Centinela: ");
 
 			MCubiculo cubiculo;
+			if(numCubiculo>=3){
 
 			for (int j = 0; j < numCubiculo; ++j)
 			{
@@ -888,7 +889,12 @@ void Controlador::agregarCentinela()
 				{
 					vGeneral.ImprimirMensaje("Error: El cubiculo no pudo ser agregado \n\n");
 				} //final else cubiculo
-			}
+			}//FINAL FOR CUBICULO
+			}//final if
+			else{
+				vGeneral.ImprimirMensaje("Error: Se deben ingresar 3 cubiculos minimo \n\n");
+
+			}//FINAL ELSE CUBICULO
 
 			if (municipio.agregarCentinela(centinela))
 			{
