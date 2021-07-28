@@ -1026,7 +1026,7 @@ void Controlador::consultarCentinelas()
 
 	vgeneral.Limpiar();
 
-	Icentinela.ImprimirListaCentinela(municipio);
+	Icentinela.ImprimirListaCentinelaConsultar(municipio);
 	vgeneral.Pausa();
 	vgeneral.Limpiar();
 

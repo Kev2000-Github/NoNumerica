@@ -37,3 +37,20 @@ void ICentinela::ImprimirListaCentinela(MMunicipio &municipio){
     }
 
 }
+
+void ICentinela::ImprimirListaCentinelaConsultar(MMunicipio &municipio){
+		Lista<MCentinela> auxCentinela;
+	    MCentinela centinelaActual;
+	    VGeneral vg;
+	    int i=1;
+	    vg.ImprimirMensaje("\n Lista de Centinelas:\n");
+	    while(!municipio.esVacio()) {
+	        municipio.removerPrimerCentinela(centinelaActual);
+	        vg.ImprimirString4("Centinela Nro ",i++,": Cod: "+centinelaActual.getCodigo()+ " Total:",centinelaActual.totalCubiculos());
+	        auxCentinela.InsComienzo(centinelaActual);
+	    }
+	    while(!auxCentinela.Vacia()) {
+	        auxCentinela.EliComienzo(centinelaActual);
+	        municipio.agregarCentinela(centinelaActual);
+	    }
+}
