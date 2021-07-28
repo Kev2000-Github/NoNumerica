@@ -921,24 +921,14 @@ void Controlador::agregarCentinela()
 					cubiculo.setCodigo(cubiCodigo);
 
 				}
-				/*if (centinela.removerCubiculo(cubiCodigo, cubiculo))
-				{
-					vGeneral.ImprimirMensaje("Error: El cubiculo ya existe \n\n");
-					vGeneral.Pausa();
-					vGeneral.Limpiar();
 
-					centinela.agregarCubiculo(cubiculo);
-				}
-				else*/
 				if (centinela.agregarCubiculo(cubiculo))
 				{
 					vGeneral.ImprimirMensaje("Cubiculo agregado exitosamente \n\n");
 
 				} //final del else if de cubiculo
-				/*else
-				{
-					vGeneral.ImprimirMensaje("Error: El cubiculo no pudo ser agregado \n\n");
-				*/}
+
+				}//final for cubiculo
 			if (municipio.agregarCentinela(centinela))
 						{
 							vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
@@ -946,17 +936,8 @@ void Controlador::agregarCentinela()
 							vGeneral.Pausa();
 							vGeneral.Limpiar();
 						}//final else cubiculo
-			}
+			}//final for centinela
 
-
-				//FINAL FOR CUBICULO
-			//final if
-				//FINAL ELSE CUBICULO
-		//Agrega Cubiculo
-		//final de for de cubiculo
-
-	//final del else if de centinela
-	  //final else centinela
 
 	estado.agregarMunicipio(municipio);
 	vGeneral.ImprimirLineasBlanco(1);
