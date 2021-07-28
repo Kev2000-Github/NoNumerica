@@ -24,6 +24,11 @@ private:
 	MListaExpediente listaExpedientes;
 	MCensoPersonas listaPersonas;
 	VGeneral vGeneral;
+	IEstado ie;
+	IMunicipio im;
+	ICubiculo ic;
+	ICentinela icen;
+	IPersona ip;
 	bool estanDatosCargados;
 public:
 	Controlador();
@@ -37,6 +42,7 @@ public:
 	void eliminarCubiculo();
 	void EliminarCentinela();
 
+    void buscarExpediente(string cedula,string &vacuna, int &cant, MExpedienteVacunacion me, MListaExpediente le);
 	void procesar();
 	void procesar2();
 	void procesarAdmin();

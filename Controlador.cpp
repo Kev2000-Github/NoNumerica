@@ -843,7 +843,28 @@ void Controlador::agregarCentinela()
 	 * 	Al terminar el proceso imprimir mensaje de creacion exitosa
 	 */
 }
+	void buscarExpediente(string cedula,string &vacuna, int &cant, MExpedienteVacunacion me, MListaExpediente le){
+le.removerExpediente(cedula,me);
+vacuna=me.contarTotalDosis();
+cant=me.getCantidadDosisTomadas();
 
+}
+void Controlador::consultarPersona(){
+ MPersona mp;
+ MExpedienteVacunacion me;
+ MListaExpediente le;
+ string cedula, vac, nombre, apellido;
+ int cant;
+ cedula=im.LeerString("Ingrese el numero de cedula de la persona");
+ if(listaPersonas.removerPersona(cedula,mp)== false){
+	 im.ImprimirMensaje("Error: La persona no se encuentra registrada");
+     im.Pausa();
+     im.Limpiar();
+ }else{
+le.removerExpediente(cedula,me);
+buscarExpediente(cedula,vac,cant,me,le);
+ip.ImprimirPersona(nombre,apellido,cedula,cant,vac);
+     }
 void Controlador::consultarPersona()
 {
 	/**
