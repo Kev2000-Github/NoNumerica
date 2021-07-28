@@ -6,21 +6,41 @@ IAlmacen::IAlmacen() {}
 
 void IAlmacen::ImprimirVacunas(MCentinela & centinela)
 {
-		Pila<MAlmacenVacuna> auxvacuna;
-		MAlmacenVacuna vacunaActual;
+		Pila<MAlmacenVacuna> auxvacuna, vacunasUnicas, vacunasUnicasAux;
+		MAlmacenVacuna vacunaActual, vacunaActualUnica;
 		VGeneral vg;
+		bool encontrado = false;
+	    while(!centinela.PVacia()) {
+	    	centinela.removerPrimeraVacuna(vacunaActual);
+	        auxvacuna.Insertar(vacunaActual);
+	    	while(!vacunasUnicas.Vacia())
+	    	{
+	    		vacunasUnicas.Remover(vacunaActualUnica);
+	    		vacunasUnicasAux.Insertar(vacunaActualUnica);
+	    		if(vacunaActualUnica.getMarca() == vacunaActual.getMarca())
+	    		{
+	    			encontrado = true;
+	    			break;
+	    		}
+	    	}
+		    while(!vacunasUnicasAux.Vacia()) {
+		    	vacunasUnicasAux.Remover(vacunaActualUnica);
+		    	vacunasUnicas.Insertar(vacunaActualUnica);
+		    }
+	    	if(!encontrado) vacunasUnicas.Insertar(vacunaActual);
+	    	encontrado = false;
+	    }
+	    while(!auxvacuna.Vacia()) {
+	        auxvacuna.Remover(vacunaActual);
+	        centinela.agregarVacuna(vacunaActual);
+	    }
+
 		int i=1;
 		vg.ImprimirMensaje("\n Lista de Vacunas:\n");
-		    while(!centinela.PVacia()) {
-		    	centinela.removerPrimeraVacuna(vacunaActual);
+		    while(!vacunasUnicas.Vacia()) {
+		    	vacunasUnicas.Remover(vacunaActual);
 		        vg.ImprimirString3("Marca  Nro",i++,": "+vacunaActual.getMarca());
-		        auxvacuna.Insertar(vacunaActual);
 		    }
-		    while(!auxvacuna.Vacia()) {
-		        auxvacuna.Remover(vacunaActual);
-		        centinela.agregarVacuna(vacunaActual);
-		    }
-
 	}
 
 void IAlmacen::ImprimirLotes(string marca,MCentinela & centinela)
