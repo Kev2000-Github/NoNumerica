@@ -204,14 +204,18 @@ void Controlador::guardarDatos()
 	 * Cubiculos.txt
 	 * ColasPacientes.txt
 	 */
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo, cubiculoAux;
 	MPersona persona;
 	MExpedienteVacunacion vacunaPersona;
 	Pila<Date> fechasAux;
 	Lista<MPersona> personasAux;
 	Date fecha;
+	string cedula;
 	ofstream archCensoPersonas;
-	string instructions = "Por favor, verifique que existe la carpeta /Datos/Salida \nen el directorio del ejecutable y dentro el txt correspondiente\n";
-	while (!vGeneral.AbrirArchivoSalida(archCensoPersonas, "CensoPersonas.txt"))
+	string instructions = "Por favor, verifique que existe la carpeta /Datos \nen el directorio del ejecutable y dentro el txt correspondiente\n";
+	while (!vGeneral.AbrirArchivoSalida(archCensoPersonas, "Datos/CensoPersonas.txt"))
 	{
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo CensoPersonas.txt\n" + instructions);
 		vGeneral.Pausa();
@@ -248,6 +252,102 @@ void Controlador::guardarDatos()
 	}
 	vGeneral.CerrarArchivoSalida(archCensoPersonas);
 	vGeneral.ImprimirMensaje("\n DATOS CensoPersonas.txt GUARDADOS EXITOSAMENTE");
+	vGeneral.Limpiar();
+
+	ofstream archMunicipios;
+	ofstream archCentinelas;
+	ofstream archVacunas;
+	ofstream archCubiculos;
+	ofstream archColaPacientes;
+
+	while (!vGeneral.AbrirArchivoSalida(archMunicipios, "Datos/Municipios.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS Municipios.txt...");
+
+	while (!vGeneral.AbrirArchivoSalida(archCentinelas, "Datos/Centinelas.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Centinelas.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS Centinelas.txt...");
+
+	while (!vGeneral.AbrirArchivoSalida(archCubiculos, "Datos/Cubiculos.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Cubiculos.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS Cubiculos.txt...");
+
+	while (!vGeneral.AbrirArchivoSalida(archColaPacientes, "Datos/ColasPacientes.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo ColasPacientes.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS ColasPacientes.txt...");
+
+	while (!estado.esVacio())
+	{
+		linea = "";
+		estado.removerPrimerMunicipio(municipio);
+		linea += municipio.getCodigo() + ",";
+		linea += municipio.getNombre();
+		if(!estado.esVacio()) linea += "\n";
+		archMunicipios << linea;
+
+		while (!municipio.esVacio())
+		{
+			linea = "";
+			municipio.removerPrimerCentinela(centinela);
+			linea += centinela.getCodigo() + ",";
+			linea += municipio.getCodigo();
+			if(!(estado.esVacio() && municipio.esVacio())) linea += "\n";
+			archCentinelas << linea;
+
+			while(!centinela.esVacia())
+			{
+				linea = "";
+				centinela.removerPrimerCubiculo(cubiculo);
+				linea += cubiculo.getCodigo() + ",";
+				linea += centinela.getCodigo();
+				if(!(estado.esVacio() && municipio.esVacio() && centinela.esVacia())) linea += "\n";
+				archCubiculos << linea;
+
+				while(!cubiculo.esVacia())
+				{
+					cubiculo.removerPrimerPaciente(cedula);
+					cubiculoAux.setCodigo(cubiculo.getCodigo());
+					cubiculoAux.agregarPaciente(cedula);
+				}
+				while(!cubiculoAux.esVacia())
+				{
+					linea = "";
+					cubiculoAux.removerPrimerPaciente(cedula);
+					linea += cedula + ",";
+					linea += cubiculoAux.getCodigo();
+					if(!(estado.esVacio() && municipio.esVacio() && centinela.esVacia() && cubiculoAux.esVacia())) linea += "\n";
+					archColaPacientes << linea;
+				}
+			}
+		}
+	}
+
+	vGeneral.CerrarArchivoSalida(archColaPacientes);
+	vGeneral.CerrarArchivoSalida(archCubiculos);
+	vGeneral.CerrarArchivoSalida(archCentinelas);
+	vGeneral.CerrarArchivoSalida(archMunicipios);
+
+	vGeneral.ImprimirMensaje("\n DATOS ColasPacientes.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS Cubiculos.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS VacunasEnExistencia.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
 	vGeneral.Limpiar();
 }
 
