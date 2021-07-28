@@ -36,6 +36,7 @@ public:
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
 	bool removerPrimeraVacuna(MAlmacenVacuna &vacunas);
 	bool usarVacunas(string marca);
+	int PersonasCentinela(MCentinela &centinela);
 	bool esVacia();
 	bool PVacia();
 };

@@ -204,14 +204,18 @@ void Controlador::guardarDatos()
 	 * Cubiculos.txt
 	 * ColasPacientes.txt
 	 */
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo, cubiculoAux;
 	MPersona persona;
 	MExpedienteVacunacion vacunaPersona;
 	Pila<Date> fechasAux;
 	Lista<MPersona> personasAux;
 	Date fecha;
+	string cedula;
 	ofstream archCensoPersonas;
-	string instructions = "Por favor, verifique que existe la carpeta /Datos/Salida \nen el directorio del ejecutable y dentro el txt correspondiente\n";
-	while (!vGeneral.AbrirArchivoSalida(archCensoPersonas, "CensoPersonas.txt"))
+	string instructions = "Por favor, verifique que existe la carpeta /Datos \nen el directorio del ejecutable y dentro el txt correspondiente\n";
+	while (!vGeneral.AbrirArchivoSalida(archCensoPersonas, "Datos/CensoPersonas.txt"))
 	{
 		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo CensoPersonas.txt\n" + instructions);
 		vGeneral.Pausa();
@@ -248,6 +252,102 @@ void Controlador::guardarDatos()
 	}
 	vGeneral.CerrarArchivoSalida(archCensoPersonas);
 	vGeneral.ImprimirMensaje("\n DATOS CensoPersonas.txt GUARDADOS EXITOSAMENTE");
+	vGeneral.Limpiar();
+
+	ofstream archMunicipios;
+	ofstream archCentinelas;
+	ofstream archVacunas;
+	ofstream archCubiculos;
+	ofstream archColaPacientes;
+
+	while (!vGeneral.AbrirArchivoSalida(archMunicipios, "Datos/Municipios.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Municipios.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS Municipios.txt...");
+
+	while (!vGeneral.AbrirArchivoSalida(archCentinelas, "Datos/Centinelas.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Centinelas.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS Centinelas.txt...");
+
+	while (!vGeneral.AbrirArchivoSalida(archCubiculos, "Datos/Cubiculos.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo Cubiculos.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS Cubiculos.txt...");
+
+	while (!vGeneral.AbrirArchivoSalida(archColaPacientes, "Datos/ColasPacientes.txt"))
+	{
+		vGeneral.ImprimirMensaje("\n ERROR! No existe el archivo ColasPacientes.txt\n" + instructions);
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	vGeneral.ImprimirMensaje("\n GUARDANDO DATOS ColasPacientes.txt...");
+
+	while (!estado.esVacio())
+	{
+		linea = "";
+		estado.removerPrimerMunicipio(municipio);
+		linea += municipio.getCodigo() + ",";
+		linea += municipio.getNombre();
+		if(!estado.esVacio()) linea += "\n";
+		archMunicipios << linea;
+
+		while (!municipio.esVacio())
+		{
+			linea = "";
+			municipio.removerPrimerCentinela(centinela);
+			linea += centinela.getCodigo() + ",";
+			linea += municipio.getCodigo();
+			if(!(estado.esVacio() && municipio.esVacio())) linea += "\n";
+			archCentinelas << linea;
+
+			while(!centinela.esVacia())
+			{
+				linea = "";
+				centinela.removerPrimerCubiculo(cubiculo);
+				linea += cubiculo.getCodigo() + ",";
+				linea += centinela.getCodigo();
+				if(!(estado.esVacio() && municipio.esVacio() && centinela.esVacia())) linea += "\n";
+				archCubiculos << linea;
+
+				while(!cubiculo.esVacia())
+				{
+					cubiculo.removerPrimerPaciente(cedula);
+					cubiculoAux.setCodigo(cubiculo.getCodigo());
+					cubiculoAux.agregarPaciente(cedula);
+				}
+				while(!cubiculoAux.esVacia())
+				{
+					linea = "";
+					cubiculoAux.removerPrimerPaciente(cedula);
+					linea += cedula + ",";
+					linea += cubiculoAux.getCodigo();
+					if(!(estado.esVacio() && municipio.esVacio() && centinela.esVacia() && cubiculoAux.esVacia())) linea += "\n";
+					archColaPacientes << linea;
+				}
+			}
+		}
+	}
+
+	vGeneral.CerrarArchivoSalida(archColaPacientes);
+	vGeneral.CerrarArchivoSalida(archCubiculos);
+	vGeneral.CerrarArchivoSalida(archCentinelas);
+	vGeneral.CerrarArchivoSalida(archMunicipios);
+
+	vGeneral.ImprimirMensaje("\n DATOS ColasPacientes.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS Cubiculos.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS VacunasEnExistencia.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS Centinelas.txt CARGADOS EXITOSAMENTE");
+	vGeneral.ImprimirMensaje("\n DATOS Municipios.txt CARGADOS EXITOSAMENTE");
 	vGeneral.Limpiar();
 }
 
@@ -388,20 +488,6 @@ void Controlador::procesar()
 
 void Controlador::procesar2()
 {
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Consultar Persona
-	 *  2) Consultar Municipios
-	 *  3) Consultar Centinelas
-	 *  4) Consultar Cubiculos
-	 *  5) Consultar Vacunas en Almacen
-	 *  6) Incluir Paciente a una Cola
-	 *  7) Sacar Paciente de la Cola (HELP ME)??
-	 *  8) Procesar Paciente
-	 *  9) Salir
-	 */
-
 	int rpta;
 	while (rpta != 10)
 	{
@@ -456,6 +542,7 @@ void Controlador::procesar2()
 			SacarPacienteDeCola();
 			break;
 		case 9:
+			procesarPaciente();
 			break;
 		case 10:
 			return;
@@ -469,15 +556,6 @@ void Controlador::procesar2()
 }
 
 void Controlador::procesarAdmin(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Modificar
-	 *  2) Eliminar
-	 *  3) Agregar
-	 *  4) Salir
-	 */
-
 	int rpta;
 	while (rpta != 4)
 	{
@@ -516,19 +594,8 @@ void Controlador::procesarAdmin(){
 	}
 }
 void Controlador::menuEliminar(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Eliminar Municipio
-	 *  2) Eliminar Centinela
-	 *  3) Eliminar Cubiculo
-	 *  4) Eliminar Persona
-	 *  5) Eliminar Vacuna
-	 *  6) Salir
-	 */
-
 	int rpta;
-	while (rpta != 6)
+	while (rpta != 5)
 	{
 		vGeneral.ImprimirEncabezado("M E N U  E L I M I N A R",
 									"_______  _______________");
@@ -538,11 +605,9 @@ void Controlador::menuEliminar(){
 		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirMensaje("3) Eliminar Cubiculo");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("4) Eliminar Persona");
+		vGeneral.ImprimirMensaje("4) Eliminar Vacuna");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("5) Eliminar Vacuna");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("6) Salir");
+		vGeneral.ImprimirMensaje("5) Salir");
 		vGeneral.ImprimirLineasBlanco(1);
 
 		rpta = vGeneral.LeerNro("Respuesta: ");
@@ -552,6 +617,7 @@ void Controlador::menuEliminar(){
 		case 1: eliminarMunicipio();
 			break;
 		case 2:
+			EliminarCentinela();
 			break;
 		case 3:
 			eliminarCubiculo();
@@ -559,8 +625,6 @@ void Controlador::menuEliminar(){
 		case 4:
 			break;
 		case 5:
-			break;
-		case 6:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
@@ -664,35 +728,20 @@ void Controlador::eliminarMunicipio()
 }//final metodo
 
 void Controlador::menuModificar(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Modificar Municipio
-	 *  2) Modificar Centinela
-	 *  3) Modificar Cubiculo
-	 *  4) Modificar Persona
-	 *  5) Modificar Expediente
-	 *  6) Modificar Vacuna
-	 *  7) Salir
-	 */
 	int rpta;
-	while (rpta != 7)
+	while (rpta != 5)
 	{
 		vGeneral.ImprimirEncabezado("M E N U  M O D I F I C A R",
 									"_______  _________________");
 		vGeneral.ImprimirMensaje("1) Modificar Municipio");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("2) Modificar Centinela");
+		vGeneral.ImprimirMensaje("2) Modificar Persona");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("3) Modificar Cubiculo");
+		vGeneral.ImprimirMensaje("3) Modificar Expediente");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("4) Modificar Persona");
+		vGeneral.ImprimirMensaje("4) Modificar Vacuna");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("5) Modificar Expediente");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("6) Modificar Vacuna");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("7) Salir");
+		vGeneral.ImprimirMensaje("5) Salir");
 		vGeneral.ImprimirLineasBlanco(1);
 
 		rpta = vGeneral.LeerNro("Respuesta: ");
@@ -708,10 +757,6 @@ void Controlador::menuModificar(){
 		case 4:
 			break;
 		case 5:
-			break;
-		case 6:
-			break;
-		case 7:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
@@ -763,15 +808,6 @@ void Controlador::modificarMunicipio(){
 }
 
 void Controlador::menuAgregar(){
-	/**
-	 * MOSTRAR MENU INICIAL 1
-	 *  M E N U  V A C U N A C I O N
-	 *  1) Agregar Municipio
-	 *  2) Agregar Centinela
-	 *  3) Agregar Cubiculo
-	 *  4) Agregar Persona
-	 *  5) Salir
-	 */
 	int rpta;
 	while (rpta != 5)
 	{
@@ -783,9 +819,7 @@ void Controlador::menuAgregar(){
 		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirMensaje("3) Agregar Cubiculo");
 		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("4) Agregar Persona");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.ImprimirMensaje("5) Salir");
+		vGeneral.ImprimirMensaje("4) Salir");
 		vGeneral.ImprimirLineasBlanco(1);
 
 		rpta = vGeneral.LeerNro("Respuesta: ");
@@ -793,15 +827,15 @@ void Controlador::menuAgregar(){
 		switch (rpta)
 		{
 		case 1:
+			agregarMunicipio();
 			break;
 		case 2:
 			agregarCentinela();
 			break;
 		case 3:
+			agregarCubiculo();
 			break;
 		case 4:
-			break;
-		case 5:
 			return;
 		default:
 			vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
@@ -812,19 +846,63 @@ void Controlador::menuAgregar(){
 	}
 }
 
-void Controlador::agregarMunicipio()
-{
-	/**
-	 * Codigo del Municipio: //Ingresar// (validar que el codigo sea unico)
-	 * Nombre del municipio: //Ingresar//
-	 * Ingresar nro de centinelas: //Ingresar//
-	 * Por cada centinela hacer:
-	 * 		Codigo del Centinela: //Ingresar//
-	 * 		Ingresar nro de cubiculos del centinela actual: //Ingresar//
-	 * 			Por cada cubiculo hacer:
-	 * 			Codigo del cubiculo: //Ingresar//
-	 * 	Al terminar el proceso imprimir mensaje de creacion exitosa
-	 */
+void Controlador::agregarMunicipio(){
+}
+
+void Controlador::agregarCubiculo(){
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo;
+	IMunicipio Imunicipio;
+	ICentinela Icentinela;
+	ICubiculo Icubiculo;
+
+	vGeneral.Limpiar();
+	do{
+		Imunicipio.ImprimirListaMunicipio(estado);
+		string codigoMunicipio = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+		if(estado.removerMunicipio(codigoMunicipio, municipio)){
+			vGeneral.Limpiar();
+			break;
+		}
+		vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}while(true);
+
+	do{
+		Icentinela.ImprimirListaCentinela(municipio);
+		string codigoCentinela = vGeneral.LeerString("Ingrese el codigo del centinela: ");
+		centinela.setCodigo(codigoCentinela);
+		if(municipio.removerCentinela(codigoCentinela, centinela)){
+			vGeneral.Limpiar();
+			break;
+		}
+		vGeneral.ImprimirMensaje("Error: El centinela solicitado no existe\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}while(true);
+
+	do{
+		Icubiculo.ImprimirListaCubiculo(centinela);
+		string codigoCubiculo = vGeneral.LeerString("Ingrese el codigo del cubiculo: ");
+		cubiculo.setCodigo(codigoCubiculo);
+		if(centinela.removerCubiculo(codigoCubiculo, cubiculo)){
+			vGeneral.ImprimirMensaje("Error: El cubiculo ya existe\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			centinela.agregarCubiculo(cubiculo);
+		}
+		else{
+			centinela.agregarCubiculo(cubiculo);
+			municipio.agregarCentinela(centinela);
+			estado.agregarMunicipio(municipio);
+			vGeneral.ImprimirMensaje("Cubiculo agregado exitosamente\n\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			break;
+		}
+	}while(true);
 }
 
 void Controlador::agregarCentinela()
@@ -967,18 +1045,6 @@ void Controlador::consultarMunicipios()
 
 void Controlador::consultarCentinelas()
 {
-	/**
-	 * Municipio: //Ingresar//
-	 *
-	 * Reportar Informacion de los Centinelas
-	 * ----------------------------------
-	 * Municipio [123]
-	 * Centinela<abc>: (10) //Sumatoria de todas las cedulas de todas las colas
-	 * Centinela<cdz>: (30) //Sumatoria de todas las cedulas de todas las colas
-	 * Centinela<cdz>: (50) //Sumatoria de todas las cedulas de todas las colas
-	 * ----------------------------------
-	 * ...
-	 */
 	VGeneral vgeneral;
 	MMunicipio municipio;
 	MCentinela centinela;
@@ -1051,34 +1117,10 @@ void Controlador::consultarCubiculos()
 
 	municipio.agregarCentinela(centinela);
 	estado.agregarMunicipio(municipio);
-
-	/**
-	 * Reportar Informacion de los Cubiculos
-	 * ----------------------------------
-	 * Centinela [abc]
-	 * Cubiculo<111>: (10) //Sumatoria de todas las cedulas de todas las colas
-	 * Cubiculo<222>: (30) //Sumatoria de todas las cedulas de todas las colas
-	 * Cubiculo<333>: (50) //Sumatoria de todas las cedulas de todas las colas
-	 * ----------------------------------
-	 * ...
-	 */
 }
 
 void Controlador::consultarColas()
 {
-
-	/**
-	 * Municipio: //ingresar//
-	 * Centinela: //ingresar//
-	 * Cubiculo: //ingresar//
-	 *
-	 * Reportar Informacion de la cola
-	 * ----------------------------------
-	 * Cubiculo [111]
-	 * Kevin Cheng 27.317.962
-	 * Don Juancho 25.317.962
-	 * ...
-	 */
 	VGeneral vgeneral;
 	MMunicipio municipio;
 	MCentinela centinela;
@@ -1212,17 +1254,6 @@ void Controlador::consultarColas()
 
 void Controlador::consultarVacunas()
 {
-	/**
-	 * Municipio: //ingresar//
-	 * Centinelas: //ingresar//
-	 *
-	 * Reportar las Vacunas Existentes
-	 * ----------------------------------
-	 * Cubiculo [111]
-	 * Kevin Cheng 27.317.962
-	 * Don Juancho 25.317.962
-	 * ...
-	 */
 	IAlmacen ialmacen;
 	IMunicipio imunicipio;
 	ICentinela icentinela;
@@ -1370,13 +1401,6 @@ void Controlador::incluirPacienteACola()
 
 void Controlador::SacarPacienteDeCola()
 {
-	/**
-	 * Municipio: //ingresar//
-	 * Centinelas: //ingresar//
-	 * Cubiculo: //ingresar//
-	 *
-	 * Buscar cedula en la cola y sacarlo de ahi
-	 */
 	VGeneral vgeneral;
 	MMunicipio municipio;
 	MCentinela centinela;
@@ -1462,6 +1486,88 @@ void Controlador::SacarPacienteDeCola()
 
 void Controlador::procesarPaciente()
 {
+	MExpedienteVacunacion mExpediente;
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo;
+	IMunicipio Imunicipio;
+	ICentinela Icentinela;
+	ICubiculo Icubiculo;
+	string cedula = "";
+
+	vGeneral.Limpiar();
+	do{
+		Imunicipio.ImprimirListaMunicipio(estado);
+		string codigoMunicipio = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+		if(estado.removerMunicipio(codigoMunicipio, municipio)){
+			vGeneral.Limpiar();
+			break;
+		}
+		vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}while(true);
+
+	do{
+		Icentinela.ImprimirListaCentinela(municipio);
+		string codigoCentinela = vGeneral.LeerString("Ingrese el codigo del centinela: ");
+		centinela.setCodigo(codigoCentinela);
+		if(municipio.removerCentinela(codigoCentinela, centinela)){
+			vGeneral.Limpiar();
+			break;
+		}
+		vGeneral.ImprimirMensaje("Error: El centinela solicitado no existe\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}while(true);
+
+	do{
+		Icubiculo.ImprimirListaCubiculo(centinela);
+		string codigoCubiculo = vGeneral.LeerString("Ingrese el codigo del cubiculo: ");
+		if(centinela.removerCubiculo(codigoCubiculo, cubiculo)){
+			vGeneral.Limpiar();
+			break;
+		}
+		vGeneral.ImprimirMensaje("Error: El cubiculo solicitado no existe\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}while(true);
+
+	cubiculo.removerPrimerPaciente(cedula);
+	if(cedula != ""){
+		if(listaExpedientes.removerExpediente(cedula, mExpediente)){
+			//A
+			if(mExpediente.getCodCentinela() == centinela.getCodigo()){
+
+			}
+			else{
+				vGeneral.ImprimirMensaje("Su centinela correspondiente es el " + mExpediente.getCodCentinela() + "\nPor favor, atienda a su centinela asignada");
+				vGeneral.Pausa();
+				vGeneral.Limpiar();
+			}
+			listaExpedientes.agregarExpediente(mExpediente);
+		}
+		else{
+			//B
+			string nombre, apellido, cedula, marcaVacuna;
+			vGeneral.Limpiar();
+			vGeneral.ImprimirEncabezado("Registro de Persona",
+										"======== == =======");
+			nombre = vGeneral.LeerString("Nombre: ");
+			apellido = vGeneral.LeerString("Apellido: ");
+			cedula = vGeneral.LeerString("Cedula: ");
+		}
+	}
+	else{
+		vGeneral.ImprimirMensaje("No existen personas en cola para este cubiculo\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+	}
+	centinela.agregarCubiculo(cubiculo);
+	municipio.agregarCentinela(centinela);
+	estado.agregarMunicipio(municipio);
+	return;
+
 	/**
 	 * Municipio: //ingresar//
 	 * Centinelas: //ingresar//
@@ -1520,7 +1626,6 @@ void Controlador::procesarPaciente()
 	 *
 	 */
 }
-
 
 void Controlador::eliminarCubiculo(){
 	VGeneral vgeneral;
@@ -1612,4 +1717,54 @@ void Controlador::eliminarCubiculo(){
 	vGeneral.ImprimirLineasBlanco(1);
 	vGeneral.Pausa();
 	vGeneral.Limpiar();
+}
+
+void Controlador::EliminarCentinela(){
+  VGeneral vgeneral;
+  MMunicipio municipio;
+  MCentinela centinela;
+  IMunicipio Imunicipio;
+  ICentinela Icentinela;
+  ICubiculo Icubiculo;
+
+  vgeneral.Limpiar();
+    Imunicipio.ImprimirListaMunicipio(estado);
+    string municipioCodigo = vgeneral.LeerString("\n Ingrese el codigo del municipio: ");
+
+    while(!estado.removerMunicipio(municipioCodigo, municipio)) {
+      vgeneral.ImprimirMensaje("Error: El municipio solicitado no existe \n\n");
+      vgeneral.Pausa();
+      vgeneral.Limpiar();
+
+      Imunicipio.ImprimirListaMunicipio(estado);
+      municipioCodigo = vgeneral.LeerString("\n Ingrese el codigo del municipio: ");
+    };
+
+    vgeneral.Limpiar();
+
+    Icentinela.ImprimirListaCentinela(municipio);
+    string centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela: ");
+
+    while(!municipio.removerCentinela(centinelaCodigo, centinela)) {
+      vgeneral.ImprimirMensaje("Error: El centinela solicitado no existe \n\n");
+      vgeneral.Pausa();
+      vgeneral.Limpiar();
+
+      Icentinela.ImprimirListaCentinela(municipio);
+      centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela: ");
+    };
+
+    if(centinela.PersonasCentinela(centinela)==0){
+      vgeneral.ImprimirMensaje("Se elimino de forma exitosa el centienla " + centinelaCodigo + "\n");
+      vgeneral.Pausa();
+      vgeneral.Limpiar();
+    }
+    else{
+      municipio.agregarCentinela(centinela);
+      vgeneral.ImprimirMensaje("No se pudo eliminar el Centinela debido a que aun \nhay personas en cola dentro"+centinelaCodigo+"\n");
+      vgeneral.Pausa();
+      vgeneral.Limpiar();
+    }
+
+    estado.agregarMunicipio(municipio);
 }

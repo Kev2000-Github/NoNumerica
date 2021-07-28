@@ -69,3 +69,33 @@ V4.918.208,Carmen,Linares,PFizer,C2-1,15/05/2021,15/07/2021
 V11.324.837,Tibisay,Zarate,PFizer,C4-2,05/06/2021
 V11.619.243,Virgilio,Castellanos,Sputnik V,C4-2,05/05/2021
 V11.613.807,Yanet,Pena,PFizer,C3-2,11/03/2021,17/05/2021
+V8.308.449,Fede,Reinoso,Sputnik V,C2-1,10/03/2020,10/06/2020
+V10.001.259,Piti,Rodriguez,Sputnik V,C2-1,11/03/2020,11/06/2020
+V26.357.123,Arturo,Marrano,PFizer,C2-1,28/03/2020
+V24.159.981,Pepe,Anguila,PFizer,C2-1,14/03/2020,15/06/2020
+V14.258.146,Catire,Nunez,PFizer,C2-1,10/03/2020
+V7.548.250,Marcel,Kento,Sinophram,C2-1,10/03/2020,10/06/2020
+V30.238.008,Takumi,Fujiguara,Sinophram,C4-2,15/05/2021,15/09/2021
+V21.851.246,Riosuke,Takahashi,Sinophram,C4-2,15/05/2021
+V12.154.684,Yesi,Lucena,Sputnik V,C4-2,15/05/2021,15/09/2021
+V28.524.709,Kuno,Fernandez,Sputnik V,C4-2,15/05/2021,15/09/2021
+V28.157.209,Marcela,Gandara,PFizer,C5-3,11/04/2021,15/07/2021
+V14.913.751,Miley,Cyrus,C5-3,PFizer,13/04/2021,15/07/2021
+V5.258.496,Danna, Olivo,C5-3,PFizer,21/04/2021
+V13.200.777,Dioselis,Lipa,C5-3,Sinophram,02/04/2021,15/07/2021
+V7.999.328,Rose,Masute,C5-3,Sinophram,23/04/2021,24/07/2021
+V4.000.018,Oscar,Salvaje,Sputnik V,C6-3,01/02/2020,10/05/2020
+V31.901.558,Maria,Figueroa,Sputnik V,C6-3,08/02/2020,11/05/2020
+V9.358.113,Cleo,Infante,PFizer,C6-30,28/02/2020
+V19.754.681,Jose,Gallardo,PFizer,C6-3,24/02/2020,24/05/2020
+V24.668.943,Caleb,Pesquero,PFizer,C6-3,20/02/2020,20/06/2020
+V9.558.250,Tarek,Milano,Sinophram,C6-3,12/02/2020,12/05/2020
+V30.238.008,Marni,Centeno,PFizer,C7-4,15/05/2021,15/09/2021
+V21.851.246,Rafa,Gomez,Sputnik V,C7-4,15/05/2021
+V12.154.684,Yatzira,Yanez,PFizer,Sputnik V,C7-4,15/05/2021,15/09/2021
+V28.524.709,Xiomara,Pinna,Sputnik V,C7-4,15/05/2021,15/09/2021
+V30.027.959,Zuli,Gonzalez,Sputnik V,C8-4,18/01/2021
+V12.703.703,Anne,Goncalvez,Sinophram,C8-4,14/02/2021
+V7.058.414,Lucas, Portero,Sinophram,C8-4,05/03/2021
+V25.090.127,Diana,Casic,PFizer,C8-4,12/04/2021
+V10.009.228,Rancic,Pantoja,Sinophram,C8-4,21/05/2021
