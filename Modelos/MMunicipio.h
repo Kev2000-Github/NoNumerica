@@ -27,6 +27,7 @@ public:
     bool removerCentinela(string codigo, MCentinela &centinela);
     bool removerPrimerCentinela(MCentinela &centinela);
     bool esVacio();
+    int PersonasMunicipio(MMunicipio &municipio);
 };
 
 #endif
