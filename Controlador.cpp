@@ -1172,7 +1172,7 @@ void Controlador::consultarColas()
 		vgeneral.Limpiar();
 
 		Icubiculo.ImprimirListaCubiculo(centinela);
-		string cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo: ");
+		cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo: ");
 	};
 
 	vGeneral.ImprimirLineasBlanco(1);
@@ -1454,7 +1454,7 @@ void Controlador::SacarPacienteDeCola()
 		vgeneral.Limpiar();
 
 		Icubiculo.ImprimirListaCubiculo(centinela);
-		string cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo: ");
+		cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo: ");
 	};
 
 	vgeneral.Limpiar();
@@ -1584,6 +1584,7 @@ void Controlador::procesarPaciente()
 			apellido = vGeneral.LeerString("Apellido: ");
 			cedula = vGeneral.LeerString("Cedula: ");
 			MPersona personaActual(nombre, apellido, cedula);
+
 			MExpedienteVacunacion expedienteVacunaActual;
 		}
 	}
@@ -1732,7 +1733,7 @@ void Controlador::eliminarCubiculo(){
 		vgeneral.Limpiar();
 
 		Icubiculo.ImprimirListaCubiculo(centinela);
-		string cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo a Eliminar: ");
+		cubiculoCodigo = vgeneral.LeerString("\n Ingrese el codigo del cubiculo a Eliminar: ");
 	}
 
 	if (!cubiculo.esVacia())
