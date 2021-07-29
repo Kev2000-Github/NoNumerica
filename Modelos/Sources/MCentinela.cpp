@@ -73,7 +73,7 @@ int MCentinela::ConsultarCantidadPorMarca(string marca)
 		auxvacuna.Insertar(almacen);
 		if (almacen.getMarca() == marca)
 		{
-			cant = almacen.getcantDisponible();
+			cant = almacen.getCantidad();
 			break;
 		}
 	}
@@ -114,32 +114,21 @@ bool MCentinela::removerVacuna(string marca, MAlmacenVacuna &vacunaBuscada)
 	return encontrado;
 }
 
-
-
-bool MCentinela::usarVacunas(string marca,int dosis)
+bool MCentinela::usarVacunas(string marca)
 {
 	Pila<MAlmacenVacuna> PilaAux;
 	MAlmacenVacuna vacunas;
-	int cant,cantR;
+	int cant;
 	bool actualizado = false;
 	while (!vacuna.Vacia())
 	{
 		vacuna.Remover(vacunas);
 		if (vacunas.getMarca() == marca)
 		{
-			cant = vacunas.getcantDisponible()-dosis;
-
+			cant = vacunas.getCantidad() - 1;
 			if (cant > 0)
 			{
-				vacunas.setcantDisponible(cant);
-				cantR=vacunas.getcantReservada()-1+dosis;
-				vacunas.setcantReservada(cantR);
-				PilaAux.Insertar(vacunas);
-
-			}
-
-			else
-			if(vacunas.getcantReservada()>0){
+				vacunas.setCantidad(cant);
 				PilaAux.Insertar(vacunas);
 			}
 			actualizado = true;
@@ -149,8 +138,6 @@ bool MCentinela::usarVacunas(string marca,int dosis)
 		{
 			PilaAux.Insertar(vacunas);
 		}
-
-
 	}
 	while (!PilaAux.Vacia())
 	{
@@ -160,20 +147,19 @@ bool MCentinela::usarVacunas(string marca,int dosis)
 	return actualizado;
 }
 
-bool MCentinela::aumentarVacunas(string marca,string lote, int cantidad)
+bool MCentinela::aumentarVacunas(string marca, int cantidad)
 {
 	Pila<MAlmacenVacuna> PilaAux;
 	MAlmacenVacuna vacunas;
 	int cant;
-
 	bool actualizado = false;
 	while (!vacuna.Vacia())
 	{
 		vacuna.Remover(vacunas);
-		if (vacunas.getMarca() == marca and vacunas.getLote()== lote)
+		if (vacunas.getMarca() == marca)
 		{
-			cant = vacunas.getcantDisponible() + cantidad;
-			vacunas.setcantDisponible(cant);
+			cant = vacunas.getCantidad() + cantidad;
+			vacunas.setCantidad(cant);
 			actualizado = true;
 			PilaAux.Insertar(vacunas);
 			break;
@@ -193,61 +179,6 @@ int MCentinela::totalCubiculos()
 	return cubiculos.Contar();
 }
 
-
-bool MCentinela::removerVacunaLote(string marca,string lote, MAlmacenVacuna &vacunas)
-{
-
-	MAlmacenVacuna vacunaActual;
-		Pila<MAlmacenVacuna> pilaAux;
-		bool encontrado = false;
-		while (!vacuna.Vacia())
-		{
-			vacuna.Remover(vacunaActual);
-			if(vacunaActual.getMarca()==marca and vacunaActual.getLote()==lote)
-				{vacunas = vacunaActual;
-				encontrado = true;
-				break;
-
-				}
-
-			pilaAux.Insertar(vacunaActual);
-		}
-		while (!pilaAux.Vacia())
-		{
-			pilaAux.Remover(vacunaActual);
-			vacuna.Insertar(vacunaActual);
-		}
-		return encontrado;
-}
-
-
-bool MCentinela::agregarLoteaVacuna(string marca,string lote, MAlmacenVacuna & vacunas)
-{
-	MAlmacenVacuna vacunaActual;
-				Pila<MAlmacenVacuna> pilaAux;
-				bool encontrado = false;
-				while (!vacuna.Vacia())
-				{
-					vacuna.Remover(vacunaActual);
-					if (vacunaActual.getMarca() == marca and vacunaActual.getLote()=="")
-					{
-						vacunaActual.setMarca(marca);
-						vacunaActual.setLote(lote);
-						vacunas=vacunaActual;
-						encontrado = true;
-						break;
-					}
-					pilaAux.Insertar(vacunaActual);
-				}
-				while (!pilaAux.Vacia())
-				{
-					pilaAux.Remover(vacunaActual);
-					vacuna.Insertar(vacunaActual);
-				}
-				return encontrado;
-
-}
-
 bool MCentinela::PVacia()
 {
 	return vacuna.Vacia();
@@ -258,30 +189,6 @@ bool MCentinela::removerPrimeraVacuna(MAlmacenVacuna &vacunas)
 	return vacuna.Remover(vacunas);
 }
 
-bool MCentinela::sinvacunas(string marca,string lote, MAlmacenVacuna & vacunas)
-{
-	MAlmacenVacuna vacunaActual;
-	Pila<MAlmacenVacuna> pilaAux;
-	bool encontrado = false;
-	while (!vacuna.Vacia())
-	{
-     	vacuna.Remover(vacunaActual);
-
-		if (vacunaActual.getcantDisponible()==0  and vacunaActual.getcantReservada()==0)
-		{
-			encontrado = true;
-		}
-	pilaAux.Insertar(vacunaActual);
-}
-while (!pilaAux.Vacia())
-{
-	pilaAux.Remover(vacunaActual);
-	vacuna.Insertar(vacunaActual);
-}
-return encontrado;
-
-
-}
 int MCentinela::PersonasCentinela(MCentinela &centinela){
   Lista<MCubiculo>auxCubiculo;
   MCubiculo cubiculo;
@@ -297,5 +204,3 @@ int MCentinela::PersonasCentinela(MCentinela &centinela){
     }
   return TotalPersonas;
 }
-
-

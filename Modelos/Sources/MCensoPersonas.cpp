@@ -1,4 +1,4 @@
-#include "../MCensoPersonas.h"
+#include "../MCensoPersonas.h";
 
 MCensoPersonas::MCensoPersonas()
 {

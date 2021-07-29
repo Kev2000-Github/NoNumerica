@@ -10,7 +10,7 @@ public:
     ICentinela();
     void reporteCubiculos(MCentinela &centinela);
     void ImprimirListaCentinela(MMunicipio &municipio);
-    void ImprimirListaCentinelaLote(MMunicipio &municipio);
+    void ImprimirListaCentinelaConsultar(MMunicipio &municipio);
 };
 
 #endif

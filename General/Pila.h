@@ -38,14 +38,7 @@ public:
   Tipo ObtInfo(Nodopila<Tipo> *p);
   void AsigInfo(Nodopila<Tipo> *p,Tipo x);
   int Contar();
-
-
-
 };
-
-
-
-
 
 #include "Sources/Pila.cpp"
 #endif

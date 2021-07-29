@@ -6,25 +6,16 @@ using namespace std;
 
 class MAlmacenVacuna {
 private:
-    string marca,lote;
-    int cantDisponible,cantReservada;
+    string marca;
+    int cantidad;
 public:
     MAlmacenVacuna();
-    MAlmacenVacuna(string _marca, int _cantDisponible, int _cantReservada);
+    MAlmacenVacuna(string _marca, int _cantidad);
 
     void setMarca(string _marca);
-    void setcantDisponible(int _cantDisponible);
-    void setcantReservada(int _cantReservada);
-    int getcantDisponible();
-    int getcantReservada();
+    void setCantidad(int _cantidad);
     string getMarca();
-    void setLote(string _lote);
-    string getLote();
-
-    int calcularTotal();
-
-
-
+    int getCantidad();
 };
 
 #endif

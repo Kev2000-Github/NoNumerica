@@ -204,19 +204,6 @@ void VGeneral :: ImprimirString4(string msj, int s, string a,int b)
 {
 	cout << msj  << s << setw(5) << a << setw(4) << b<<endl;
 }
-
-
-
-void VGeneral::ImprimirString5(string l,string msj ,string s,int n, string a, int b)
-{
-	cout << l << msj << s << setw(4) << n <<setw(4)<< a << b <<endl;
-}
-
-void VGeneral::ImprimirString4_(string msj, string s, string a, int b)
-{
-	cout << msj  << s << setw(5) << a << setw(4) << b<<endl;
-
-}
 // Escribe un mensaje e imprime un dato numerico (int,long)
 void VGeneral :: ImprimirNro(string msj, long n)
 {
@@ -395,7 +382,3 @@ string VGeneral::toString(int numero){
 	ss >> result;
 	return result;
 }
-
-
-
-
