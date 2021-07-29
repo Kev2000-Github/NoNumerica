@@ -43,7 +43,16 @@ public:
    void ImprimirString(string msj, string s);
    void ImprimirString2(string msj, string a);
    void ImprimirString3(string msj, int s, string a);
+
+
+
+
    void ImprimirString4(string msj, int s, string a, int b);
+
+   void ImprimirString4_(string msj, string s, string a, int b);
+
+   void ImprimirString5(string l,string msj ,string s,int n, string a, int b);
+
    void ImprimirNro(string msj, long n);
    void ImprimirNroDecimal(string msj, double f);
    void ImprimirCharJustificado(char c, int espacio);

@@ -31,11 +31,17 @@ public:
 	int totalCubiculos();
 
 	int ConsultarCantidadPorMarca(string marca);
-	bool aumentarVacunas(string marca, int cantidad);
+	bool aumentarVacunas(string marca,string lote, int cantidad);
 	bool agregarVacuna(MAlmacenVacuna &vacunas);
 	bool removerVacuna(string marca, MAlmacenVacuna &vacunas);
+
+	bool agregarLoteaVacuna(string marca,string lote,MAlmacenVacuna &vacunas);
+    bool agregarlote(string marca,MAlmacenVacuna &vacunas);
+    bool removerVacunaLote(string marca,string lote,MAlmacenVacuna &vacunas);
 	bool removerPrimeraVacuna(MAlmacenVacuna &vacunas);
-	bool usarVacunas(string marca);
+	bool usarVacunas(string marca,int dosis);
+
+	bool sinvacunas(string marca,string lote, MAlmacenVacuna & vacunas);
 	int PersonasCentinela(MCentinela &centinela);
 	bool esVacia();
 	bool PVacia();
