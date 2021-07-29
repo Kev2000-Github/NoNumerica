@@ -26,6 +26,16 @@ string MExpedienteVacunacion::getCedula()
 	return cedula;
 }
 
+void MExpedienteVacunacion::setLote(string c)
+{
+	cedula = c;
+}
+
+string MExpedienteVacunacion::getLote()
+{
+	return cedula;
+}
+
 void MExpedienteVacunacion::setVacunaTomada(string vt)
 {
 	vacunaTomada = vt;
