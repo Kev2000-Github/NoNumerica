@@ -10,6 +10,7 @@
 #include <climits>
 #include "Modelos/MListaExpediente.h"
 #include "Modelos/MCensoPersonas.h"
+#include "Modelos/MInfoVacunas.h"
 #include "Modelos/MEstado.h"
 #include "General/VGeneral.h"
 #include "Interfaces/IEstado.h"
@@ -17,6 +18,7 @@
 #include "Interfaces/ICubiculo.h"
 #include "Interfaces/ICentinela.h"
 #include "Interfaces/IAlmacen.h"
+#include "Interfaces/IInfoVacunas.h"
 
 class Controlador {
 private:
@@ -29,20 +31,31 @@ public:
 	Controlador();
 	void cargarDatos();
 	void guardarDatos();
-	void recibirVacunas();
+
+	void menuAgregar();
 	void agregarMunicipio();
 	void agregarCentinela();
+	void AgregarInfoVacunas();
 	void agregarCubiculo();
-
-	void eliminarCubiculo();
-	void EliminarCentinela();
+	void recibirVacunas();
 
 	void procesar();
 	void procesar2();
 	void procesarAdmin();
-	void menuEliminar();
-	void menuAgregar();
+
+
+
+
 	void menuModificar();
+
+	void menuEliminar();
+	void eliminarCubiculo();
+	void EliminarCentinela();
+	void eliminarVacunas();
+
+
+
+	void ModificarVacunas();
 
 	void consultarPersona();
 	void consultarMunicipios();
@@ -50,11 +63,14 @@ public:
 	void consultarCubiculos();
 	void consultarColas();
 	void consultarVacunas();
+
 	void incluirPacienteACola();
 	void SacarPacienteDeCola();
+
 	void procesarPaciente();
 	void modificarMunicipio();
 	void eliminarMunicipio();
+
 
 };
 

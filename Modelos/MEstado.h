@@ -8,13 +8,17 @@
 #ifndef MESTADO_H_
 #define MESTADO_H_
 #include "../General/Lista.h"
+#include "../General/VGeneral.h"
 #include "MMunicipio.h"
+#include "MInfoVacunas.h"
+
 
 class MEstado
 {
 private:
 	string nombre;
 	Lista<MMunicipio> municipios;
+	Lista<MInfoVacunas> infoVacunas;
 
 public:
 	MEstado();
@@ -28,6 +32,21 @@ public:
 	bool removerMunicipio(string codigo, MMunicipio &municipio);
 	bool removerPrimerMunicipio(MMunicipio &municipio);
 	bool esVacio();
+
+
+
+
+
+	//INFOVACUNAS
+
+		bool agregarInfoVacunas(MInfoVacunas & infoVacuna);
+		bool removerInfoVacunas(string marca, MInfoVacunas &infoVacuna);
+		bool removerPrimerInfo(MInfoVacunas & infoVacuna);
+
+		bool infVacio();
+
+
+
 };
 
 #endif /* MESTADO_H_ */

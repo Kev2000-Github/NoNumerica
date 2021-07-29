@@ -3,31 +3,76 @@
 MAlmacenVacuna::MAlmacenVacuna()
 {
 	marca = "";
-	cantidad = 0;
+	cantDisponible=0;
+	cantReservada=0;
 }
 
-MAlmacenVacuna::MAlmacenVacuna(string _marca, int _cantidad)
+MAlmacenVacuna::MAlmacenVacuna(string _marca, int _cantDisponible, int _cantReservada)
 {
 	marca = _marca;
-	cantidad = _cantidad;
+	cantDisponible = _cantDisponible;
+	cantReservada=_cantReservada;
 }
 
-void MAlmacenVacuna::setCantidad(int _cantidad)
-{
-	cantidad = _cantidad;
-}
+
 
 void MAlmacenVacuna::setMarca(string _marca)
 {
 	marca = _marca;
 }
 
-int MAlmacenVacuna::getCantidad()
-{
-	return cantidad;
-}
 
 string MAlmacenVacuna::getMarca()
 {
 	return marca;
 }
+
+void MAlmacenVacuna::setLote(string _lote)
+{
+	lote=_lote;
+}
+
+
+
+string MAlmacenVacuna::getLote()
+{
+	return lote;
+}
+
+void MAlmacenVacuna::setcantDisponible(int _cantDisponible)
+{
+	cantDisponible=_cantDisponible;
+}
+
+
+
+void MAlmacenVacuna::setcantReservada(int _cantReservada)
+{
+	cantReservada=_cantReservada;
+}
+
+
+
+int MAlmacenVacuna::getcantDisponible()
+{
+	return cantDisponible;
+}
+
+
+
+int MAlmacenVacuna::getcantReservada()
+{
+	return cantReservada;
+}
+
+int MAlmacenVacuna::calcularTotal()
+{
+	return cantDisponible+cantReservada;
+
+}
+
+
+
+
+
+
