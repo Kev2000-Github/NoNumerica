@@ -72,23 +72,13 @@ int MCubiculo::total()
 {
 	string ced, punto = "fin";
 	int cont = 0;
-	bool final = false;
-	if (esVacia() == true)
-		return 0;
-	else
+	agregarPaciente(punto);
+	removerPrimerPaciente(ced);
+	while(ced != punto)
 	{
-		agregarPaciente(punto);
-		while (!(final))
-		{
-			removerPrimerPaciente(ced);
-			cont++;
-			if (ced == punto)
-				final = true;
-			else
-			{
-				agregarPaciente(ced);
-			};
-		};
-	};
+		cont++;
+		agregarPaciente(ced);
+		removerPrimerPaciente(ced);
+	}
 	return cont;
 }
