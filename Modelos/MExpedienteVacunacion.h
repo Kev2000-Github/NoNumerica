@@ -15,7 +15,7 @@
 class MExpedienteVacunacion
 {
 private:
-	string cedula, vacunaTomada, codCentinela;
+	string cedula, vacunaTomada, codCentinela, lote;
 	Pila<Date> DosisTomadas;
 
 public:
@@ -24,6 +24,8 @@ public:
 
 	void setCedula(string c);
 	string getCedula();
+	void setLote(string c);
+	string getLote();
 	void setVacunaTomada(string vt);
 	string getVacunaTomada();
 

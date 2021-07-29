@@ -66,3 +66,19 @@ bool MMunicipio::removerPrimerCentinela(MCentinela &centinela)
 bool MMunicipio::esVacio(){
 	return centinelas.Contar() == 0;
 }
+
+int MMunicipio::PersonasMunicipio(MMunicipio &municipio){
+  Lista<MMunicipio>auxCentinela;
+  MCentinela centinela;
+  int TotalPersonasm=0;
+  while(!municipio.esVacio()){
+    municipio.removerPrimerCentinela(centinela);
+    TotalPersonasm += centinela.totalCubiculos();
+    auxCentinela.InsComienzo(municipio);
+  }
+    while(!auxCentinela.Vacia()) {
+      auxCentinela.EliComienzo(municipio);
+        municipio.agregarCentinela(centinela);
+    }
+  return TotalPersonasm;
+}

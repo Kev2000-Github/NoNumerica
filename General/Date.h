@@ -16,6 +16,7 @@ public:
          void setdia(int d1);
 	     void setmes(int m1);
 	     void setannio(int a1);
+	     void setFecha(string fecha);
 	     int getdia();
 	     int getmes();
          int getannio();

@@ -11,6 +11,7 @@ public:
     IMunicipio();
     void reportarCentinelas(MMunicipio &municipio);
     void ImprimirListaMunicipio(MEstado &estado);
+    void ConsultaMunicipio(MEstado &estado);
 };
 
 #endif

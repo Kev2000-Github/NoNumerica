@@ -36,3 +36,24 @@ void IMunicipio::ImprimirListaMunicipio(MEstado &estado){
 	    	estado.agregarMunicipio(municipioactual);
 	    }
 }
+
+void IMunicipio::ConsultaMunicipio(MEstado &estado){
+	Lista<MMunicipio> auxmunicipio;
+			MMunicipio municipioactual;
+		    VGeneral vg;
+		    int i=1;
+		    vg.ImprimirMensaje("\n Reportar Informacion de los Municipios\n");
+		    vg.ImprimirMensaje("\n --------------------------------------------\n");
+		    while(!estado.esVacio()) {
+		    	    	estado.removerPrimerMunicipio(municipioactual);
+		    	    	vg.ImprimirString2("Municipio Codigo: ",municipioactual.getCodigo());
+		    	    	vg.ImprimirString2("Nombre: ",municipioactual.getNombre());
+		    	         vg.ImprimirNro("Cantidad de personas: ",municipioactual.PersonasMunicipio(municipioactual));
+		    	         vg.ImprimirMensaje("\n -----\n");
+		    	        auxmunicipio.InsComienzo(municipioactual);
+		    	    }
+		    	    while(!auxmunicipio.Vacia()) {
+		    	    	auxmunicipio.EliComienzo(municipioactual);
+		    	    	estado.agregarMunicipio(municipioactual);
+		    	    }
+}

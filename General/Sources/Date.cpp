@@ -295,3 +295,24 @@ string Date::avanzarFecha(int dias) {
 
 }
 
+void Date::setFecha(string fecha){
+	string aux = "";
+	stringstream ss;
+	int slashCounter = 0;
+	for(unsigned int i = 0; i < fecha.length(); i ++){
+		if(fecha[i] == '/'){
+			ss << aux;
+			if(slashCounter == 0) ss >> dia;
+			else ss >> mes;
+			slashCounter++;
+			ss.clear();
+			aux="";
+		}
+		else{
+			aux += fecha[i];
+		}
+	}
+	ss.clear();
+	ss << aux;
+	ss >> annio;
+}
