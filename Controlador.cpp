@@ -741,7 +741,7 @@ void Controlador::menuEliminar(){
 					vGeneral.Limpiar();
 		    switch (rpta)
 		{
-			case 1:
+			case 1: eliminarMunicipio();
 		    break;
 			case 2:
 			EliminarCentinela();
@@ -761,6 +761,43 @@ void Controlador::menuEliminar(){
 		}
 	}
 }
+
+void Controlador::eliminarMunicipio()
+{
+	MMunicipio municipio;
+	IMunicipio Imunicipio;
+
+    vGeneral.Limpiar();
+    Imunicipio.ImprimirListaMunicipio(estado);
+    string municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+    municipio.setCodigo(municipioCodigo);
+
+    while (!estado.removerMunicipio(municipioCodigo, municipio)){
+    	vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe");
+    	vGeneral.Pausa();
+    	vGeneral.Limpiar();
+
+    	Imunicipio.ImprimirListaMunicipio(estado);
+    	municipioCodigo = vGeneral.LeerString("Ingrese el codigo del Municipio: ");
+    };
+
+    vGeneral.ImprimirLineasBlanco(1);
+
+    if(municipio.PersonasMunicipio(municipio)!=0){
+    	vGeneral.ImprimirMensaje("Error: El municipio tiene pacientes en cola");
+    	estado.agregarMunicipio(municipio);
+    	vGeneral.Pausa();
+    	vGeneral.Limpiar();
+    }
+    else{
+    	vGeneral.ImprimirMensaje("El Municipio y todos sus contenidos fueron eliminados exitosamente");
+    	vGeneral.Pausa();
+    	vGeneral.Limpiar();
+    }
+
+    vGeneral.ImprimirLineasBlanco(1);
+
+}//final metodo
 
 void Controlador::menuModificar(){
 
@@ -784,7 +821,7 @@ void Controlador::menuModificar(){
 			vGeneral.Limpiar();
 			switch (rpta)
 			{
-			case 1:
+			case 1: modificarMunicipio();
 				break;
 			case 2:
 				break;
@@ -802,6 +839,42 @@ void Controlador::menuModificar(){
 			}
 		}
 	}
+
+void Controlador::modificarMunicipio(){
+
+	MMunicipio municipio;
+	IMunicipio Imunicipio;
+
+	vGeneral.Limpiar();
+	Imunicipio.ImprimirListaMunicipio(estado);
+	string municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+	municipio.setCodigo(municipioCodigo);
+
+		while (!estado.removerMunicipio(municipioCodigo, municipio))
+		{
+			vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+
+			Imunicipio.ImprimirListaMunicipio(estado);
+			municipioCodigo = vGeneral.LeerString("Ingrese el codigo del Municipio: ");
+		};
+
+	vGeneral.Limpiar();
+	vGeneral.ImprimirLineasBlanco(1);
+	vGeneral.ImprimirString2("El Nombre del Municipio seleccionado es: ", municipio.getNombre());
+	vGeneral.ImprimirLineasBlanco(1);
+
+	string nombreMunicipio = vGeneral.LeerString("Ingrese el nuevo nombre del Municipio: ");
+	municipio.setNombre(nombreMunicipio);
+	vGeneral.Pausa();
+	vGeneral.Limpiar();
+	vGeneral.ImprimirLineasBlanco(1);
+
+	vGeneral.ImprimirMensaje("Nombre modificado exitosamente \n\n");
+	estado.agregarMunicipio(municipio);
+
+}
 
 void Controlador::menuAgregar(){
 
@@ -939,12 +1012,33 @@ void Controlador::agregarCentinela()
 		string centiCodigo = vGeneral.LeerString("Ingrese el codigo del Centinela: ");
 		centinela.setCodigo(centiCodigo);
 
-		if (!municipio.removerCentinela(centiCodigo, centinela))
+		while (municipio.removerCentinela(centiCodigo, centinela))
 		{
+			vGeneral.ImprimirMensaje("Error: La centinela ya existe \n\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+			municipio.agregarCentinela(centinela);
+			Icentinela.ImprimirListaCentinela(municipio);
+			centiCodigo = vGeneral.LeerString("Ingrese el codigo de la centinela: ");
+			centinela.setCodigo(centiCodigo);
+		}
 
 			int numCubiculo = vGeneral.LeerNro("Ingrese el numero de Cubiculos que desea agregar en el Centinela: ");
-
 			MCubiculo cubiculo;
+
+
+			while(numCubiculo<3){
+
+				vGeneral.ImprimirMensaje("Error: Se deben ingresar 3 cubiculos minimo \n\n");
+				vGeneral.Pausa();
+				vGeneral.Limpiar();
+				numCubiculo = vGeneral.LeerNro("Ingrese el numero de Cubiculos que desea agregar en el Centinela: ");
+			}
+
+			for (int j = 0; j < numCubiculo; ++j)
+			{
+			centinela.removerPrimerCubiculo(cubiculo);
+			}
 
 			for (int j = 0; j < numCubiculo; ++j)
 			{
@@ -952,48 +1046,33 @@ void Controlador::agregarCentinela()
 				string cubiCodigo = vGeneral.LeerString("Ingrese el codigo del Cubiculo: ");
 				cubiculo.setCodigo(cubiCodigo);
 
-				if (centinela.removerCubiculo(cubiCodigo, cubiculo))
-				{
+
+				while(centinela.removerCubiculo(cubiCodigo,cubiculo)){
 					vGeneral.ImprimirMensaje("Error: El cubiculo ya existe \n\n");
 					vGeneral.Pausa();
 					vGeneral.Limpiar();
 					centinela.agregarCubiculo(cubiculo);
+					cubiCodigo = vGeneral.LeerString("Ingrese el codigo del Cubiculo: ");
+					cubiculo.setCodigo(cubiCodigo);
+
 				}
-				else if (centinela.agregarCubiculo(cubiculo))
+
+				if (centinela.agregarCubiculo(cubiculo))
 				{
 					vGeneral.ImprimirMensaje("Cubiculo agregado exitosamente \n\n");
 
 				} //final del else if de cubiculo
-				else
-				{
-					vGeneral.ImprimirMensaje("Error: El cubiculo no pudo ser agregado \n\n");
-				} //final else cubiculo
-			}
 
+				}//final for cubiculo
 			if (municipio.agregarCentinela(centinela))
-			{
-				vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
-				vGeneral.ImprimirLineasBlanco(1);
-				vGeneral.Pausa();
-				vGeneral.Limpiar();
-			}
-			for (int j = 0; j < numCubiculo; ++j)
-			{
-				centinela.removerPrimerCubiculo(cubiculo);
-			}
-		}
-		else
-		{
-			municipio.agregarCentinela(centinela);
-			vGeneral.ImprimirMensaje("Error: El centinela no pudo ser agregado \n\n");
-			vGeneral.Pausa();
-			vGeneral.Limpiar();
-		}
-		//Agrega Cubiculo
-		//final de for de cubiculo
+						{
+							vGeneral.ImprimirMensaje("Centinela agregado exitosamente \n\n");
+							vGeneral.ImprimirLineasBlanco(1);
+							vGeneral.Pausa();
+							vGeneral.Limpiar();
+						}//final else cubiculo
+			}//final for centinela
 
-	} //final del else if de centinela
-	  //final else centinela
 
 	estado.agregarMunicipio(municipio);
 	vGeneral.ImprimirLineasBlanco(1);
@@ -1008,7 +1087,6 @@ void Controlador::agregarCentinela()
 	 * 	Al terminar el proceso imprimir mensaje de creacion exitosa
 	 */
 }
-
 
 void Controlador::consultarPersona()
 {
