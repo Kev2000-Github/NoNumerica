@@ -1,40 +1,21 @@
-PFizer,37,0,C1-1,K0
-Sputnik V,46,0,C1-1,K1
-Sinopharm,21,0,C1-1,K2
-Sinovac,37,0,C1-1,K3
-PFizer,22,0,C2-1,K4
-Sputnik V,35,0,C2-1,K5
-Sinopharm,30,0,C2-1,K6
-Sinovac,42,0,C2-1,K7
-PFizer,41,0,C3-2,K8
-Sputnik V,44,0,C3-2,K9
-Sinopharm,33,0,C3-2,K10
-Sinovac,46,0,C3-2,K11
-PFizer,23,0,C4-2,K12
-Sputnik V,42,0,C4-2,K13
-Sinopharm,29,0,C4-2,K14
-Sinovac,28,0,C4-2,K15
-PFizer,35,0,C5-3,K16
-Sputnik V,42,0,C5-3,K17
-Sinopharm,24,0,C5-3,K18
-Sinovac,33,0,C5-3,K19
-PFizer,27,0,C6-3,K20
-Sputnik V,27,0,C6-3,K21
-Sinopharm,37,0,C6-3,K22
-Sinovac,23,0,C6-3,K23
-PFizer,50,0,C7-4,K24
-Sputnik V,34,0,C7-4,K25
-Sinopharm,29,0,C7-4,K26
-Sinovac,24,0,C7-4,K27
-PFizer,49,0,C8-4,K28
-Sputnik V,31,0,C8-4,K29
-Sinopharm,28,0,C8-4,K30
-Sinovac,49,0,C8-4,K31
-PFizer,32,0,C9-5,K32
-Sputnik V,29,0,C9-5,K33
-Sinopharm,40,0,C9-5,K34
-Sinovac,50,0,C9-5,K35
-PFizer,47,0,C10-5,K36
-Sputnik V,46,0,C10-5,K37
-Sinopharm,33,0,C10-5,K38
-Sinovac,28,0,C10-5,K39
+PFizer,120,4,C1-1,K1
+Sputnik V,134,3,C1-1,K2
+PFizer,153,5,C2-1,K3
+Sinopharm,22,1,C2-1,K4
+PFizer,225,9,C3-2,K5
+Sputnik V,98,1,C3-2,K6
+PFizer,120,5,C4-2,K7
+Sputnik V,108,2,C4-2,K8
+PFizer,36,1,C5-3,K9
+Sinopharm,94,1,C5-3,K10
+PFizer,30,1,C6-3,K11
+Sputnik V,78,2,C6-3,K12
+Sinopharm,74,1,C6-3,K13
+PFizer,114,6,C7-4,K14
+PFizer,33,1,C8-4,K15
+Sputnik V,72,1,C8-4,K16
+Sputnik V,74,3,C9-5,K17
+Sinopharm,82,1,C9-5,K18
+PFizer,123,4,C10-5,K19
+Sputnik V,22,1,C10-5,K20
+Sinopharm,46,1,C10-5,K21

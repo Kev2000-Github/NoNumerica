@@ -68,16 +68,16 @@ bool MMunicipio::esVacio(){
 }
 
 int MMunicipio::PersonasMunicipio(MMunicipio &municipio){
-  Lista<MMunicipio>auxCentinela;
+  Lista<MCentinela>auxCentinela;
   MCentinela centinela;
   int TotalPersonasm=0;
   while(!municipio.esVacio()){
     municipio.removerPrimerCentinela(centinela);
-    TotalPersonasm += centinela.totalCubiculos();
-    auxCentinela.InsComienzo(municipio);
+    TotalPersonasm += centinela.PersonasCentinela(centinela);
+    auxCentinela.InsComienzo(centinela);
   }
     while(!auxCentinela.Vacia()) {
-      auxCentinela.EliComienzo(municipio);
+      auxCentinela.EliComienzo(centinela);
         municipio.agregarCentinela(centinela);
     }
   return TotalPersonasm;

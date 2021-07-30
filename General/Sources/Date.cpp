@@ -316,3 +316,16 @@ void Date::setFecha(string fecha){
 	ss << aux;
 	ss >> annio;
 }
+
+bool Date::esMayor(Date fecha2){
+	if(annio > fecha2.getannio()) return true;
+	else if(annio < fecha2.getannio()) return false;
+
+	if(mes > fecha2.getmes()) return true;
+	else if(mes < fecha2.getmes()) return false;
+
+	if(dia > fecha2.getdia()) return true;
+	else if(dia < fecha2.getdia()) return false;
+
+	return false;
+}

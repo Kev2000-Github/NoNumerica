@@ -42,7 +42,8 @@ void Controlador::cargarDatos()
 			vacunaPersona.setCedula(lineaActual[0]);
 			vacunaPersona.setVacunaTomada(lineaActual[3]);
 			vacunaPersona.setCodCentinela(lineaActual[4]);
-			for (int i = 5; i < lineaActual.size(); i++)
+			vacunaPersona.setLote(lineaActual[5]);
+			for (int i = 6; i < lineaActual.size(); i++)
 			{
 				Date fecha(lineaActual[i]);
 				vacunaPersona.AgregarNuevaDosis(fecha);
@@ -287,6 +288,7 @@ void Controlador::guardarDatos()
 			linea += persona.getapellido() + ",";
 			linea += vacunaPersona.getVacunaTomada() + ",";
 			linea += vacunaPersona.getCodCentinela() + ",";
+			linea += vacunaPersona.getLote() +",";
 			while(vacunaPersona.removerTopeDosis(fecha)){
 				fechasAux.Insertar(fecha);
 			}
@@ -1574,6 +1576,8 @@ void Controlador::procesarPaciente()
 	ICentinela Icentinela;
 	ICubiculo Icubiculo;
 	MAlmacenVacuna vacuna;
+	MInfoVacunas infoVacuna;
+	MPersona persona;
 	Date date;
 	string cedula = "", fecha;
 	bool final = false;
@@ -1618,18 +1622,59 @@ void Controlador::procesarPaciente()
 
 	cubiculo.removerPrimerPaciente(cedula);
 	if(cedula != ""){
-		if(listaExpedientes.removerExpediente(cedula, mExpediente)){
-			//A
-			if(mExpediente.getCodCentinela() == centinela.getCodigo()){
-				if(centinela.removerVacunaLote(mExpediente.getVacunaTomada(), mExpediente.getLote(),vacuna))
-				{
-					fecha = vGeneral.LeerString("Ingrese la fecha (dd/mm/aaaa): ");
-					date.setFecha(fecha);
-					Date ultimaDosisDate;
-					mExpediente.removerTopeDosis(ultimaDosisDate);
+		listaPersonas.removerPersona(cedula, persona);
+		listaPersonas.agregarPersona(persona);
+		vGeneral.ImprimirMensaje("======P R O C E S A R=======\n");
+		vGeneral.ImprimirMensaje(cedula + " " + persona.getnombre() + " " + persona.getapellido());
+		vGeneral.ImprimirLineasBlanco(2);
+		if(!listaExpedientes.removerExpediente(cedula, mExpediente)){
+			//B
+			string nombre, apellido, cedula, marcaVacuna;
+			centinela.removerPrimeraVacuna(vacuna);
+			if(vacuna.getMarca() != ""){
+				vGeneral.ImprimirMensaje(vacuna.getMarca());
+				vGeneral.Pausa();
+				vGeneral.Limpiar();
+				vGeneral.ImprimirEncabezado("Registro de Persona",
+											"======== == =======");
+				nombre = vGeneral.LeerString("Nombre: ");
+				apellido = vGeneral.LeerString("Apellido: ");
+				MPersona personaActual(nombre, apellido, cedula);
+
+				mExpediente.setCedula(cedula);
+				mExpediente.setCodCentinela(centinela.getCodigo());
+				mExpediente.setLote(vacuna.getLote());
+				mExpediente.setVacunaTomada(vacuna.getMarca());
+				estado.removerInfoVacunas(vacuna.getMarca(), infoVacuna);
+				estado.agregarInfoVacunas(infoVacuna);
+
+				vacuna.setcantDisponible(vacuna.getcantDisponible() - infoVacuna.getNroDosis());
+				vacuna.setcantReservada(vacuna.getcantReservada() + infoVacuna.getNroDosis());
+				centinela.agregarVacuna(vacuna);
+				listaPersonas.agregarPersona(personaActual);
+			}
+			else{
+				vGeneral.ImprimirMensaje("Lo sentimos, pero no queda ninguna vacuna disponible por el momento\n");
+				vGeneral.Pausa();
+				vGeneral.Limpiar();
+				centinela.agregarCubiculo(cubiculo);
+				municipio.agregarCentinela(centinela);
+				estado.agregarMunicipio(municipio);
+				listaExpedientes.agregarExpediente(mExpediente);
+				return;
+			}
+		}
+		//A
+		if(mExpediente.getCodCentinela() == centinela.getCodigo()){
+			if(centinela.removerVacunaLote(mExpediente.getVacunaTomada(), mExpediente.getLote(),vacuna))
+			{
+				fecha = vGeneral.LeerString("Ingrese la fecha (dd/mm/aaaa): ");
+				date.setFecha(fecha);
+				Date ultimaDosisDate;
+				if(mExpediente.removerTopeDosis(ultimaDosisDate)){
 					mExpediente.AgregarNuevaDosis(ultimaDosisDate);
 					int diferenciaDias = ultimaDosisDate.DiferenciaDias(date);
-					if(diferenciaDias >= 90)
+					if(diferenciaDias >= 90 && date.esMayor(ultimaDosisDate))
 					{
 						final = true;
 					}
@@ -1637,36 +1682,26 @@ void Controlador::procesarPaciente()
 					{
 						Date sigFechaEstipulada = mExpediente.getSigFechaEstipulada();
 						vGeneral.ImprimirMensaje("Lo sentimos, pero no han pasado los dias para recibir su siguiente dosis\n por favor regrese el dia " + sigFechaEstipulada.getFecha());
+						vGeneral.ImprimirLineasBlanco(1);
 						vGeneral.Pausa();
 						vGeneral.Limpiar();
 					}
 				}
-				else
-				{
-					vGeneral.ImprimirMensaje("Lo sentimos, pero no quedan reservas de su vacuna disponibles\n");
-					vGeneral.Pausa();
-					vGeneral.Limpiar();
+				else{
+					final = true;
 				}
 			}
-			else{
-				vGeneral.ImprimirMensaje("Su centinela correspondiente es el " + mExpediente.getCodCentinela() + "\nPor favor, atienda a su centinela asignada\n");
+			else
+			{
+				vGeneral.ImprimirMensaje("Lo sentimos, pero no quedan reservas de su vacuna disponibles\n");
 				vGeneral.Pausa();
 				vGeneral.Limpiar();
 			}
-			listaExpedientes.agregarExpediente(mExpediente);
 		}
 		else{
-			//B
-			string nombre, apellido, cedula, marcaVacuna;
+			vGeneral.ImprimirMensaje("Su centinela correspondiente es el " + mExpediente.getCodCentinela() + "\nPor favor, atienda a su centinela asignada\n");
+			vGeneral.Pausa();
 			vGeneral.Limpiar();
-			vGeneral.ImprimirEncabezado("Registro de Persona",
-										"======== == =======");
-			nombre = vGeneral.LeerString("Nombre: ");
-			apellido = vGeneral.LeerString("Apellido: ");
-			cedula = vGeneral.LeerString("Cedula: ");
-			MPersona personaActual(nombre, apellido, cedula);
-
-			MExpedienteVacunacion expedienteVacunaActual;
 		}
 	}
 	else{
@@ -1677,15 +1712,37 @@ void Controlador::procesarPaciente()
 
 	if(final)
 	{
+		estado.removerInfoVacunas(mExpediente.getVacunaTomada(), infoVacuna);
+		estado.agregarInfoVacunas(infoVacuna);
+
 		mExpediente.AgregarNuevaDosis(date);
 		vacuna.setcantReservada(vacuna.getcantReservada() - 1);
+		vGeneral.Limpiar();
+		vGeneral.ImprimirMensaje("=============R E S U L T A D O=============\n\n");
+		vGeneral.ImprimirMensaje(cedula + " " + persona.getnombre() + " " + persona.getapellido());
+		vGeneral.ImprimirLineasBlanco(2);
+		vGeneral.ImprimirNro("Nro de la dosis suministrada: ", mExpediente.contarTotalDosis());
+		vGeneral.ImprimirLineasBlanco(2);
+		vGeneral.ImprimirString("Marca de la vacuna: ", mExpediente.getVacunaTomada());
+		vGeneral.ImprimirLineasBlanco(2);
+		if(mExpediente.contarTotalDosis() >= infoVacuna.getNroDosis()){
+			vGeneral.ImprimirMensaje("Ya se ha vacunado todas las dosis necesarias");
+			vGeneral.ImprimirLineasBlanco(2);
+		}
+		else{
+			Date sigD = mExpediente.getSigFechaEstipulada();
+			vGeneral.ImprimirMensaje("Fecha para la siguiente dosis: " + sigD.getFecha());
+			vGeneral.ImprimirLineasBlanco(2);
+		}
+		vGeneral.ImprimirMensaje("===========================================\n\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 	}
 	centinela.agregarVacuna(vacuna);
 	centinela.agregarCubiculo(cubiculo);
 	municipio.agregarCentinela(centinela);
 	estado.agregarMunicipio(municipio);
 	listaExpedientes.agregarExpediente(mExpediente);
-	return;
 
 	/**
 	 * Municipio: //ingresar//
