@@ -1,5 +1,0 @@
-LB1,Iribarren,Barquisimeto
-LB2,Torres,Barquisimeto
-LB3,Crespo,Barquisimeto
-LB4,Moran,Barquisimeto
-LB5,Palavecino,Barquisimeto

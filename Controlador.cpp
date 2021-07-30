@@ -865,9 +865,9 @@ void Controlador::menuModificar(){
 			vGeneral.ImprimirLineasBlanco(1);
 			vGeneral.ImprimirMensaje("2) Modificar Persona");
 			vGeneral.ImprimirLineasBlanco(1);
-			vGeneral.ImprimirMensaje("4) Modificar Vacuna");
+			vGeneral.ImprimirMensaje("3) Modificar Vacuna");
 			vGeneral.ImprimirLineasBlanco(1);
-			vGeneral.ImprimirMensaje("5) Salir");
+			vGeneral.ImprimirMensaje("4) Salir");
 			vGeneral.ImprimirLineasBlanco(1);
 
 			rpta = vGeneral.LeerNro("Respuesta: ");
@@ -932,19 +932,30 @@ void Controlador::modificarMunicipio(){
 
 void Controlador::ModificarPersona()
 {
-	MPersona persona;
-	int rpta;
+	  MPersona persona;
+	  MExpedienteVacunacion expediente;
+	  int rpta;
+	  string cedula = vGeneral.LeerString("\n Ingrese la cedula: ");
+	  while ( !listaPersonas.removerPersona(cedula,persona)){
+
+	    vGeneral.ImprimirMensaje("la persona no existe\n");
+	    vGeneral.Pausa();
+	    vGeneral.Limpiar();
+	    cedula = vGeneral.LeerString("\n Ingrese la cedula: ");
+	  };
+	  listaExpedientes.removerExpediente(cedula, expediente);
+	  vGeneral.Limpiar();
 		while (rpta != 5)
 		{
-			vGeneral.ImprimirEncabezado("M E N U  A G R E G A R",
+			vGeneral.ImprimirEncabezado("M E N U  P E R S O N A",
 										"_______  _____________");
-			vGeneral.ImprimirMensaje("1) Agregar Municipio");
+			vGeneral.ImprimirMensaje("1) Modificar informacion personal");
 			vGeneral.ImprimirLineasBlanco(1);
-			vGeneral.ImprimirMensaje("2) Agregar Centinela");
+			vGeneral.ImprimirMensaje("2) Modificar Marca de la Vacuna Tomada");
 			vGeneral.ImprimirLineasBlanco(1);
-			vGeneral.ImprimirMensaje("3) Agregar Cubiculo");
+			vGeneral.ImprimirMensaje("3) Agregar Dosis");
 			vGeneral.ImprimirLineasBlanco(1);
-			vGeneral.ImprimirMensaje("4) Agregar Informacion De Vacunas");
+			vGeneral.ImprimirMensaje("4) Remover ultima dosis");
 			vGeneral.ImprimirLineasBlanco(1);
 			vGeneral.ImprimirMensaje("5) Salir");
 			vGeneral.ImprimirLineasBlanco(1);
@@ -954,19 +965,97 @@ void Controlador::ModificarPersona()
 			switch (rpta)
 			{
 			case 1:
-				agregarMunicipio();
+				   vGeneral.ImprimirMensaje(" datos de la persona \n");
+				   vGeneral.ImprimirLineasBlanco(1);
+				   vGeneral.ImprimirString("------NOMBRE: ", persona.getnombre());
+				   vGeneral.ImprimirLineasBlanco(1);
+				   vGeneral.ImprimirString("------APELLIDO: ", persona.getapellido());
+				   vGeneral.ImprimirLineasBlanco(1);
+
+				   persona.setnombre(vGeneral.LeerString("Ingrese el nombre: "));
+				   persona.setapellido(vGeneral.LeerString("Ingrese el apellido: "));
+
+					vGeneral.Limpiar();
+					vGeneral.ImprimirMensaje("===========R E S U L T A D O============\n\n");
+					vGeneral.ImprimirMensaje("Se modifico la informacion personal con exito!\n\n");
+					vGeneral.ImprimirMensaje("========================================\n\n");
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
 				break;
 			case 2:
-				agregarCentinela();
+				{
+					   MInfoVacunas infoV;
+					   IInfoVacunas IinfoV;
+					   vGeneral.ImprimirMensaje(" datos de la persona \n");
+					   vGeneral.ImprimirLineasBlanco(1);
+					   vGeneral.ImprimirString("------MARCA VACUNA TOMADA: ", expediente.getVacunaTomada());
+					   vGeneral.ImprimirLineasBlanco(2);
+
+					   IinfoV.ImprimirListaDosis(estado);
+					   string marca = vGeneral.LeerString("Ingrese una nueva marca tomada: ");
+					   if(estado.removerInfoVacunas(marca,infoV)){
+						   estado.agregarInfoVacunas(infoV);
+						   expediente.setVacunaTomada(marca);
+							vGeneral.Limpiar();
+							vGeneral.ImprimirMensaje("===========R E S U L T A D O============\n\n");
+							vGeneral.ImprimirMensaje("Se Modifico la marca de la vacuna tomada exitosamente!\n\n");
+							vGeneral.ImprimirMensaje("========================================\n\n");
+							vGeneral.ImprimirLineasBlanco(1);
+							vGeneral.Pausa();
+							vGeneral.Limpiar();
+					   }
+					   else{
+						   vGeneral.Limpiar();
+						   vGeneral.ImprimirMensaje("La marca ingresada no existe\n");
+						   vGeneral.Pausa();
+						   vGeneral.Limpiar();
+					   }
+				}
 				break;
 			case 3:
-				agregarCubiculo();
+				{
+					string fecha = vGeneral.LeerString("Ingrese la fecha (dd/mm/aaaa): ");
+					Date nuevaDosis(fecha);
+					expediente.AgregarNuevaDosis(nuevaDosis);
+
+					vGeneral.Limpiar();
+					vGeneral.ImprimirMensaje("===========R E S U L T A D O============\n\n");
+					vGeneral.ImprimirMensaje("Se agrego la nueva dosis exitosamente!\n\n");
+					vGeneral.ImprimirMensaje("========================================\n\n");
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
+				}
 				break;
 			case 4:
-				AgregarInfoVacunas();
-				return;
+				{
+					Date oldDosis;
+					if(expediente.removerTopeDosis(oldDosis)){
+						vGeneral.Limpiar();
+						vGeneral.ImprimirMensaje("===========R E S U L T A D O============\n\n");
+						vGeneral.ImprimirMensaje("Se elimino la ultima dosis exitosamente!\n\n");
+						vGeneral.ImprimirMensaje("========================================\n\n");
+						vGeneral.ImprimirLineasBlanco(1);
+						vGeneral.Pausa();
+						vGeneral.Limpiar();
+					}
+					else
+					{
+						vGeneral.Limpiar();
+						vGeneral.ImprimirMensaje("===========R E S U L T A D O============\n\n");
+						vGeneral.ImprimirMensaje("Ya la persona no tiene niguna dosis inyectada\n\n");
+						vGeneral.ImprimirMensaje("========================================\n\n");
+						vGeneral.ImprimirLineasBlanco(1);
+						vGeneral.Pausa();
+						vGeneral.Limpiar();
+					}
+				}
+				break;
 			case 5:
-			  return;
+				listaPersonas.agregarPersona(persona);
+				listaExpedientes.agregarExpediente(expediente);
+			    return;
 			default:
 				vGeneral.ImprimirMensaje("Por favor ingrese una opcion valida\n");
 				vGeneral.Pausa();
@@ -974,36 +1063,6 @@ void Controlador::ModificarPersona()
 				break;
 			}
 		}
-
-	  string cedula = vGeneral.LeerString("\n Ingrese la cedula: ");
-
-	  while ( !listaPersonas.removerPersona(cedula,persona)){
-
-	    vGeneral.ImprimirMensaje("la pesona no existe");
-	    vGeneral.Pausa();
-	    vGeneral.Limpiar();
-	  };
-
-	   //mosta a la pesona
-	   vGeneral.ImprimirMensaje(" datos de la persona \n");
-	   vGeneral.ImprimirLineasBlanco(1);
-	   vGeneral.ImprimirString("------NOMBRE: ", persona.getnombre());
-	   vGeneral.ImprimirLineasBlanco(1);
-	   vGeneral.ImprimirString("------APELLIDO: ", persona.getapellido());
-	   vGeneral.ImprimirLineasBlanco(1);
-
-	   persona.setnombre(vGeneral.LeerString("Ingrese el nombre: "));
-	   persona.setapellido(vGeneral.LeerString("Ingrese el apellido: "));
-
-	   listaPersonas.agregarPersona(persona);
-		vGeneral.Limpiar();
-		vGeneral.ImprimirMensaje("===========R E S U L T A D O============\n\n");
-		vGeneral.ImprimirMensaje("la Operacion fue un exito!\n\n");
-		vGeneral.ImprimirMensaje("========================================\n\n");
-		vGeneral.ImprimirLineasBlanco(1);
-		vGeneral.Pausa();
-		vGeneral.Limpiar();
-
 }
 
 
@@ -1040,7 +1099,7 @@ void Controlador::menuAgregar(){
 				break;
 			case 4:
 				AgregarInfoVacunas();
-				return;
+				break;
 			case 5:
 			  return;
 			default:
@@ -1329,13 +1388,15 @@ void Controlador::consultarPersona()
 		vGeneral.ImprimirMensaje("==============R E P O R T E===============\n\n");
 		vGeneral.ImprimirString("NOMBRE: ", mp.getnombre());
 		vGeneral.ImprimirLineasBlanco(1);
+		vGeneral.ImprimirString("APELLIDO: ", mp.getapellido());
+		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirString("CEDULA: ", mp.getcedula());
 		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirNro("CANTIDAD DE DOSIS TOMADAS: ", me.contarTotalDosis());
 		vGeneral.ImprimirLineasBlanco(1);
 		vGeneral.ImprimirString("LA VACUNA COLOCADA ES: ", me.getVacunaTomada());
 		vGeneral.ImprimirLineasBlanco(2);
-		vGeneral.ImprimirMensaje("==============R E P O R T E===============\n\n");
+		vGeneral.ImprimirMensaje("==========================================\n\n");
 		vGeneral.Pausa();
 		vGeneral.Limpiar();
 		listaPersonas.agregarPersona(mp);
