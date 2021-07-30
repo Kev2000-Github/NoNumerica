@@ -1126,6 +1126,7 @@ void Controlador::consultarCentinelas()
 	ICentinela Icentinela;
 
 	vgeneral.Limpiar();
+	vGeneral.ImprimirMensaje("==========   CONSULTAR  CENTINELA   =========");
 	Imunicipio.ImprimirListaMunicipio(estado);
 	string municipioCodigo = vgeneral.LeerString("\n Ingrese el codigo del municipio: ");
 
@@ -1140,8 +1141,10 @@ void Controlador::consultarCentinelas()
 	};
 
 	vgeneral.Limpiar();
+	vGeneral.ImprimirString("------MUNICIPIO: ", municipio.getNombre());
+	vGeneral.ImprimirLineasBlanco(1);
 
-	Icentinela.ImprimirListaCentinela(municipio);
+	Icentinela.ConsultarCentinela(municipio);
 	vgeneral.Pausa();
 	vgeneral.Limpiar();
 
