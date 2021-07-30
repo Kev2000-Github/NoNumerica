@@ -21,7 +21,6 @@ void MAlmacenVacuna::setMarca(string _marca)
 	marca = _marca;
 }
 
-
 string MAlmacenVacuna::getMarca()
 {
 	return marca;
