@@ -1966,27 +1966,39 @@ void Controlador::procesarPaciente()
 		if(mExpediente.getCodCentinela() == centinela.getCodigo()){
 			if(centinela.removerVacunaLote(mExpediente.getVacunaTomada(), mExpediente.getLote(),vacuna))
 			{
-				fecha = vGeneral.LeerString("Ingrese la fecha (dd/mm/aaaa): ");
-				date.setFecha(fecha);
-				Date ultimaDosisDate;
-				if(mExpediente.removerTopeDosis(ultimaDosisDate)){
-					mExpediente.AgregarNuevaDosis(ultimaDosisDate);
-					int diferenciaDias = ultimaDosisDate.DiferenciaDias(date);
-					if(diferenciaDias >= 90 && date.esMayor(ultimaDosisDate))
-					{
+				estado.removerInfoVacunas(mExpediente.getVacunaTomada(), infoVacuna);
+				estado.agregarInfoVacunas(infoVacuna);
+
+				if(mExpediente.contarTotalDosis() < infoVacuna.getNroDosis())
+				{
+					fecha = vGeneral.LeerString("Ingrese la fecha (dd/mm/aaaa): ");
+					date.setFecha(fecha);
+					Date ultimaDosisDate;
+					if(mExpediente.removerTopeDosis(ultimaDosisDate)){
+						mExpediente.AgregarNuevaDosis(ultimaDosisDate);
+						int diferenciaDias = ultimaDosisDate.DiferenciaDias(date);
+						if(diferenciaDias >= 90 && date.esMayor(ultimaDosisDate))
+						{
+							final = true;
+						}
+						else
+						{
+							Date sigFechaEstipulada = mExpediente.getSigFechaEstipulada();
+							vGeneral.ImprimirMensaje("Lo sentimos, pero no han pasado los dias para recibir su siguiente dosis\n por favor regrese el dia " + sigFechaEstipulada.getFecha());
+							vGeneral.ImprimirLineasBlanco(1);
+							vGeneral.Pausa();
+							vGeneral.Limpiar();
+						}
+					}
+					else{
 						final = true;
 					}
-					else
-					{
-						Date sigFechaEstipulada = mExpediente.getSigFechaEstipulada();
-						vGeneral.ImprimirMensaje("Lo sentimos, pero no han pasado los dias para recibir su siguiente dosis\n por favor regrese el dia " + sigFechaEstipulada.getFecha());
-						vGeneral.ImprimirLineasBlanco(1);
-						vGeneral.Pausa();
-						vGeneral.Limpiar();
-					}
 				}
-				else{
-					final = true;
+				else
+				{
+					vGeneral.ImprimirMensaje("Ya usted se ha vacunado con todas las dosis necesarias\n");
+					vGeneral.Pausa();
+					vGeneral.Limpiar();
 				}
 			}
 			else
