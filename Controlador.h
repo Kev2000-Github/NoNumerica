@@ -71,7 +71,7 @@ public:
 	void procesarPaciente();
 	void modificarMunicipio();
 	void eliminarMunicipio();
-
+    void modificarExpediente();
 
 };
 

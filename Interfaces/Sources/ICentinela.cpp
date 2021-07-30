@@ -38,3 +38,24 @@ void ICentinela::ImprimirListaCentinela(MMunicipio &municipio){
 
 }
 
+void ICentinela::ConsultarCentinela(MMunicipio &municipio){
+          Lista<MCentinela> auxCentinela;
+      MCentinela centinelaActual;
+        VGeneral vg;
+        int i=1;
+        vg.ImprimirMensaje("\n Reportar Informacion de los Centinelas\n");
+        vg.ImprimirMensaje("\n --------------------------------------------\n");
+        while(!municipio.esVacio()) {
+            municipio.removerPrimerCentinela(centinelaActual);
+
+            vg.ImprimirString3("Centinela Nro",i++,": "+centinelaActual.getCodigo());
+
+            vg.ImprimirNro("Cantidad de personas: ",centinelaActual.PersonasCentinela(centinelaActual));
+            vg.ImprimirMensaje("\n -----\n");
+            auxCentinela.InsComienzo(centinelaActual);
+              }
+              while(!auxCentinela.Vacia()) {
+                auxCentinela.EliComienzo(centinelaActual);
+                municipio.agregarCentinela(centinelaActual);
+              }
+}
