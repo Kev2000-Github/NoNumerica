@@ -37,6 +37,7 @@ public:
 	void agregarCentinela();
 	void AgregarInfoVacunas();
 	void agregarCubiculo();
+	void ModificarPersona();
 	void recibirVacunas();
 
 	void procesar();

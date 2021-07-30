@@ -38,3 +38,7 @@ bool MCensoPersonas::removerPrimerPersona(MPersona &persona)
 bool MCensoPersonas::esVacia(){
 	return personas.Vacia();
 }
+
+int MCensoPersonas::Contar(){
+	return personas.Contar();
+}

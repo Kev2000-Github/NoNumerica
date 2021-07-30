@@ -21,6 +21,7 @@ public:
   bool removerPersona(string cedula, MPersona &persona);
   bool removerPrimerPersona (MPersona &persona);
   bool esVacia();
+  int Contar();
 };
 
 #endif /* CENSOPERSONAS_H_ */
