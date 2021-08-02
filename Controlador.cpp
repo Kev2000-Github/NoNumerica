@@ -1285,11 +1285,28 @@ void Controlador::agregarCentinela()
 	ICubiculo Icubiculo;
 
 	vGeneral.Limpiar();
+	Imunicipio.ImprimirListaMunicipio(estado);
+	string municipioCodigo = vGeneral.LeerString("Ingrese el codigo del municipio: ");
+
+	while (!estado.removerMunicipio(municipioCodigo, municipio))
+	{
+		vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+
+		Imunicipio.ImprimirListaMunicipio(estado);
+		municipioCodigo = vGeneral.LeerString("Ingrese el codigo del Municipio: ");
+	};
+
+	vGeneral.Limpiar();
+
+	vGeneral.Limpiar();
 	int numCenti = vGeneral.LeerNro("Ingrese el numero de Centinelas que desea agregar: ");
 	for (int i = 0; i < numCenti; ++i)
 	{
 		MCentinela newCentinela;
 		string centiCodigo = vGeneral.LeerString("Ingrese el codigo de la nueva Centinela: ");
+		newCentinela.setCodigo(centiCodigo);
 
 		while (municipio.removerCentinela(centiCodigo, centinelaAux))
 		{
