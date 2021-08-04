@@ -1,5 +1,5 @@
-LB5,Palavecino
-LB4,Moran
-LB3,Crespo
-LB2,Torres
 LB1,Iribarren
+LB2,Torres
+LB3,Crespo
+LB4,Moran
+LB5,Palavecino

@@ -1,4 +1,4 @@
-PFizer, 3
-Sputnik V, 2
-Sinopharm, 2
-Sinovac, 2
+Sinovac,2
+Sinopharm,2
+Sputnik V,2
+PFizer,3
