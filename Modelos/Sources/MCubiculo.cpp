@@ -82,3 +82,25 @@ int MCubiculo::total()
 	}
 	return cont;
 }
+
+bool MCubiculo::buscarPaciente(string &cedula){
+
+	Cola<string> colaAux;
+	string auxced;
+		bool encontrado = false;
+		while(!cedulaPaciente.Vacia()){
+			cedulaPaciente.Remover(auxced);
+			if(auxced == cedula){
+
+				encontrado = true;
+
+			}
+			colaAux.Insertar(auxced);
+		}
+		while(!colaAux.Vacia()){
+			colaAux.Remover(auxced);
+			cedulaPaciente.Insertar(auxced);
+		}
+		return encontrado;
+	}
+

@@ -25,6 +25,7 @@ public:
 	bool removerPaciente(string &cedula);
 	bool esVacia();
 	int total();
+	bool buscarPaciente(string &cedula);
 };
 
 #endif /* MCUBICULO_H_ */

@@ -48,13 +48,13 @@ V27.436.537,Josue,Faneittes,PFizer,C7-4,K14,02/06/2021
 V5.686.305,Cesar,Ruiz,Sinovac,C8-4,K547,01/01/2021,26/05/2021
 V4.341.240,Abel,Salero,Sinopharm,C9-5,K18,16/06/2021
 V11.263.779,Zumilda,Ramos,Sinopharm,C10-5,K568,11/06/2021,31/07/2021
-V5.874.246,Mary,Cedeño,PFizer,C1-1,K1,22/06/2021,30/07/2021
+V5.874.246,Mary,Cedeo,PFizer,C1-1,K1,22/06/2021,30/07/2021
 V9.601.207,Cesar,Faneittes,PFizer,C2-1,K3,14/06/2021,20/07/2021
 V13.265.948,Alexis,Gomez,Sputnik V,C3-2,K6,16/06/2021
 V15.093.019,Yusmary,Vargas,PFizer,C4-2,K7,11/06/2021
 V4.068.160,Willian,Colmenarez,Sputnik V,C5-3,K590,09/06/2021,15/07/2021
 V18.135.268,Victor,Orellana,Sputnik V,C6-3,K12,11/06/2021
-V9.626.539,Eliecer,Torrealba,PFizer,C1-1,K1,08/08/2021,08/11/2021
+V9.626.539,Eliecer,Torrealba,PFizer,C1-1,K1,08/08/2021
 V9.616.878,Coromoto,Osal,Sinopharm,C1-1,K612,01/06/2021,03/07/2021
 V21.144.849,Ramon,Perez,PFizer,C3-2,K5,05/07/2021,29/10/2021
 V26.121.874,David,Sosa,PFizer,C3-2,K5,10/07/2021
@@ -64,7 +64,7 @@ V4.464.504,Antonio,Solis,Sputnik V,C3-2,K655,01/06/2021,07/07/2021
 V30.569.117,Ricky,Morty,Sinopharm,C9-5,K676,15/05/2021,18/06/2021
 V17.777.779,Elba,Vino,PFizer,C6-3,K11,14/08/2021,19/09/2021
 V22.998.663,Armando,Perez,Sputnik V,C1-1,K697,08/06/2021,12/07/2021
-V5.936.212,Yudith,Vargas,Sputnik V,C1-1,K2,10/07/2021
+V5.936.212,Yudith,Vargas,Sputnik V,C1-1,K2,
 V4.918.208,Carmen,Linares,PFizer,C2-1,K3,15/05/2021,15/07/2021
 V11.324.837,Tibisay,Zarate,PFizer,C4-2,K7,05/06/2021
 V11.619.243,Virgilio,Castellanos,Sputnik V,C4-2,K8,05/05/2021

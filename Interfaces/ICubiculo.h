@@ -20,6 +20,7 @@ public:
 	void ImprimirListaCubiculo(MCentinela &centinela);
 	void ReportarCubiculo(MCentinela &centinela);
 	void reportarPersonasDelaCola(MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
+	void reportarPersonas0Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
 	void reportarPersonas1Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
 	void reportarPersonas2Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
 };
