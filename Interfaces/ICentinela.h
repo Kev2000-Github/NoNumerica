@@ -6,12 +6,16 @@
 #include "../Modelos/MMunicipio.h"
 
 class ICentinela {
+private:
+	VGeneral vGeneral;
 public:
     ICentinela();
     void reporteCubiculos(MCentinela &centinela);
     void ImprimirListaCentinela(MMunicipio &municipio);
     void ImprimirListaCentinelaLote(MMunicipio &municipio);
     void ConsultarCentinela(MMunicipio &municipio);
+    void obtenerCentinela(MMunicipio &municipio, MCentinela &centinela);
+
 };
 
 #endif

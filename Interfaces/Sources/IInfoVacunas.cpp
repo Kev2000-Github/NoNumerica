@@ -17,28 +17,17 @@ void IInfoVacunas::ImprimirListaDosis(MEstado &estado)
 	    Lista<MInfoVacunas> auxinfo;
 	    MInfoVacunas infoActual;
 	    VGeneral vg;
-	    int i=1;
 	    string marca;
 	    vg.ImprimirMensaje("\n Informacion de vacunas:\n");
-
-
 
 	    while(!estado.infVacio()) {
 	    	estado.removerPrimerInfo(infoActual);
 
             vg.ImprimirString4_("Marca:  ",infoActual.getMarca()," Dosis:",infoActual.getNroDosis());
-
-
-
 	        auxinfo.InsComienzo(infoActual);
 	    }
 	    while(!auxinfo.Vacia()) {
 	    	auxinfo.EliComienzo(infoActual);
 	    	estado.agregarInfoVacunas(infoActual);
 	    }
-
-
-
-
-
 }

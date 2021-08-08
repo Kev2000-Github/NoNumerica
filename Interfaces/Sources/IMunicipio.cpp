@@ -41,7 +41,6 @@ void IMunicipio::ConsultaMunicipio(MEstado &estado){
 	Lista<MMunicipio> auxmunicipio;
 			MMunicipio municipioactual;
 		    VGeneral vg;
-		    int i=1;
 		    vg.ImprimirMensaje("\n Reportar Informacion de los Municipios\n");
 		    vg.ImprimirMensaje("\n --------------------------------------------\n");
 		    while(!estado.esVacio()) {
@@ -56,4 +55,19 @@ void IMunicipio::ConsultaMunicipio(MEstado &estado){
 		    	    	auxmunicipio.EliComienzo(municipioactual);
 		    	    	estado.agregarMunicipio(municipioactual);
 		    	    }
+}
+
+void IMunicipio::obtenerMunicipio(MEstado &estado, MMunicipio &municipio) {
+	vGeneral.Limpiar();
+	ImprimirListaMunicipio(estado);
+	string codigoMunicipio = vGeneral.LeerString("\n Codigo del Municipio: ");
+
+	while(!estado.removerMunicipio(codigoMunicipio, municipio)) {
+		vGeneral.ImprimirMensaje("\n ERROR: El municipio solicitado no existe");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+
+		ImprimirListaMunicipio(estado);
+		codigoMunicipio = vGeneral.LeerString("\n Codigo del municipio: ");
+	}
 }

@@ -7,11 +7,13 @@
 class IMunicipio
 {
 private:
+	VGeneral vGeneral;
 public:
     IMunicipio();
     void reportarCentinelas(MMunicipio &municipio);
     void ImprimirListaMunicipio(MEstado &estado);
     void ConsultaMunicipio(MEstado &estado);
+    void obtenerMunicipio(MEstado &estado, MMunicipio &municipio);
 };
 
 #endif

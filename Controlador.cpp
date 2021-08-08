@@ -947,6 +947,16 @@ void Controlador::ModificarPersona()
 	  vGeneral.Limpiar();
 		while (rpta != 5)
 		{
+			vGeneral.ImprimirString("------Nombre: ", persona.getnombre());
+			vGeneral.ImprimirLineasBlanco(1);
+			vGeneral.ImprimirString("------Apellido: ", persona.getapellido());
+			vGeneral.ImprimirLineasBlanco(1);
+			vGeneral.ImprimirString("------Vacuna tomada: ", expediente.getVacunaTomada());
+			vGeneral.ImprimirLineasBlanco(1);
+			vGeneral.ImprimirNro("------Dosis tomadas: ", expediente.contarTotalDosis());
+			vGeneral.ImprimirLineasBlanco(1);
+			vGeneral.ImprimirMensaje("====================================");
+			vGeneral.ImprimirLineasBlanco(1);
 			vGeneral.ImprimirEncabezado("M E N U  P E R S O N A",
 										"_______  _____________");
 			vGeneral.ImprimirMensaje("1) Modificar informacion personal");
@@ -1711,93 +1721,76 @@ void Controlador::consultarVacunas()
 }
 void Controlador::incluirPacienteACola()
 {
-	ICubiculo icubiculo;
-					MPersona person;
-					IMunicipio imunicipio;
-					ICentinela icentinela;
-					MCubiculo cubiculo;
-					MCentinela centinelas;
-					MMunicipio municipio;
-					Controlador controlador;
-					string codmuni,codcenti,codcubi,cedula;
+	IMunicipio iMunicipio;
+	ICentinela iCentinela;
+	ICubiculo iCubiculo;
 
-					vGeneral.ImprimirMensaje("==========   I N G R E S A R   P A C I E N T E   A  L A   C O L A   ==========");
+	MMunicipio municipio;
+	MCentinela centinela;
+	MCubiculo cubiculo;
+	MPersona persona;
 
-					imunicipio.ImprimirListaMunicipio(estado);
-					codmuni = vGeneral.LeerString("\n Codigo de Municipio: ");
-					municipio.setCodigo(codmuni);
+	string cedula;
 
-					while(!estado.removerMunicipio(codmuni,municipio))
-					{
-						vGeneral.ImprimirMensaje("Error: El municipio solicitado no existe \n\n");
-						vGeneral.Pausa();
-						vGeneral.Limpiar();
+	vGeneral.Limpiar();
+	vGeneral.ImprimirMensaje("\n========= INGRESAR PACIENTE A LA COLA =========");
 
-						imunicipio.ImprimirListaMunicipio(estado);
-						codmuni = vGeneral.LeerString("\n Ingrese el codigo del municipio: ");
-					}
-						vGeneral.Limpiar();
-						icentinela.ImprimirListaCentinela(municipio);
-						codcenti = vGeneral.LeerString("\n Ingrese el codigo del centinela: ");
+	iMunicipio.obtenerMunicipio(estado, municipio);
+	iCentinela.obtenerCentinela(municipio, centinela);
+	iCubiculo.obtenerCubiculo(centinela, cubiculo);
 
-						while(!municipio.removerCentinela(codcenti, centinelas))
-						{
-							vGeneral.ImprimirMensaje("Error: El centinela solicitado no existe \n\n");
-							vGeneral.Pausa();
-							vGeneral.Limpiar();
-							icentinela.ImprimirListaCentinela(municipio);
-							codcenti = vGeneral.LeerString("\n Ingrese el codigo del centinela: ");
-						}
+	vGeneral.Limpiar();
+	iCubiculo.reportarPersonasDelaCola(listaPersonas, cubiculo);
+	cedula = vGeneral.LeerString("\n Cedula: ");
+	while(cubiculo.buscarPaciente(cedula)) {
+		vGeneral.ImprimirMensaje("\n ERROR: El paciente ya esta en la cola\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+		iCubiculo.reportarPersonasDelaCola(listaPersonas,cubiculo);
+		cedula = vGeneral.LeerString("\n Cedula: ");
+	}
 
-						vGeneral.Limpiar();
-						icubiculo.ImprimirListaCubiculo(centinelas);
-						codcubi = vGeneral.LeerString("\n Ingrese el codigo del cubiculo: ");
+	if(!listaPersonas.removerPersona(cedula, persona)) {
+		vGeneral.ImprimirMensaje("\n ERROR: El paciente no esta censado\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
 
-						while(!centinelas.removerCubiculo(codcubi, cubiculo))
-						{
-							vGeneral.ImprimirMensaje("Error: El cubiculo solicitado no existe \n\n");
-							vGeneral.Pausa();
-							vGeneral.Limpiar();
+		vGeneral.ImprimirMensaje("\n========= DATOS DEL PACIENTE NUEVO =========");
+		vGeneral.ImprimirString("\n Cedula: ", cedula);
+		string nombre = vGeneral.LeerString("\n Nombre: ");
+		string apellido = vGeneral.LeerString("\n Apellido: ");
+		MPersona pacienteNuevo(nombre, apellido, cedula);
 
-							icubiculo.ImprimirListaCubiculo(centinelas);
-							codcubi = vGeneral.LeerString("\n Ingrese el codigo del cubiculo: ");
-						};
+		vGeneral.ImprimirMensaje("\n CREANDO EXPEDIDENTE...");
+		MExpedienteVacunacion expedienteNuevo(cedula, "Ninguno");
+		expedienteNuevo.setVacunaTomada("Ninguna");
+		expedienteNuevo.setLote("Ninguna");
 
-						icubiculo.reportarPersonasDelaCola(listaPersonas,cubiculo);
-						cedula = vGeneral.LeerString("\n Ingrese cedula: ");
-						while(cubiculo.buscarPaciente(cedula))
-						{
-							vGeneral.ImprimirMensaje("Error: Paciente ya esta en la Cola \n");
-							vGeneral.Pausa();
-							vGeneral.Limpiar();
-							icubiculo.reportarPersonasDelaCola(listaPersonas,cubiculo);
-							cedula = vGeneral.LeerString("\n Ingrese cedula: ");
+		if(listaExpedientes.agregarExpediente(expedienteNuevo))
+			vGeneral.ImprimirMensaje("\n Expediente creado exitosamente\n");
+		else
+			vGeneral.ImprimirMensaje("\n ERROR: El expediente no pudo ser creado\n");
 
-						}
-						while(!listaPersonas.removerPersona(cedula,person))
-						{
-							vGeneral.ImprimirMensaje("Error: La Cedula no esta registrada en Censo persona \n");
-							vGeneral.Pausa();
-							vGeneral.Limpiar();
-							centinelas.agregarCubiculo(cubiculo);
-							municipio.agregarCentinela(centinelas);
-							estado.agregarMunicipio(municipio);
-							return;
-						}
-						listaPersonas.agregarPersona(person);
-						if(cubiculo.agregarPaciente(cedula)){
-							vGeneral.ImprimirMensaje("Paciente Ingresado exitosamente \n");
-						}
-						else{
-							vGeneral.ImprimirMensaje("El Paciente no pudo ser ingresado \n");
-						}
+		persona = pacienteNuevo;
+	}
 
-						centinelas.agregarCubiculo(cubiculo);
-						municipio.agregarCentinela(centinelas);
-						estado.agregarMunicipio(municipio);
-						vGeneral.ImprimirLineasBlanco(2);
-						vGeneral.Pausa();
-						vGeneral.Limpiar();
+	listaPersonas.agregarPersona(persona);
+
+	if(!estado.buscarPaciente(cedula) && !municipio.buscarPaciente(cedula) && !centinela.buscarPaciente(cedula)) {
+		if(cubiculo.agregarPaciente(cedula))
+			vGeneral.ImprimirMensaje("\n Paciente ingresado exitosamente\n");
+		else
+			vGeneral.ImprimirMensaje("\n ERROR: El paciente no pudo ser ingresado\n");
+	}
+	else
+		vGeneral.ImprimirMensaje("\n ERROR: El paciente esta en otra cola\n");
+
+	centinela.agregarCubiculo(cubiculo);
+	municipio.agregarCentinela(centinela);
+	estado.agregarMunicipio(municipio);
+
+	vGeneral.Pausa();
+	vGeneral.Limpiar();
 }
 
 void Controlador::SacarPacienteDeCola()
@@ -1944,24 +1937,14 @@ void Controlador::procesarPaciente()
 	if(cedula != ""){
 		listaPersonas.removerPersona(cedula, persona);
 		listaPersonas.agregarPersona(persona);
+		listaExpedientes.removerExpediente(cedula, mExpediente);
+		listaExpedientes.agregarExpediente(mExpediente);
 		vGeneral.ImprimirMensaje("======P R O C E S A R=======\n");
 		vGeneral.ImprimirMensaje(cedula + " " + persona.getnombre() + " " + persona.getapellido());
 		vGeneral.ImprimirLineasBlanco(2);
-		if(!listaExpedientes.removerExpediente(cedula, mExpediente)){
 			//B
 			string nombre, apellido, cedula, marcaVacuna;
-			centinela.removerPrimeraVacuna(vacuna);
-			if(vacuna.getMarca() != ""){
-				vGeneral.ImprimirMensaje(vacuna.getMarca());
-				vGeneral.Pausa();
-				vGeneral.Limpiar();
-				vGeneral.ImprimirEncabezado("Registro de Persona",
-											"======== == =======");
-				nombre = vGeneral.LeerString("Nombre: ");
-				apellido = vGeneral.LeerString("Apellido: ");
-				MPersona personaActual(nombre, apellido, cedula);
-
-				mExpediente.setCedula(cedula);
+			if(centinela.removerPrimeraVacuna(vacuna)){
 				mExpediente.setCodCentinela(centinela.getCodigo());
 				mExpediente.setLote(vacuna.getLote());
 				mExpediente.setVacunaTomada(vacuna.getMarca());
@@ -1971,7 +1954,6 @@ void Controlador::procesarPaciente()
 				vacuna.setcantDisponible(vacuna.getcantDisponible() - infoVacuna.getNroDosis());
 				vacuna.setcantReservada(vacuna.getcantReservada() + infoVacuna.getNroDosis());
 				centinela.agregarVacuna(vacuna);
-				listaPersonas.agregarPersona(personaActual);
 			}
 			else{
 				vGeneral.ImprimirMensaje("Lo sentimos, pero no queda ninguna vacuna disponible por el momento\n");
@@ -1980,10 +1962,8 @@ void Controlador::procesarPaciente()
 				centinela.agregarCubiculo(cubiculo);
 				municipio.agregarCentinela(centinela);
 				estado.agregarMunicipio(municipio);
-				listaExpedientes.agregarExpediente(mExpediente);
 				return;
 			}
-		}
 		//A
 		if(mExpediente.getCodCentinela() == centinela.getCodigo()){
 			if(centinela.removerVacunaLote(mExpediente.getVacunaTomada(), mExpediente.getLote(),vacuna))
@@ -1993,6 +1973,18 @@ void Controlador::procesarPaciente()
 
 				if(mExpediente.contarTotalDosis() < infoVacuna.getNroDosis())
 				{
+					Date ultimaDosis;
+					string fechaUltimaDosis = "N/A";
+					if(mExpediente.removerTopeDosis(ultimaDosis)){
+						fechaUltimaDosis = ultimaDosis.getFecha();
+						mExpediente.AgregarNuevaDosis(ultimaDosis);
+					}
+					vGeneral.ImprimirMensaje("===================================\n\n");
+					vGeneral.ImprimirMensaje("Vacuna a Suministrar: " + mExpediente.getVacunaTomada());
+					vGeneral.ImprimirLineasBlanco(1);
+					vGeneral.ImprimirMensaje("Fecha de la ultima dosis suministrada: " + fechaUltimaDosis);
+					vGeneral.ImprimirLineasBlanco(2);
+					vGeneral.ImprimirMensaje("===================================\n\n");
 					fecha = vGeneral.LeerString("Ingrese la fecha (dd/mm/aaaa): ");
 					date.setFecha(fecha);
 					Date ultimaDosisDate;

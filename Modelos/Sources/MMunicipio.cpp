@@ -82,3 +82,22 @@ int MMunicipio::PersonasMunicipio(MMunicipio &municipio){
     }
   return TotalPersonasm;
 }
+
+bool MMunicipio::buscarPaciente(string cedula) {
+	Lista<MCentinela> auxCentinela;
+	MCentinela centinelaActual;
+
+	bool encontrado = false;
+	while(!centinelas.Vacia()) {
+		centinelas.EliComienzo(centinelaActual);
+		if(centinelaActual.buscarPaciente(cedula))
+			encontrado = true;
+		auxCentinela.InsComienzo(centinelaActual);
+	}
+
+	while(!auxCentinela.Vacia()) {
+		auxCentinela.EliComienzo(centinelaActual);
+		centinelas.InsComienzo(centinelaActual);
+	}
+	return encontrado;
+}

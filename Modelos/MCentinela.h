@@ -45,6 +45,8 @@ public:
 	int PersonasCentinela(MCentinela &centinela);
 	bool esVacia();
 	bool PVacia();
+	bool buscarPaciente(string cedula);
+
 };
 
 #endif /* MCENTINELA_H_ */

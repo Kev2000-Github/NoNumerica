@@ -226,3 +226,18 @@ void ICubiculo::reportarPersonas0Dosis(MListaExpediente &listaExpedientes,MCenso
 
 
 }
+
+void ICubiculo::obtenerCubiculo(MCentinela &centinela, MCubiculo &cubiculo) {
+	vGeneral.Limpiar();
+	ImprimirListaCubiculo(centinela);
+	string codigoMunicipio = vGeneral.LeerString("\n Codigo del cubiculo: ");
+
+	while(!centinela.removerCubiculo(codigoMunicipio, cubiculo)) {
+		vGeneral.ImprimirMensaje("\n ERROR: El cubiculo solicitado no existe");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+
+		ImprimirListaCubiculo(centinela);
+		codigoMunicipio = vGeneral.LeerString("\n Codigo del cubiculo: ");
+	}
+}

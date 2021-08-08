@@ -298,4 +298,21 @@ int MCentinela::PersonasCentinela(MCentinela &centinela){
   return TotalPersonas;
 }
 
+bool MCentinela::buscarPaciente(string cedula) {
+	Lista<MCubiculo> auxCubiculo;
+	MCubiculo cubiculoActual;
 
+	bool encontrado = false;
+	while(!cubiculos.Vacia()) {
+		cubiculos.EliComienzo(cubiculoActual);
+		if(cubiculoActual.buscarPaciente(cedula))
+			encontrado = true;
+		auxCubiculo.InsComienzo(cubiculoActual);
+	}
+
+	while(!auxCubiculo.Vacia()) {
+		auxCubiculo.EliComienzo(cubiculoActual);
+		cubiculos.InsComienzo(cubiculoActual);
+	}
+	return encontrado;
+}

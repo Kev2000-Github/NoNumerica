@@ -45,7 +45,7 @@ public:
 
 		bool infVacio();
 
-
+	bool buscarPaciente(string cedula);
 
 };
 

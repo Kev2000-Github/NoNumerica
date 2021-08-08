@@ -14,11 +14,14 @@
 #include "../Modelos/MListaExpediente.h"
 
 class ICubiculo {
+private:
+	VGeneral vGeneral;
 public:
 	ICubiculo();
 	void reportarCedula(MCubiculo colacubiculo);
 	void ImprimirListaCubiculo(MCentinela &centinela);
 	void ReportarCubiculo(MCentinela &centinela);
+	void obtenerCubiculo(MCentinela &centinela, MCubiculo &cubiculo);
 	void reportarPersonasDelaCola(MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
 	void reportarPersonas0Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo);
 	void reportarPersonas1Dosis(MListaExpediente &listaExpedientes,MCensoPersonas &listaPersonas,MCubiculo &cubiculo);

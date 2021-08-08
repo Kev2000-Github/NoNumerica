@@ -28,6 +28,7 @@ public:
     bool removerPrimerCentinela(MCentinela &centinela);
     bool esVacio();
     int PersonasMunicipio(MMunicipio &municipio);
+    bool buscarPaciente(string cedula);
 };
 
 #endif

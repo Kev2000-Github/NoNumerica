@@ -59,3 +59,17 @@ void ICentinela::ConsultarCentinela(MMunicipio &municipio){
                 municipio.agregarCentinela(centinelaActual);
               }
 }
+
+void ICentinela::obtenerCentinela(MMunicipio &municipio, MCentinela &centinela) {
+	vGeneral.Limpiar();
+	ImprimirListaCentinela(municipio);
+	string codigoMunicipio = vGeneral.LeerString("\n Codigo del centinela: ");
+
+	while(!municipio.removerCentinela(codigoMunicipio, centinela)) {
+		vGeneral.ImprimirMensaje("\n ERROR: El centinela solicitado no existe");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+		ImprimirListaCentinela(municipio);
+		codigoMunicipio = vGeneral.LeerString("\n Codigo del centinela: ");
+	}
+}
