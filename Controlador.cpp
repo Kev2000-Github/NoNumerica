@@ -2127,7 +2127,6 @@ void Controlador::procesarPaciente()
 	 */
 }
 
-
 void Controlador::eliminarCubiculo(){
 	VGeneral vgeneral;
 	MMunicipio municipio;
@@ -2222,13 +2221,13 @@ void Controlador::eliminarCubiculo(){
 
 void Controlador::eliminarVacunas()
 {
-			IAlmacen ialmacen;
+		  IAlmacen ialmacen;
 		  IMunicipio imunicipio;
 		  ICentinela icentinela;
 		  MAlmacenVacuna almacen;
 		  MCentinela centinelas;
 		  MMunicipio municipio;
-
+		  int resps;
 		  string codmuni, marca, lote, codcenti, codcubi;
 
 		  vGeneral.ImprimirMensaje("==========   E L I M I N A R  V A C U N A S   ==========");
@@ -2267,6 +2266,20 @@ void Controlador::eliminarVacunas()
 		      icentinela.ImprimirListaCentinela(municipio);
 		      codcenti = vGeneral.LeerString("\n Ingrese el codigo del centinela: ");
 		  }
+        while(centinelas.PVacia())
+
+         {
+        	 vGeneral.ImprimirMensaje("El Centinela ya no posee vacunas! \n");
+        	 vGeneral.Pausa();
+        	 vGeneral.Limpiar();
+
+
+        	 municipio.agregarCentinela(centinelas);
+        	 estado.agregarMunicipio(municipio);
+        	 return;
+         }
+
+
 
 		  vGeneral.Limpiar();
 		  vGeneral.ImprimirLineasBlanco(1);
@@ -2291,7 +2304,6 @@ void Controlador::eliminarVacunas()
 		  vGeneral.ImprimirString("------MARCA VACUNA: ", almacen.getMarca());
 		  vGeneral.ImprimirLineasBlanco(1);
 
-
 		  ialmacen.ImprimirLotes(marca,centinelas);
 		  lote = vGeneral.LeerString("\nEscribir lote de la vacuna a eliminar: ");
 
@@ -2304,16 +2316,38 @@ void Controlador::eliminarVacunas()
 			  ialmacen.ImprimirLotes(marca,centinelas);
 			  lote = vGeneral.LeerString("\nEscribir lote de la vacuna a eliminar: ");
 		  }
-		  	  if(almacen.getcantDisponible()>0)
+
+
+
+		  	  if(almacen.getcantDisponible()>0 or almacen.getcantReservada()>0)
 		  	  {
-		  		 vGeneral.ImprimirMensaje("Error: No puede ser eliminada por tener vacunas disponibles en el almacen \n");
-		  	  }
-		  	  else
-		  	     if(almacen.getcantReservada()>0)
+		  		 vGeneral.ImprimirMensaje("\nWARNING! Existen vacunas en el almacen \n");
+		  	     int resp= vGeneral.LeerNro("Estas seguro de eliminar? 1-Si 2-No: ");
+		  	  if(resp==1)
 		  	  {
-		  		vGeneral.ImprimirMensaje("Error: No puede ser eliminada por tener vacunas reservadas en el almacen \n");
+		  		vGeneral.ImprimirMensaje("\nVacuna Eliminada satisfactoriamente ");
+		  		vGeneral.ImprimirLineasBlanco(1);
+		  		municipio.agregarCentinela(centinelas);
+		  		estado.agregarMunicipio(municipio);
+		  		vGeneral.Pausa();
+		  		vGeneral.Limpiar();
+		  		return;
+
 
 		  	  }
+		  	  else
+		  	  {
+
+		  		  	  	vGeneral.ImprimirLineasBlanco(1);
+		  			  	centinelas.agregarVacuna(almacen);
+		  			  	municipio.agregarCentinela(centinelas);
+		  			  	estado.agregarMunicipio(municipio);
+		  			  	vGeneral.Pausa();
+		  			  	vGeneral.Limpiar();
+		  			  	return;
+		  	  }
+		  	  }
+
 		  	  else
 		  	  {
 		  		  	  	 vGeneral.ImprimirMensaje("Vacuna Eliminada satisfactoriamente \n");
@@ -2330,12 +2364,7 @@ void Controlador::eliminarVacunas()
 		  	estado.agregarMunicipio(municipio);
 		  	vGeneral.Pausa();
 		  	vGeneral.Limpiar();
-
-
-	}
-
-
-
+}
 
 void Controlador::ModificarVacunas()
 {
@@ -2442,6 +2471,11 @@ void Controlador::ModificarVacunas()
 			vGeneral.ImprimirNro("\nCantidad Disponible: ", almacen.getcantDisponible());
 			vGeneral.ImprimirNro("\nCantidad Reservada: ", almacen.getcantReservada());
 			vGeneral.ImprimirNro("\nNumero de dosis Necesaria: ", info.getNroDosis());
+			vGeneral.ImprimirLineasBlanco(1);
+			if(almacen.getcantDisponible() % nrodosis  != 0){
+				vGeneral.ImprimirMensaje("\nWARNING: La cantidad de vacunas disponibles\n");
+				vGeneral.ImprimirMensaje("No es multiplo del numero de dosis necesarias");
+			}
 			vGeneral.ImprimirLineasBlanco(2);
 			vGeneral.ImprimirMensaje("1) Modificar Marca");
 			vGeneral.ImprimirLineasBlanco(1);
@@ -2576,13 +2610,23 @@ void Controlador::ModificarVacunas()
 
 			break;
 			case 5:
+				estado.removerMunicipio(codmuni, municipio);
+				municipio.removerCentinela(codcenti, centinelas);
+				centinelas.removerVacunaLote(marca,lote,almacen);
 				estado.removerInfoVacunas(marca,info);
 				vGeneral.Limpiar();
 				vGeneral.ImprimirMensaje("\n------ MODIFICAR NUMERO DE DOSIS NECESARIAS ------");
 				vGeneral.ImprimirNro("\nNumero de dosis Necesarias Actual: ", info.getNroDosis());
 				nrodosis = vGeneral.LeerNro("\nEscribir Nueva Dosis: ");
+				if(almacen.getcantDisponible() % nrodosis  != 0){
+					vGeneral.ImprimirMensaje("\nWARNING: La cantidad de vacuna disponible\n");
+					vGeneral.ImprimirMensaje("no es multiplo del numero de dosis necesarias\n\n");
+				}
 				info.setNroDosis(nrodosis);
 				estado.agregarInfoVacunas(info);
+				centinelas.agregarVacuna(almacen);
+				municipio.agregarCentinela(centinelas);
+				estado.agregarMunicipio(municipio);
 				vGeneral.Pausa();
 				vGeneral.Limpiar();
 				break;
@@ -2601,7 +2645,6 @@ void Controlador::ModificarVacunas()
 		}
 
 }
-
 
 void Controlador::AgregarInfoVacunas()
 {
