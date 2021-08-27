@@ -2680,11 +2680,11 @@ void Controlador::AgregarInfoVacunas()
 				vGeneral.Limpiar();
 }
 
-
 void Controlador::EliminarCentinela(){
   VGeneral vgeneral;
   MMunicipio municipio;
   MCentinela centinela;
+  MCubiculo cubiculo;
   IMunicipio Imunicipio;
   ICentinela Icentinela;
   ICubiculo Icubiculo;
@@ -2705,7 +2705,7 @@ void Controlador::EliminarCentinela(){
     vgeneral.Limpiar();
 
     Icentinela.ImprimirListaCentinela(municipio);
-    string centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela: ");
+    string centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela que desea eliminar: ");
 
     while(!municipio.removerCentinela(centinelaCodigo, centinela)) {
       vgeneral.ImprimirMensaje("Error: El centinela solicitado no existe \n\n");
@@ -2713,23 +2713,33 @@ void Controlador::EliminarCentinela(){
       vgeneral.Limpiar();
 
       Icentinela.ImprimirListaCentinela(municipio);
-      centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela: ");
+      centinelaCodigo = vgeneral.LeerString("\n Ingrese el codigo del centinela que desea eliminar: ");
     };
 
     if(centinela.PersonasCentinela(centinela)==0){
-      vgeneral.ImprimirMensaje("Se elimino de forma exitosa el centienla " + centinelaCodigo + "\n");
-      vgeneral.Pausa();
-      vgeneral.Limpiar();
+       vGeneral.ImprimirMensaje("\n Se han encontrado cubiculos dentro del centinela\n");
+       int Condicion = vgeneral.LeerNro("Desea eliminar todos los Cubiculos dentro del Centinela? \n 1.SI  2.NO:");
+            if(Condicion==1){
+              while(!centinela.esVacia()){ //Eliminacion de cubiculos
+                centinela.removerPrimerCubiculo(cubiculo);
+                vgeneral.ImprimirMensaje("Se elimino de forma exitosa el Cubiculo " + cubiculo.getCodigo() + "\n");
+              }
+               vgeneral.ImprimirMensaje("\nSe elimino de forma exitosa el Centienla " + centinelaCodigo +"\n");
+               vgeneral.Pausa();
+               vgeneral.Limpiar();
+            }
+            else{
+      vgeneral.ImprimirMensaje("No Se pudo realizar esta operacion, por lo tanto se ha regresado al menu principal\n");
+       vgeneral.Pausa();
+       vgeneral.Limpiar();
+            }
     }
     else{
       municipio.agregarCentinela(centinela);
-      vgeneral.ImprimirMensaje("No se pudo eliminar el Centinela debido a que aun \nhay personas en cola dentro"+centinelaCodigo+"\n");
+      vgeneral.ImprimirMensaje("No se pudo eliminar el Centinela debido a que aun \nhay personas en cola dentro "+centinelaCodigo+"\n");
       vgeneral.Pausa();
       vgeneral.Limpiar();
     }
 
     estado.agregarMunicipio(municipio);
 }
-
-
-
