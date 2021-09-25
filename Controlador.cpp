@@ -817,10 +817,11 @@ void Controlador::menuEliminar(){
 	}
 }
 
-void Controlador::eliminarMunicipio()
-{
+void Controlador::eliminarMunicipio(){
 	MMunicipio municipio;
 	IMunicipio Imunicipio;
+	MCentinela centinela;
+	MCubiculo cubiculo;
 
     vGeneral.Limpiar();
     Imunicipio.ImprimirListaMunicipio(estado);
@@ -838,6 +839,57 @@ void Controlador::eliminarMunicipio()
 
     vGeneral.ImprimirLineasBlanco(1);
 
+    if(municipio.PersonasMunicipio(municipio)==0){
+    	vGeneral.ImprimirMensaje("\n Se han encontrado Centinelas dentro del Municipio\n");
+    	int Condicion = vGeneral.LeerNro("Desea eliminar todos los Centinelas dentro del Municipio? \n 1.SI  2.NO:");
+
+    	if(Condicion==1){
+    		while(!municipio.esVacio()){
+    			municipio.removerPrimerCentinela(centinela);
+
+    			if(centinela.PersonasCentinela(centinela)==0){
+    				vGeneral.ImprimirMensaje("\n Se han encontrado Cubiculos dentro del Centinela\n");
+    				int Condicion2 = vGeneral.LeerNro("Desea eliminar todos los Cubiculos dentro del Centinela? \n 1.SI  2.NO:");
+
+    				if(Condicion2==1){
+    					while(!centinela.esVacia()){
+    						centinela.removerPrimerCubiculo(cubiculo);
+    						vGeneral.ImprimirMensaje("Se elimino de forma exitosa el Cubiculo " + cubiculo.getCodigo() + "\n");
+    					}
+    					vGeneral.ImprimirMensaje("\nSe elimino de forma exitosa el Centienla " + centinela.getCodigo() +"\n");
+    					vGeneral.Pausa();
+    					vGeneral.Limpiar();
+    				}
+    				else{
+    					vGeneral.ImprimirMensaje("No se pudo realizar esta operacion, por lo tanto se ha regresado al menu principal\n");
+    					vGeneral.Pausa();
+    					vGeneral.Limpiar();
+    				}
+    			}
+    			else{
+    				municipio.agregarCentinela(centinela);
+    				vGeneral.ImprimirMensaje("No se pudo eliminar el Centinela debido a que aun \nhay personas en cola dentro "+centinela.getCodigo()+"\n");
+    				vGeneral.Pausa();
+    				vGeneral.Limpiar();
+    			}
+    		}
+			vGeneral.ImprimirMensaje("\nSe elimino de forma exitosa el Municipio " + municipioCodigo +"\n");
+			vGeneral.Pausa();
+			vGeneral.Limpiar();
+    	}
+    	else{
+    	    vGeneral.ImprimirMensaje("No Se pudo realizar esta operacion, por lo tanto se ha regresado al menu principal\n");
+    	    vGeneral.Pausa();
+    	    vGeneral.Limpiar();
+    	}
+    }
+    else{
+		estado.agregarMunicipio(municipio);
+		vGeneral.ImprimirMensaje("No se pudo eliminar el Municipio debido a que aun \nhay personas en cola en "+municipio.getNombre()+"\n");
+		vGeneral.Pausa();
+		vGeneral.Limpiar();
+    }
+    /*
     if(municipio.PersonasMunicipio(municipio)!=0){
     	vGeneral.ImprimirMensaje("Error: El municipio tiene pacientes en cola");
     	estado.agregarMunicipio(municipio);
@@ -849,6 +901,7 @@ void Controlador::eliminarMunicipio()
     	vGeneral.Pausa();
     	vGeneral.Limpiar();
     }
+	*/
 
     vGeneral.ImprimirLineasBlanco(1);
 
